@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-929048f0753aa4c2210eef58d05a740f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
+
+  <title>Python &amp; Data for Engineers – pandas: loading and inspecting data</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #b89aa6;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #b89aa6;  padding-left: 4px; }
+    div.sourceCode
+      { color: #2b2626; background-color: #fbf1f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #c62828; font-weight: bold; } /* Alert */
+    code span.at { color: #6b2d8c; } /* Attribute */
+    code span.bn { color: #b35c00; } /* BaseN */
+    code span.bu { color: #6b2d8c; } /* BuiltIn */
+    code span.cf { color: #b0215e; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #2e7d32; } /* Char */
+    code span.cn { color: #b35c00; } /* Constant */
+    code span.co { color: #8a7a80; font-style: italic; } /* Comment */
+    code span.do { color: #8a7a80; font-style: italic; } /* Documentation */
+    code span.dt { color: #8e4a00; } /* DataType */
+    code span.dv { color: #b35c00; } /* DecVal */
+    code span.er { color: #c62828; font-weight: bold; } /* Error */
+    code span.fl { color: #b35c00; } /* Float */
+    code span.fu { color: #6b2d8c; } /* Function */
+    code span.im { color: #b0215e; font-weight: bold; } /* Import */
+    code span.kw { color: #b0215e; font-weight: bold; } /* Keyword */
+    code span.op { color: #7a1e45; } /* Operator */
+    code span.ot { color: #6b2d8c; } /* Other */
+    code span.ss { color: #2e7d32; } /* SpecialString */
+    code span.st { color: #2e7d32; } /* String */
+    code span.va { color: #2b2626; } /* Variable */
+    code span.vs { color: #2e7d32; } /* VerbatimString */
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-738845bc55b01920a57f1fae64592580.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">pandas: loading and inspecting data</h1>
+  <p class="subtitle">Session 6 · Topic 2.4 · Thu 17 Dec</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="today" class="slide level2">
+<h2>Today</h2>
+<div class="agenda">
+<ol type="1">
+<li>Series and DataFrame</li>
+<li>Reading CSV and Excel files</li>
+<li>First look: <code>head</code>, <code>info</code>, <code>describe</code></li>
+<li>Selecting columns and rows: <code>[]</code>, <code>loc</code>, <code>iloc</code></li>
+<li>Filtering and sorting</li>
+<li>New columns</li>
+<li>Saving results</li>
+</ol>
+</div>
+</section>
+<section id="from-numpy-to-pandas" class="slide level2">
+<h2>From NumPy to pandas</h2>
+<p>NumPy: fast arrays, but columns have no names and one type for everything.</p>
+<p>pandas adds:</p>
+<ul>
+<li><strong>named columns</strong>, each with its own type (numbers, text, dates)</li>
+<li>a <strong>row index</strong> (labels for rows)</li>
+<li>reading / writing CSV, Excel, …; handling missing values; grouping</li>
+</ul>
+<div id="87e89e6f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>pd.__version__</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>'3.0.5'</code></pre>
+</div>
+</div>
+</section>
+<section id="series-one-labelled-column" class="slide level2">
+<h2>Series: one labelled column</h2>
+<div id="e85a9f1f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="fl">170.4</span>, <span class="fl">527.5</span>, <span class="fl">297.9</span>], index<span class="op">=</span>[<span class="st">"R001"</span>, <span class="st">"R002"</span>, <span class="st">"R003"</span>], name<span class="op">=</span><span class="st">"max_stress_MPa"</span>)</span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>R001    170.4
+R002    527.5
+R003    297.9
+Name: max_stress_MPa, dtype: float64</code></pre>
+</div>
+</div>
+<div id="603c29f3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s[<span class="st">"R002"</span>], s.mean())</span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">355</span> <span class="op">/</span> s)          <span class="co"># vectorised, like NumPy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>527.5 331.93333333333334
+R001    2.083333
+R002    0.672986
+R003    1.191675
+Name: max_stress_MPa, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="dataframe-a-table" class="slide level2">
+<h2>DataFrame: a table</h2>
+<div id="a6a6e70e" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>df_small <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">"thickness_mm"</span>: [<span class="fl">17.3</span>, <span class="fl">13.3</span>, <span class="fl">18.3</span>],</span>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">"load_N"</span>: [<span class="dv">1537</span>, <span class="dv">2332</span>, <span class="dv">2729</span>],</span>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_stress_MPa"</span>: [<span class="fl">170.4</span>, <span class="fl">527.5</span>, <span class="fl">297.9</span>],</span>
+<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"R001"</span>, <span class="st">"R002"</span>, <span class="st">"R003"</span>])</span>
+<span id="cb7-6"><a aria-hidden="true" tabindex="-1"></a>df_small</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">max_stress_MPa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">R001</td>
+<td>17.3</td>
+<td>1537</td>
+<td>170.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">R002</td>
+<td>13.3</td>
+<td>2332</td>
+<td>527.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">R003</td>
+<td>18.3</td>
+<td>2729</td>
+<td>297.9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>every column is a Series; they share the same index</li>
+</ul>
+</section>
+<section>
+<section id="reading-data" class="title-slide slide level1 divider center">
+<h1>Reading data</h1>
+
+</section>
+<section id="read_csv" class="slide level2">
+<h2><code>read_csv</code></h2>
+<div id="d6d4b187" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket.csv"</span>)</span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">fillet_radius_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">E_GPa</th>
+<th data-quarto-table-cell-role="th">max_stress_MPa</th>
+<th data-quarto-table-cell-role="th">deflection_mm</th>
+<th data-quarto-table-cell-role="th">safety_factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>R001</td>
+<td>17.3</td>
+<td>6.5</td>
+<td>1537.0</td>
+<td>199.4</td>
+<td>170.4</td>
+<td>0.502</td>
+<td>2.083</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>R002</td>
+<td>13.3</td>
+<td>1.9</td>
+<td>2332.0</td>
+<td>195.2</td>
+<td>527.5</td>
+<td>1.714</td>
+<td>0.673</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>R003</td>
+<td>18.3</td>
+<td>4.8</td>
+<td>2729.0</td>
+<td>190.9</td>
+<td>297.9</td>
+<td>0.787</td>
+<td>1.192</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>R004</td>
+<td>16.4</td>
+<td>4.6</td>
+<td>2218.0</td>
+<td>199.6</td>
+<td>295.9</td>
+<td>0.850</td>
+<td>1.200</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>R005</td>
+<td>9.1</td>
+<td>7.0</td>
+<td>2897.0</td>
+<td>209.2</td>
+<td>1052.0</td>
+<td>6.202</td>
+<td>0.337</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>From the course site (Colab):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://squatandrope.github.io/ML-engineers-2026/data/bracket.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="options-you-will-need" class="slide level2">
+<h2>Options you will need</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>pd.read_csv(</span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">"results.csv"</span>,</span>
+<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>    sep<span class="op">=</span><span class="st">";"</span>,               <span class="co"># separator: ",", ";", "\t"</span></span>
+<span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>    decimal<span class="op">=</span><span class="st">","</span>,           <span class="co"># decimal comma (European exports)</span></span>
+<span id="cb10-5"><a aria-hidden="true" tabindex="-1"></a>    skiprows<span class="op">=</span><span class="dv">3</span>,            <span class="co"># skip header lines written by the solver</span></span>
+<span id="cb10-6"><a aria-hidden="true" tabindex="-1"></a>    usecols<span class="op">=</span>[<span class="st">"t"</span>, <span class="st">"F"</span>],    <span class="co"># read only some columns</span></span>
+<span id="cb10-7"><a aria-hidden="true" tabindex="-1"></a>    na_values<span class="op">=</span>[<span class="st">"n/a"</span>, <span class="st">"-"</span>],<span class="co"># extra strings that mean "missing"</span></span>
+<span id="cb10-8"><a aria-hidden="true" tabindex="-1"></a>    index_col<span class="op">=</span><span class="st">"run_id"</span>,    <span class="co"># use a column as the row index</span></span>
+<span id="cb10-9"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-10"><a aria-hidden="true" tabindex="-1"></a>pd.read_excel(<span class="st">"results.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"Runs"</span>)   <span class="co"># needs openpyxl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="tip">
+<p>If every column came in as one wide text column, the separator is wrong. If numbers are text like <code>"12,5"</code>, the decimal sign is wrong.</p>
+</div>
+</section></section>
+<section>
+<section id="first-look" class="title-slide slide level1 divider center">
+<h1>First look</h1>
+
+</section>
+<section id="size-and-structure" class="slide level2 smaller">
+<h2>Size and structure</h2>
+<div id="b8eb7afc" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)</span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>df.info(memory_usage<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(300, 8)
+&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 300 entries, 0 to 299
+Data columns (total 8 columns):
+ #   Column            Non-Null Count  Dtype  
+---  ------            --------------  -----  
+ 0   run_id            300 non-null    str    
+ 1   thickness_mm      300 non-null    float64
+ 2   fillet_radius_mm  300 non-null    float64
+ 3   load_N            300 non-null    float64
+ 4   E_GPa             300 non-null    float64
+ 5   max_stress_MPa    300 non-null    float64
+ 6   deflection_mm     300 non-null    float64
+ 7   safety_factor     300 non-null    float64
+dtypes: float64(7), str(1)</code></pre>
+</div>
+</div>
+<ul>
+<li><code>shape</code> → (rows, columns)</li>
+<li><code>info()</code> → column names, <strong>types</strong> (<code>dtype</code>), non-null counts, memory</li>
+<li>first question for any new file: are the types what I expect?</li>
+</ul>
+</section>
+<section id="describe-summary-statistics" class="slide level2">
+<h2><code>describe</code>: summary statistics</h2>
+<div id="413c41ed" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>df.describe().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">fillet_radius_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">E_GPa</th>
+<th data-quarto-table-cell-role="th">max_stress_MPa</th>
+<th data-quarto-table-cell-role="th">deflection_mm</th>
+<th data-quarto-table-cell-role="th">safety_factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>300.00</td>
+<td>300.00</td>
+<td>300.00</td>
+<td>300.00</td>
+<td>300.00</td>
+<td>300.00</td>
+<td>300.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>13.84</td>
+<td>4.54</td>
+<td>1592.14</td>
+<td>200.22</td>
+<td>357.26</td>
+<td>1.53</td>
+<td>2.13</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>3.48</td>
+<td>1.99</td>
+<td>835.32</td>
+<td>5.84</td>
+<td>277.58</td>
+<td>1.58</td>
+<td>2.41</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>8.10</td>
+<td>1.00</td>
+<td>203.00</td>
+<td>190.00</td>
+<td>23.60</td>
+<td>0.06</td>
+<td>0.25</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>10.70</td>
+<td>2.90</td>
+<td>873.25</td>
+<td>195.08</td>
+<td>144.00</td>
+<td>0.48</td>
+<td>0.73</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>13.75</td>
+<td>4.60</td>
+<td>1605.50</td>
+<td>199.80</td>
+<td>284.75</td>
+<td>0.91</td>
+<td>1.25</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>17.02</td>
+<td>6.22</td>
+<td>2313.50</td>
+<td>205.42</td>
+<td>484.92</td>
+<td>2.08</td>
+<td>2.47</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>19.90</td>
+<td>8.00</td>
+<td>2996.00</td>
+<td>210.00</td>
+<td>1443.10</td>
+<td>8.82</td>
+<td>15.04</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="quick-looks" class="slide level2">
+<h2>Quick looks</h2>
+<div id="40ed781b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist())</span>
+<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"thickness_mm"</span>].<span class="bu">min</span>(), df[<span class="st">"thickness_mm"</span>].<span class="bu">max</span>())</span>
+<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"safety_factor"</span>].lt(<span class="dv">1</span>).<span class="bu">sum</span>(), <span class="st">"runs exceed yield"</span>)</span>
+<span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>df.sample(<span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['run_id', 'thickness_mm', 'fillet_radius_mm', 'load_N', 'E_GPa', 'max_stress_MPa', 'deflection_mm', 'safety_factor']
+8.1 19.9
+118 runs exceed yield</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">fillet_radius_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">E_GPa</th>
+<th data-quarto-table-cell-role="th">max_stress_MPa</th>
+<th data-quarto-table-cell-role="th">deflection_mm</th>
+<th data-quarto-table-cell-role="th">safety_factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">208</td>
+<td>R209</td>
+<td>9.5</td>
+<td>4.5</td>
+<td>1620.0</td>
+<td>210.0</td>
+<td>582.3</td>
+<td>3.037</td>
+<td>0.610</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">188</td>
+<td>R189</td>
+<td>17.0</td>
+<td>5.0</td>
+<td>2438.0</td>
+<td>199.6</td>
+<td>291.0</td>
+<td>0.839</td>
+<td>1.220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>R013</td>
+<td>15.7</td>
+<td>2.6</td>
+<td>2915.0</td>
+<td>208.0</td>
+<td>458.7</td>
+<td>1.222</td>
+<td>0.774</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li><code>head(n)</code>, <code>tail(n)</code>, <code>sample(n)</code></li>
+<li><code>nunique()</code>, <code>value_counts()</code> for categorical columns</li>
+</ul>
+</section>
+<section id="what-to-check-on-every-new-dataset" class="slide level2">
+<h2>What to check on every new dataset</h2>
+<ol type="1">
+<li>number of rows and columns — as expected?</li>
+<li>column types — numbers read as numbers?</li>
+<li>ranges — <code>min</code> / <code>max</code> physically plausible? units?</li>
+<li>missing values — <code>info()</code> non-null counts</li>
+<li>ID column — unique?</li>
+</ol>
+<div id="a9b419d0" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"run_id"</span>].is_unique</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="selecting-data" class="title-slide slide level1 divider center">
+<h1>Selecting data</h1>
+
+</section>
+<section id="columns" class="slide level2">
+<h2>Columns</h2>
+<div id="f265239a" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"max_stress_MPa"</span>].head(<span class="dv">3</span>)          <span class="co"># one column → Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>0    170.4
+1    527.5
+2    297.9
+Name: max_stress_MPa, dtype: float64</code></pre>
+</div>
+</div>
+<div id="6941ea51" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"thickness_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]].head(<span class="dv">3</span>)   <span class="co"># list → DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">max_stress_MPa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>17.3</td>
+<td>1537.0</td>
+<td>170.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>13.3</td>
+<td>2332.0</td>
+<td>527.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>18.3</td>
+<td>2729.0</td>
+<td>297.9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="muted">
+<p><code>df.max_stress_MPa</code> also works, but <code>df["..."]</code> always works (spaces, special characters).</p>
+</div>
+</section>
+<section id="rows-loc-labels-and-iloc-positions" class="slide level2">
+<h2>Rows: <code>loc</code> (labels) and <code>iloc</code> (positions)</h2>
+<div id="25f17cb6" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>runs <span class="op">=</span> df.set_index(<span class="st">"run_id"</span>)</span>
+<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>runs.loc[<span class="st">"R002"</span>]                       <span class="co"># one run by its label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>thickness_mm          13.300
+fillet_radius_mm       1.900
+load_N              2332.000
+E_GPa                195.200
+max_stress_MPa       527.500
+deflection_mm          1.714
+safety_factor          0.673
+Name: R002, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="loc-with-ranges-iloc-by-position" class="slide level2">
+<h2><code>loc</code> with ranges, <code>iloc</code> by position</h2>
+<div id="d7608c89" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>runs.loc[<span class="st">"R001"</span>:<span class="st">"R003"</span>, [<span class="st">"thickness_mm"</span>, <span class="st">"max_stress_MPa"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">max_stress_MPa</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">R001</td>
+<td>17.3</td>
+<td>170.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">R002</td>
+<td>13.3</td>
+<td>527.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">R003</td>
+<td>18.3</td>
+<td>297.9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="e29d52f1" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>runs.iloc[<span class="dv">0</span>:<span class="dv">2</span>, <span class="dv">0</span>:<span class="dv">3</span>]                    <span class="co"># by position, like NumPy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">fillet_radius_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">R001</td>
+<td>17.3</td>
+<td>6.5</td>
+<td>1537.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">R002</td>
+<td>13.3</td>
+<td>1.9</td>
+<td>2332.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-boolean-masks-again" class="slide level2">
+<h2>Filtering: boolean masks again</h2>
+<div id="9db8793c" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>thin <span class="op">=</span> df[df[<span class="st">"thickness_mm"</span>] <span class="op">&lt;</span> <span class="dv">10</span>]</span>
+<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(thin))</span>
+<span id="cb25-3"><a aria-hidden="true" tabindex="-1"></a>failed <span class="op">=</span> df[(df[<span class="st">"safety_factor"</span>] <span class="op">&lt;</span> <span class="dv">1</span>) <span class="op">&amp;</span> (df[<span class="st">"load_N"</span>] <span class="op">&lt;</span> <span class="dv">1000</span>)]</span>
+<span id="cb25-4"><a aria-hidden="true" tabindex="-1"></a>failed[[<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>, <span class="st">"fillet_radius_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"safety_factor"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>59</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">fillet_radius_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">safety_factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">229</td>
+<td>R230</td>
+<td>9.3</td>
+<td>3.2</td>
+<td>910.0</td>
+<td>0.987</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="7d829d07" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">"thickness_mm &gt; 18 and load_N &gt; 2500"</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>(10, 8)</code></pre>
+</div>
+</div>
+</section>
+<section id="sorting" class="slide level2">
+<h2>Sorting</h2>
+<div id="eb6f8098" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">"max_stress_MPa"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">fillet_radius_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">E_GPa</th>
+<th data-quarto-table-cell-role="th">max_stress_MPa</th>
+<th data-quarto-table-cell-role="th">deflection_mm</th>
+<th data-quarto-table-cell-role="th">safety_factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>R052</td>
+<td>8.1</td>
+<td>2.2</td>
+<td>2708.0</td>
+<td>195.0</td>
+<td>1443.1</td>
+<td>8.819</td>
+<td>0.246</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">272</td>
+<td>R273</td>
+<td>8.6</td>
+<td>4.4</td>
+<td>2942.0</td>
+<td>195.1</td>
+<td>1264.8</td>
+<td>8.001</td>
+<td>0.281</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">291</td>
+<td>R292</td>
+<td>8.6</td>
+<td>4.1</td>
+<td>2874.0</td>
+<td>197.9</td>
+<td>1252.8</td>
+<td>7.706</td>
+<td>0.283</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">175</td>
+<td>R176</td>
+<td>8.5</td>
+<td>3.1</td>
+<td>2589.0</td>
+<td>196.4</td>
+<td>1204.2</td>
+<td>7.244</td>
+<td>0.295</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">149</td>
+<td>R150</td>
+<td>8.3</td>
+<td>5.3</td>
+<td>2555.0</td>
+<td>194.9</td>
+<td>1152.4</td>
+<td>7.738</td>
+<td>0.308</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="15a236c1" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a>df.nlargest(<span class="dv">3</span>, <span class="st">"deflection_mm"</span>)[[<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"deflection_mm"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th">thickness_mm</th>
+<th data-quarto-table-cell-role="th">load_N</th>
+<th data-quarto-table-cell-role="th">deflection_mm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>R052</td>
+<td>8.1</td>
+<td>2708.0</td>
+<td>8.819</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">272</td>
+<td>R273</td>
+<td>8.6</td>
+<td>2942.0</td>
+<td>8.001</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">149</td>
+<td>R150</td>
+<td>8.3</td>
+<td>2555.0</td>
+<td>7.738</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="changing-data" class="title-slide slide level1 divider center">
+<h1>Changing data</h1>
+
+</section>
+<section id="new-columns" class="slide level2">
+<h2>New columns</h2>
+<div id="5625882a" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nominal_stress_MPa"</span>] <span class="op">=</span> <span class="dv">6</span> <span class="op">*</span> df[<span class="st">"load_N"</span>] <span class="op">*</span> <span class="dv">150</span> <span class="op">/</span> (<span class="dv">40</span> <span class="op">*</span> df[<span class="st">"thickness_mm"</span>] <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Kt"</span>] <span class="op">=</span> df[<span class="st">"max_stress_MPa"</span>] <span class="op">/</span> df[<span class="st">"nominal_stress_MPa"</span>]</span>
+<span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"passes"</span>] <span class="op">=</span> df[<span class="st">"safety_factor"</span>] <span class="op">&gt;=</span> <span class="fl">1.5</span></span>
+<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"E_MPa"</span>] <span class="op">=</span> df[<span class="st">"E_GPa"</span>] <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb31-5"><a aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"run_id"</span>, <span class="st">"nominal_stress_MPa"</span>, <span class="st">"Kt"</span>, <span class="st">"passes"</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">run_id</th>
+<th data-quarto-table-cell-role="th">nominal_stress_MPa</th>
+<th data-quarto-table-cell-role="th">Kt</th>
+<th data-quarto-table-cell-role="th">passes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>R001</td>
+<td>115.548465</td>
+<td>1.474706</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>R002</td>
+<td>296.625021</td>
+<td>1.778340</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>R003</td>
+<td>183.351250</td>
+<td>1.624750</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>R004</td>
+<td>185.548037</td>
+<td>1.594735</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>R005</td>
+<td>787.133196</td>
+<td>1.336496</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>column arithmetic is vectorised, like NumPy</li>
+<li><code>Kt</code> — stress concentration from the weld fillet, recovered from the data</li>
+</ul>
+</section>
+<section id="renaming-dropping-apply" class="slide level2">
+<h2>Renaming, dropping, apply</h2>
+<div id="19341465" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>small <span class="op">=</span> (df</span>
+<span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>    .rename(columns<span class="op">=</span>{<span class="st">"fillet_radius_mm"</span>: <span class="st">"r_mm"</span>})</span>
+<span id="cb32-3"><a aria-hidden="true" tabindex="-1"></a>    .drop(columns<span class="op">=</span>[<span class="st">"E_MPa"</span>])</span>
+<span id="cb32-4"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-5"><a aria-hidden="true" tabindex="-1"></a>small[<span class="st">"size_class"</span>] <span class="op">=</span> small[<span class="st">"thickness_mm"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> t: <span class="st">"thin"</span> <span class="cf">if</span> t <span class="op">&lt;</span> <span class="dv">12</span> <span class="cf">else</span> <span class="st">"thick"</span>)</span>
+<span id="cb32-6"><a aria-hidden="true" tabindex="-1"></a>small[<span class="st">"size_class"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>size_class
+thick    192
+thin     108
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<ul>
+<li>methods return a <strong>new</strong> DataFrame — assign the result</li>
+<li><code>.apply(function)</code> for row-wise logic that is not simple arithmetic (slower)</li>
+</ul>
+</section>
+<section id="saving" class="slide level2">
+<h2>Saving</h2>
+<div id="2033618c" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">"bracket_clean.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a>df.to_excel(<span class="st">"bracket.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)      <span class="co"># needs openpyxl</span></span>
+<span id="cb35-2"><a aria-hidden="true" tabindex="-1"></a>df.to_parquet(<span class="st">"bracket.parquet"</span>)              <span class="co"># fast binary, keeps types</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="your-turn-25-min" class="slide level2">
+<h2>Your turn (25 min)</h2>
+<div class="exercise">
+<ol type="1">
+<li>Load <code>bracket.csv</code>; how many runs, which types, which ranges?</li>
+<li>How many runs exceed yield (SF &lt; 1)? What share is that?</li>
+<li>Show the 5 runs with the <strong>smallest</strong> safety factor — which inputs do they have in common?</li>
+<li>Add <code>nominal_stress_MPa</code> and <code>Kt</code>. Plot nothing yet — just check: is <code>Kt</code> larger for small or for large fillet radii? (Hint: compare means for <code>r &lt; 3</code> and <code>r &gt; 6</code>.)</li>
+<li>Save runs with SF between 1 and 1.5 (borderline designs) to <code>borderline.csv</code>.</li>
+</ol>
+</div>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<ul>
+<li><code>pd.read_csv</code> with <code>sep</code>, <code>decimal</code>, <code>na_values</code>, <code>usecols</code>, <code>index_col</code></li>
+<li>first look: <code>shape</code>, <code>info()</code>, <code>describe()</code>, <code>head()</code></li>
+<li><code>df["col"]</code>, <code>df[["a", "b"]]</code>, <code>loc</code> by label, <code>iloc</code> by position</li>
+<li>filter with masks or <code>query</code>; sort with <code>sort_values</code></li>
+<li>new columns by vectorised arithmetic; <code>to_csv</code> to save</li>
+</ul>
+<p><strong>After the break:</strong> data quality — what to do when the file is not clean.</p>
+</section>
+<section id="over-the-break" class="slide level2">
+<h2>Over the break</h2>
+<div class="muted">
+<p>No obligatory homework. If you want to practise:</p>
+</div>
+<ul>
+<li>load a table from your own work (CSV or Excel) with pandas, run the 5 checks</li>
+<li>write down anything that went wrong — we start Session 7 with your examples</li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>ML for Engineers · Modules 1–2</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 760,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
