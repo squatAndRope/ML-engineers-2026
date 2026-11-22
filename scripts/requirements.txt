@@ -1,0 +1,9 @@
+numpy
+pandas
+matplotlib
+openpyxl
+jupyterlab
+ipykernel
+scikit-learn
+torch
+deepxde

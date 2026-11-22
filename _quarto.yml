@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - data/*.csv
+    - scripts/setup_env.sh
+    - scripts/setup_env.ps1
+    - scripts/requirements.txt
+
+website:
+  title: "Python & Data for Engineers"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Schedule
+      - href: data.qmd
+        text: Data
+  page-footer: "Fundamentals of Machine Learning for Engineers · Modules 1–2 · Klaudia Brzezińska"
+
+format:
+  html:
+    theme: [cosmo, assets/site.scss]
+    highlight-style: assets/pink.theme
+  revealjs:
+    theme: [default, assets/slides.scss]
+    highlight-style: assets/pink.theme
+    slide-number: c/t
+    code-line-numbers: false
+    code-copy: true
+    transition: none
+    width: 1280
+    height: 760
+    footer: "ML for Engineers · Modules 1–2"
+    chalkboard: false
+    menu: true
+    preview-links: auto
+
+execute:
+  freeze: auto
+  echo: true
+  warning: false

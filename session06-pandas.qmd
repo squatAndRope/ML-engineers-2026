@@ -1,0 +1,262 @@
+---
+title: "pandas: loading and inspecting data"
+subtitle: "Session 6 · Topic 2.4 · Thu 17 Dec"
+format: revealjs
+---
+
+## Today
+
+::: {.agenda}
+1. Series and DataFrame
+2. Reading CSV and Excel files
+3. First look: `head`, `info`, `describe`
+4. Selecting columns and rows: `[]`, `loc`, `iloc`
+5. Filtering and sorting
+6. New columns
+7. Saving results
+:::
+
+## From NumPy to pandas
+
+NumPy: fast arrays, but columns have no names and one type for everything.
+
+pandas adds:
+
+- **named columns**, each with its own type (numbers, text, dates)
+- a **row index** (labels for rows)
+- reading / writing CSV, Excel, ...; handling missing values; grouping
+
+```{python}
+import pandas as pd
+import numpy as np
+pd.__version__
+```
+
+## Series: one labelled column
+
+```{python}
+s = pd.Series([170.4, 527.5, 297.9], index=["R001", "R002", "R003"], name="max_stress_MPa")
+s
+```
+
+```{python}
+print(s["R002"], s.mean())
+print(355 / s)          # vectorised, like NumPy
+```
+
+## DataFrame: a table
+
+```{python}
+df_small = pd.DataFrame({
+    "thickness_mm": [17.3, 13.3, 18.3],
+    "load_N": [1537, 2332, 2729],
+    "max_stress_MPa": [170.4, 527.5, 297.9],
+}, index=["R001", "R002", "R003"])
+df_small
+```
+
+- every column is a Series; they share the same index
+
+# Reading data {.divider}
+
+## `read_csv`
+
+```{python}
+df = pd.read_csv("data/bracket.csv")
+df.head()
+```
+
+From the course site (Colab):
+
+```python
+df = pd.read_csv("https://squatandrope.github.io/ML-engineers-2026/data/bracket.csv")
+```
+
+## Options you will need
+
+```python
+pd.read_csv(
+    "results.csv",
+    sep=";",               # separator: ",", ";", "\t"
+    decimal=",",           # decimal comma (European exports)
+    skiprows=3,            # skip header lines written by the solver
+    usecols=["t", "F"],    # read only some columns
+    na_values=["n/a", "-"],# extra strings that mean "missing"
+    index_col="run_id",    # use a column as the row index
+)
+pd.read_excel("results.xlsx", sheet_name="Runs")   # needs openpyxl
+```
+
+::: {.tip}
+If every column came in as one wide text column, the separator is wrong.
+If numbers are text like `"12,5"`, the decimal sign is wrong.
+:::
+
+# First look {.divider}
+
+## Size and structure {.smaller}
+
+```{python}
+print(df.shape)
+df.info(memory_usage=False)
+```
+
+- `shape` → (rows, columns)
+- `info()` → column names, **types** (`dtype`), non-null counts, memory
+- first question for any new file: are the types what I expect?
+
+## `describe`: summary statistics
+
+```{python}
+df.describe().round(2)
+```
+
+## Quick looks
+
+```{python}
+print(df.columns.tolist())
+print(df["thickness_mm"].min(), df["thickness_mm"].max())
+print(df["safety_factor"].lt(1).sum(), "runs exceed yield")
+df.sample(3, random_state=0)
+```
+
+- `head(n)`, `tail(n)`, `sample(n)`
+- `nunique()`, `value_counts()` for categorical columns
+
+## What to check on every new dataset
+
+1. number of rows and columns — as expected?
+2. column types — numbers read as numbers?
+3. ranges — `min` / `max` physically plausible? units?
+4. missing values — `info()` non-null counts
+5. ID column — unique?
+
+```{python}
+df["run_id"].is_unique
+```
+
+# Selecting data {.divider}
+
+## Columns
+
+```{python}
+df["max_stress_MPa"].head(3)          # one column → Series
+```
+
+```{python}
+df[["thickness_mm", "load_N", "max_stress_MPa"]].head(3)   # list → DataFrame
+```
+
+::: {.muted}
+`df.max_stress_MPa` also works, but `df["..."]` always works (spaces, special characters).
+:::
+
+## Rows: `loc` (labels) and `iloc` (positions)
+
+```{python}
+runs = df.set_index("run_id")
+runs.loc["R002"]                       # one run by its label
+```
+
+## `loc` with ranges, `iloc` by position
+
+```{python}
+runs.loc["R001":"R003", ["thickness_mm", "max_stress_MPa"]]
+```
+
+```{python}
+runs.iloc[0:2, 0:3]                    # by position, like NumPy
+```
+
+## Filtering: boolean masks again
+
+```{python}
+thin = df[df["thickness_mm"] < 10]
+print(len(thin))
+failed = df[(df["safety_factor"] < 1) & (df["load_N"] < 1000)]
+failed[["run_id", "thickness_mm", "fillet_radius_mm", "load_N", "safety_factor"]]
+```
+
+```{python}
+df.query("thickness_mm > 18 and load_N > 2500").shape
+```
+
+## Sorting
+
+```{python}
+df.sort_values("max_stress_MPa", ascending=False).head(5)
+```
+
+```{python}
+df.nlargest(3, "deflection_mm")[["run_id", "thickness_mm", "load_N", "deflection_mm"]]
+```
+
+# Changing data {.divider}
+
+## New columns
+
+```{python}
+df["nominal_stress_MPa"] = 6 * df["load_N"] * 150 / (40 * df["thickness_mm"] ** 2)
+df["Kt"] = df["max_stress_MPa"] / df["nominal_stress_MPa"]
+df["passes"] = df["safety_factor"] >= 1.5
+df["E_MPa"] = df["E_GPa"] * 1000
+df[["run_id", "nominal_stress_MPa", "Kt", "passes"]].head()
+```
+
+- column arithmetic is vectorised, like NumPy
+- `Kt` — stress concentration from the weld fillet, recovered from the data
+
+## Renaming, dropping, apply
+
+```{python}
+small = (df
+    .rename(columns={"fillet_radius_mm": "r_mm"})
+    .drop(columns=["E_MPa"])
+)
+small["size_class"] = small["thickness_mm"].apply(lambda t: "thin" if t < 12 else "thick")
+small["size_class"].value_counts()
+```
+
+- methods return a **new** DataFrame — assign the result
+- `.apply(function)` for row-wise logic that is not simple arithmetic (slower)
+
+## Saving
+
+```{python}
+df.to_csv("bracket_clean.csv", index=False)
+```
+
+```python
+df.to_excel("bracket.xlsx", index=False)      # needs openpyxl
+df.to_parquet("bracket.parquet")              # fast binary, keeps types
+```
+
+## Your turn (25 min)
+
+::: {.exercise}
+1. Load `bracket.csv`; how many runs, which types, which ranges?
+2. How many runs exceed yield (SF < 1)? What share is that?
+3. Show the 5 runs with the **smallest** safety factor — which inputs do they have in common?
+4. Add `nominal_stress_MPa` and `Kt`. Plot nothing yet — just check:
+   is `Kt` larger for small or for large fillet radii? (Hint: compare means for `r < 3` and `r > 6`.)
+5. Save runs with SF between 1 and 1.5 (borderline designs) to `borderline.csv`.
+:::
+
+## Summary
+
+- `pd.read_csv` with `sep`, `decimal`, `na_values`, `usecols`, `index_col`
+- first look: `shape`, `info()`, `describe()`, `head()`
+- `df["col"]`, `df[["a", "b"]]`, `loc` by label, `iloc` by position
+- filter with masks or `query`; sort with `sort_values`
+- new columns by vectorised arithmetic; `to_csv` to save
+
+**After the break:** data quality — what to do when the file is not clean.
+
+## Over the break
+
+::: {.muted}
+No obligatory homework. If you want to practise:
+:::
+
+- load a table from your own work (CSV or Excel) with pandas, run the 5 checks
+- write down anything that went wrong — we start Session 7 with your examples

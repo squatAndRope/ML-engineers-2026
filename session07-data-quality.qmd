@@ -1,0 +1,313 @@
+---
+title: "Data quality"
+subtitle: "Session 7 · Topic 2.5 · Thu 7 Jan"
+format: revealjs
+---
+
+## Welcome back! Quick pandas recap
+
+```{python}
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("data/bracket.csv")              # read
+print(df.shape)                                    # size
+cols = ["run_id", "thickness_mm", "load_N", "safety_factor"]
+low = df.loc[df["safety_factor"] < 1, cols]        # filter rows, pick columns
+low.sort_values("safety_factor").head(3)           # sort
+```
+
+::: {.muted}
+`read_csv` → `info` / `describe` → `df["col"]` / `loc` → masks → new columns → `to_csv`.
+:::
+
+## Recap: your turn (5 min)
+
+::: {.exercise}
+Without looking at the old slides:
+
+1. How many runs have thickness above 15 mm **and** SF below 1.5?
+2. Add a column `deflection_um` (micrometres).
+3. Which run has the largest deflection?
+:::
+
+## Today
+
+::: {.agenda}
+1. What can be wrong with calculation data
+2. Reading a messy export
+3. Wrong types and mixed formats
+4. Missing values
+5. Duplicates
+6. Units and physically impossible values
+7. Failed calculations
+8. A reusable cleaning function + checks
+:::
+
+## Garbage in, garbage out
+
+A surrogate model does not know that a value is wrong. It learns it.
+
+| Problem | Example | Effect on a model |
+|---|---|---|
+| wrong unit | load in kN in some rows | learns a fake relationship |
+| typo | thickness 196 mm instead of 19.6 | one point pulls the fit |
+| failed run | stress = 0 | "infinitely safe" designs |
+| duplicates | same run exported twice | over-weights some designs, leaks into the test set |
+| gaps | missing deflection | errors or silently dropped rows |
+
+# Reading a messy export {.divider}
+
+## First attempt
+
+```{python}
+raw = pd.read_csv("data/bracket_raw.csv")
+raw.head(3)
+```
+
+One column only → the separator is not a comma.
+
+## Second attempt
+
+```{python}
+raw = pd.read_csv("data/bracket_raw.csv", sep=";", decimal=",")
+raw.head()
+```
+
+## What types did we get?
+
+```{python}
+raw.dtypes
+```
+
+- `load_N` and `max_stress_MPa` are **text**, although they should be numbers
+- why? Some values use a dot, some a comma; some say `n/a`
+
+```{python}
+raw["max_stress_MPa"].head(6).tolist()
+```
+
+## Converting to numbers safely
+
+```{python}
+def to_number(col):
+    """Text -> float; accepts decimal commas and dots, bad values become NaN."""
+    return pd.to_numeric(col.astype(str).str.replace(",", "."), errors="coerce")
+
+clean = raw.copy()
+for c in ["load_N", "max_stress_MPa"]:
+    clean[c] = to_number(clean[c])
+clean.dtypes[["load_N", "max_stress_MPa"]]
+```
+
+- `errors="coerce"` turns anything that is not a number into `NaN` (missing)
+- always work on a **copy** — keep the raw data untouched
+
+# Missing values {.divider}
+
+## Finding them
+
+```{python}
+clean.isna().sum()
+```
+
+```{python}
+clean[clean.isna().any(axis=1)].head()
+```
+
+## What to do with missing values?
+
+| Option | When | pandas |
+|---|---|---|
+| drop the row | few rows, the value is essential (an output) | `dropna(subset=[...])` |
+| recompute | the value can be derived from others | e.g. SF = 355 / stress |
+| fill with a known value | a default really applies | `fillna(value)` |
+| fill with a statistic | only for inputs, only with care | `fillna(col.median())` |
+| re-run the calculation | best, if possible | — |
+
+::: {.tip}
+Never fill a missing **output** (stress, deflection) with a mean: you invent a calculation
+result. For training data, re-run or drop.
+:::
+
+## In our data
+
+```{python}
+# E is missing in a few rows: material is the same steel, 200 GPa is a defensible nominal value
+clean["E_GPa"] = clean["E_GPa"].fillna(200.0)
+
+# deflection is an output: we cannot invent it
+before = len(clean)
+clean = clean.dropna(subset=["deflection_mm"])
+print(f"dropped {before - len(clean)} runs without deflection")
+```
+
+::: {.muted}
+Write down every decision like this. It goes into the model passport later.
+:::
+
+# Duplicates {.divider}
+
+## Exact duplicates and duplicated IDs
+
+```{python}
+print(clean.duplicated().sum(), "identical rows")
+print(clean["run_id"].duplicated().sum(), "repeated run IDs")
+clean[clean["run_id"].duplicated(keep=False)].sort_values("run_id")
+```
+
+```{python}
+clean = clean.drop_duplicates()
+assert clean["run_id"].is_unique
+```
+
+::: {.muted}
+Same ID but different values? That is not a duplicate — it is a conflict. Find out which one is right.
+:::
+
+# Units and impossible values {.divider}
+
+## Check ranges against physics and the plan
+
+```{python}
+clean[["thickness_mm", "fillet_radius_mm", "load_N", "E_GPa"]].describe().loc[["min", "max"]]
+```
+
+- negative thickness → sign error
+- thickness 190 mm → probably a missing decimal point (plan was 8–20 mm)
+- load around 1–3 → entered in **kN** instead of N (plan was 200–3000 N)
+
+## Fixing what we understand
+
+```{python}
+in_kN = clean["load_N"] < 10
+print(in_kN.sum(), "loads look like kN")
+clean.loc[in_kN, "load_N"] = clean.loc[in_kN, "load_N"] * 1000
+
+bad_t = ~clean["thickness_mm"].between(8, 20)
+clean.loc[bad_t, ["run_id", "thickness_mm"]]
+```
+
+```{python}
+clean = clean[~bad_t]      # unclear what the right value was -> remove and report
+print(len(clean), "runs left")
+```
+
+::: {.muted}
+Fix only what you can explain (kN → N is certain). If you would have to guess: exclude and flag for re-calculation.
+:::
+
+## Outliers: suspicious, not automatically wrong
+
+```{python}
+q1, q3 = clean["max_stress_MPa"].quantile([0.25, 0.75])
+iqr = q3 - q1
+far = clean[clean["max_stress_MPa"] > q3 + 1.5 * iqr]      # classic 1.5 × IQR rule
+print(len(far), "runs far above the rest")
+far[["run_id", "thickness_mm", "fillet_radius_mm", "load_N", "max_stress_MPa"]].head()
+```
+
+- statistical rule (IQR) finds candidates; **physics** decides
+- thin plate + small radius + high load → high stress is real, keep it
+
+# Failed calculations {.divider}
+
+## Solver status and zero results
+
+```{python}
+clean["solver_status"].value_counts()
+```
+
+```{python}
+clean[clean["solver_status"] != "converged"][["run_id", "max_stress_MPa", "safety_factor"]]
+```
+
+```{python}
+clean = clean[clean["solver_status"] == "converged"]
+clean = clean.dropna(subset=["max_stress_MPa"])
+print(len(clean), "runs left")
+```
+
+## Consistency checks between columns
+
+```{python}
+recomputed = 355 / clean["max_stress_MPa"]
+diff = (recomputed - clean["safety_factor"]).abs()
+print("max difference:", round(diff.max(), 4))
+```
+
+- derived columns must agree with their sources
+- physics: deflection should grow with load and fall with thickness — check later in EDA
+
+# Making it repeatable {.divider}
+
+## One cleaning function
+
+```{python}
+def clean_bracket(path):
+    """Read and clean a raw bracket export. Returns (clean DataFrame, report dict)."""
+    df = pd.read_csv(path, sep=";", decimal=",")
+    report = {"rows_in": len(df)}
+    for c in ["load_N", "max_stress_MPa"]:
+        df[c] = to_number(df[c])
+    df = df.drop_duplicates()
+    df.loc[df["load_N"] < 10, "load_N"] *= 1000                      # kN -> N
+    df["E_GPa"] = df["E_GPa"].fillna(200.0)
+    df = df[df["solver_status"] == "converged"]
+    df = df[df["thickness_mm"].between(8, 20)]
+    df = df.dropna(subset=["max_stress_MPa", "deflection_mm"])
+    df["safety_factor"] = 355 / df["max_stress_MPa"]                  # recompute, consistent
+    report["rows_out"] = len(df)
+    return df.reset_index(drop=True), report
+
+data, rep = clean_bracket("data/bracket_raw.csv")
+rep
+```
+
+## Checks that stop bad data
+
+```{python}
+def validate(df):
+    assert df["run_id"].is_unique, "duplicate run IDs"
+    assert df.notna().all().all(), "missing values left"
+    assert df["thickness_mm"].between(8, 20).all(), "thickness out of plan range"
+    assert df["load_N"].between(200, 3000).all(), "load out of plan range (unit?)"
+    assert (df["max_stress_MPa"] > 0).all(), "non-positive stress"
+    return True
+
+validate(data)
+```
+
+::: {.tip}
+Put `clean_bracket` and `validate` in a `.py` file and commit them. New export from the
+solver → one line to get clean, checked data.
+:::
+
+## Your turn (25 min)
+
+::: {.exercise}
+Start from `bracket_raw.csv` yourself (do not copy the slides):
+
+1. Read it correctly and list every problem you find (types, gaps, duplicates, ranges, status).
+2. For each problem, decide: fix, drop, or flag — and write why in a comment.
+3. Write `clean_bracket(path)` returning the clean data and a report of how many rows
+   were removed **for which reason**.
+4. Compare your clean data with `bracket.csv` (the reference): same number of rows?
+   Same mean stress?
+:::
+
+## Summary
+
+- read with the right `sep` and `decimal`; check `dtypes` first
+- `pd.to_numeric(..., errors="coerce")` for mixed text/number columns
+- missing values: never invent outputs; document what you filled and why
+- duplicates: `duplicated`, `drop_duplicates`, unique IDs
+- ranges: compare with the plan and with physics; fix only what you can explain
+- one cleaning function + `assert` checks = repeatable
+
+**Next session:** reshaping and aggregation — `groupby`, pivot tables, merging tables.
+
+## Practice at home (~1 h)
+
+- finish your `clean_bracket` with a reason-by-reason report; commit it
+- if you have an export from your own solver: write a first cleaning function for it

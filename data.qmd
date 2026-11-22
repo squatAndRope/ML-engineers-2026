@@ -1,0 +1,38 @@
+---
+format: html
+title: "Course data"
+---
+
+All examples use one engineering object: a **welded cantilever bracket**
+(length 150 mm, width 40 mm, steel S355). Each row is one parametric calculation.
+
+| File | What it is | Used in |
+|------|------------|---------|
+| [bracket.csv](data/bracket.csv) | 300 clean calculation runs | 2.2 – 2.8 |
+| [bracket_raw.csv](data/bracket_raw.csv) | the same runs as a messy export (`;` separator, decimal commas, gaps, errors) | 2.5 |
+| [bracket_loadcases.csv](data/bracket_loadcases.csv) | stress for three load cases in wide format | 2.6 |
+| [materials.csv](data/materials.csv) | yield strength of three steel grades | 2.6 |
+
+**Columns of `bracket.csv`**
+
+| Column | Meaning | Unit |
+|--------|---------|------|
+| `run_id` | calculation ID | – |
+| `thickness_mm` | plate thickness *t* | mm |
+| `fillet_radius_mm` | weld fillet radius *r* | mm |
+| `load_N` | tip load *F* | N |
+| `E_GPa` | modulus of elasticity *E* | GPa |
+| `max_stress_MPa` | maximum stress at the weld (incl. fillet stress concentration) | MPa |
+| `deflection_mm` | tip deflection | mm |
+| `safety_factor` | yield strength / max stress | – |
+
+In Colab or Jupyter you can read a file directly from this site, for example:
+
+```python
+import pandas as pd
+url = "https://squatandrope.github.io/ML-engineers-2026/data/bracket.csv"
+df = pd.read_csv(url)
+```
+
+The data come from a simplified analytical model (`scripts/make_data.py`), so you can
+check every result by hand. Later in the course you can swap in your own calculations.

@@ -1,0 +1,278 @@
+---
+title: "Your environment and version control"
+subtitle: "Session 3 · Topics 1.5 + 2.1 · Tue 8 Dec"
+format: revealjs
+---
+
+## Today
+
+::: {.agenda}
+1. Where Python lives: interpreter, packages, environments
+2. Setting up the course environment (one script)
+3. Notebooks vs scripts, Jupyter Lab and VS Code
+4. Why version control
+5. Git: repository, commit, history
+6. GitHub: a copy of your work online
+:::
+
+# Your Python environment {.divider}
+
+## What is actually installed?
+
+- **Python interpreter** — the program that runs your code (`python`)
+- **packages** — extra libraries: NumPy, pandas, Matplotlib, scikit-learn, ...
+- **pip** — installs packages: `pip install pandas`
+- **virtual environment** — a separate folder with its own Python + packages for one project
+
+::: {.tip}
+Why separate environments? Project A needs pandas 2.1, project B needs 2.2. Without
+environments one of them breaks. With them, each project has exactly what it was tested with
+— the same idea as recording the solver version in a calculation report.
+:::
+
+## The terminal
+
+| Windows (PowerShell) | macOS / Linux | What it does |
+|---|---|---|
+| `cd folder` | `cd folder` | go into a folder |
+| `cd ..` | `cd ..` | go one level up |
+| `dir` | `ls` | list files |
+| `pwd` | `pwd` | where am I? |
+| `mkdir name` | `mkdir name` | new folder |
+
+- you type a command, press Enter, read the answer
+- **Tab** completes names; **↑** repeats the previous command
+
+## Setting up the course environment
+
+1. install **Python 3.12** from python.org (Windows: tick *Add python.exe to PATH*)
+2. create a folder for the course, e.g. `ml-course`
+3. download the setup script from the course site and run it in that folder:
+
+```bash
+# Windows (PowerShell)
+powershell -ExecutionPolicy Bypass -File setup_env.ps1
+
+# macOS / Linux
+bash setup_env.sh
+```
+
+The script creates `.venv`, installs all course packages and registers a Jupyter kernel.
+
+## Using the environment
+
+```bash
+# activate (every time you open a new terminal)
+.venv\Scripts\Activate.ps1        # Windows
+source .venv/bin/activate         # macOS / Linux
+
+python --version                  # Python 3.12.x
+python -c "import pandas; print(pandas.__version__)"
+jupyter lab                       # opens in the browser
+```
+
+- `(.venv)` at the start of the prompt = the environment is active
+- no admin rights or problems with installing? **Google Colab** works for the whole course
+
+## Recording what you used
+
+```bash
+pip freeze > requirements.txt     # exact versions of everything installed
+pip install -r requirements.txt   # recreate on another machine
+```
+
+::: {.tip}
+The case "model passport" in Module 3 asks for package versions. `pip freeze` is
+where you get them.
+:::
+
+## Notebook or script?
+
+::: {.columns}
+::: {.column width="50%"}
+**Notebook** `.ipynb`
+
+- explore, try, plot, explain
+- code + results + text together
+- danger: cells run in any order
+:::
+::: {.column width="50%"}
+**Script / module** `.py`
+
+- checked, reusable code
+- runs top to bottom, the same every time
+- `python analysis.py`
+:::
+:::
+
+Typical workflow: explore in a notebook → move what works into `.py` → import it back.
+
+**Editors:** Jupyter Lab (notebooks) · VS Code (both, with Python and Jupyter extensions)
+
+## Your turn (10 min)
+
+::: {.exercise}
+1. Install Python 3.12 and run the setup script (or open Colab if this fails —
+   we fix installations after the session).
+2. Start `jupyter lab`, create a notebook, select the kernel **Python (ML engineers)**.
+3. Run `import numpy, pandas, matplotlib; print(pandas.__version__)`.
+4. Copy your `bending_stress` function into `bracket.py` and import it in the notebook.
+:::
+
+# Version control with Git {.divider}
+
+## The problem
+
+```
+bracket_final.py
+bracket_final_v2.py
+bracket_final_v2_corrected.py
+bracket_final_v2_corrected_KB_NEW.py
+```
+
+- which one produced the results in the report?
+- what changed between v2 and v2_corrected — and why?
+- how do two people work on the same code?
+
+## Git in one picture
+
+```
+ working folder  ──git add──►  staging area  ──git commit──►  history (.git)
+   (your files)                (what goes into                (snapshots with
+                                the next snapshot)              message, author, date)
+```
+
+- a **repository** = a folder whose history Git tracks
+- a **commit** = a saved snapshot of the project + a message saying why
+- you can look at any snapshot, compare them, go back
+
+## One-time setup
+
+```bash
+git --version
+git config --global user.name  "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main
+```
+
+::: {.muted}
+Windows: install *Git for Windows* (git-scm.com) — keep the default options.
+:::
+
+## The daily cycle
+
+```bash
+cd ml-course
+git init                      # once: start tracking this folder
+git status                    # what changed?
+git add bracket.py            # choose what goes into the snapshot
+git commit -m "Add bending stress function"
+git log --oneline             # history
+```
+
+```
+a41f2c9 Add bending stress function
+```
+
+**status → add → commit**, many times a day.
+
+## Seeing what changed
+
+```bash
+git diff                      # changes not yet added
+git diff --staged             # changes added, not yet committed
+git show a41f2c9              # one commit in detail
+```
+
+```diff
+ def bending_stress(F, t, L=150, b=40):
+-    return 6 * F * L / (b * t * t)
++    """Max bending stress of a rectangular cantilever, MPa."""
++    return 6 * F * L / (b * t ** 2)
+```
+
+## Good commit messages
+
+| ✗ | ✓ |
+|---|---|
+| `update` | `Add deflection function` |
+| `fix` | `Fix unit error: load was in kN, not N` |
+| `asdf` | `Read run results from CSV` |
+
+- one commit = one logical change
+- the message answers: **what** and **why**
+
+## `.gitignore`: what Git should not track
+
+```
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+*.log
+results/
+```
+
+- environments, temporary files, large generated results
+- never commit passwords or confidential data
+
+::: {.tip}
+Calculation results from a confidential project do not belong in a public repository.
+Keep code public or private on GitHub, data where your organisation allows.
+:::
+
+## Undoing things
+
+```bash
+git restore bracket.py            # throw away uncommitted changes in a file
+git restore --staged bracket.py   # un-add (keep the changes)
+git checkout a41f2c9 -- bracket.py  # get the file as it was in that commit
+```
+
+::: {.muted}
+Everything committed can be recovered. Uncommitted work cannot — commit often.
+:::
+
+## GitHub: your repository online
+
+```bash
+# on github.com: New repository → "ml-course" (no README) → copy the URL
+git remote add origin https://github.com/<you>/ml-course.git
+git push -u origin main           # first time
+git push                          # afterwards
+git pull                          # get changes made elsewhere
+```
+
+- backup + access from any computer + sharing with colleagues
+- the first push asks you to log in (browser window or token)
+
+## Notebooks and Git
+
+- `.ipynb` files are JSON with outputs inside → diffs are hard to read
+- clear outputs before committing large notebooks (*Edit → Clear All Outputs*)
+- keep important functions in `.py` files — they diff nicely
+
+## Your turn (15 min)
+
+::: {.exercise}
+1. Configure your name and e-mail in Git.
+2. `git init` your course folder, add a `.gitignore` with `.venv/`.
+3. Commit `bracket.py` and your notebook.
+4. Change the docstring of a function, look at `git diff`, commit again.
+5. Create an empty repository on GitHub and push. Refresh the page — your files are there.
+:::
+
+## Summary
+
+- each project gets its own **virtual environment**; `pip freeze` records versions
+- notebooks to explore, `.py` files for checked code
+- Git: **status → add → commit**, `log` and `diff` to look back
+- `.gitignore` for things that should not be tracked
+- GitHub: `push` to back up and share, `pull` to update
+
+**Next session:** data fundamentals — what a dataset of calculations looks like.
+
+## Practice at home (~1 h)
+
+- make sure `jupyter lab` starts from your environment (or Colab works)
+- commit your Session 1–2 exercises, push to GitHub
+- send me the link to your repository

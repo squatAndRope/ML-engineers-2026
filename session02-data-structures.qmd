@@ -1,0 +1,348 @@
+---
+title: "Data structures and working with code"
+subtitle: "Session 2 · Topics 1.3 + 1.4 · Thu 3 Dec"
+format: revealjs
+---
+
+## Quick recap
+
+```{python}
+def bending_stress(F, t, L=150, b=40):
+    """Max bending stress of a rectangular cantilever, MPa."""
+    return 6 * F * L / (b * t ** 2)
+
+for t in [10, 12, 14]:
+    s = bending_stress(1500, t)
+    print(f"t={t} mm: {s:.0f} MPa", "OK" if 355 / s >= 1.5 else "FAIL")
+```
+
+::: {.muted}
+Variables, types, `if`, `for`, functions. Today: how to keep **many** values together,
+and what to do when the code does not work.
+:::
+
+## Today
+
+::: {.agenda}
+1. Lists — ordered collections
+2. Tuples — fixed records
+3. Dictionaries — values by name
+4. Sets — unique values
+5. Reading error messages
+6. Modules and `import`
+7. Files: reading and writing text
+:::
+
+# Lists {.divider}
+
+## A list holds many values in order
+
+```{python}
+thicknesses = [8, 10, 12, 16, 20]          # mm
+print(len(thicknesses))
+print(thicknesses[0], thicknesses[-1])     # first, last
+print(thicknesses[1:3])                    # slice: index 1 and 2
+```
+
+- indexes start at **0**; negative indexes count from the end
+- slice `a[start:stop]` — `stop` is **not** included (like `range`)
+
+## Changing a list
+
+```{python}
+loads = [500, 1000, 1500]
+loads.append(2000)          # add at the end
+loads[0] = 750              # replace an item
+loads.remove(1000)          # remove by value
+print(loads)
+print(sorted([3, 1, 2]), max(loads), min(loads), sum(loads))
+```
+
+- lists are **mutable** — you can change them after creating them
+- `sorted()`, `max()`, `min()`, `sum()`, `len()` work on any list of numbers
+
+## Building a list in a loop
+
+```{python}
+stresses = []
+for t in thicknesses:
+    stresses.append(bending_stress(1500, t))
+print([round(s, 1) for s in stresses])
+```
+
+The same in one line — a **list comprehension**:
+
+```{python}
+stresses = [bending_stress(1500, t) for t in thicknesses]
+ok = [t for t in thicknesses if 355 / bending_stress(1500, t) >= 1.5]
+print(ok)
+```
+
+## Looping over two lists together
+
+```{python}
+for t, s in zip(thicknesses, stresses):
+    print(f"{t:>3} mm  {s:7.1f} MPa")
+```
+
+```{python}
+for i, t in enumerate(thicknesses):
+    print(i, t)
+```
+
+- `zip(a, b)` — walk through two lists side by side
+- `enumerate(a)` — get the position and the value
+
+# Tuples and dictionaries {.divider}
+
+## Tuples: fixed records
+
+```{python}
+design = (12.0, 4.5, 1500)        # thickness, fillet radius, load
+t, r, F = design                   # unpacking
+print(t, r, F)
+# design[0] = 14   -> TypeError: tuples cannot be changed
+```
+
+- like a list, but **immutable** — good for things that belong together and should not change
+- you already met them: a function returning `stress, deflection` returns a tuple
+
+## Dictionaries: values by name
+
+```{python}
+steel = {"name": "S355", "yield_MPa": 355, "E_GPa": 210, "density": 7850}
+print(steel["yield_MPa"])
+steel["E_GPa"] = 205           # change
+steel["weldable"] = True       # add a new key
+print(steel.keys())
+```
+
+- `{key: value, ...}` — look things up by **key**, not by position
+- keys are usually strings; values can be anything
+
+## Dictionaries in practice
+
+```{python}
+yield_strength = {"S235": 235, "S355": 355, "S460": 460}
+
+for grade, fy in yield_strength.items():
+    sf = fy / bending_stress(1500, 12)
+    print(f"{grade}: SF = {sf:.2f}")
+
+print(yield_strength.get("S690", "unknown grade"))
+```
+
+- `.items()` gives key–value pairs
+- `.get(key, default)` avoids an error when the key is missing
+
+## A calculation run as a dictionary {.smaller}
+
+```{python}
+run = {"run_id": "R001", "thickness_mm": 12, "load_N": 1500}
+run["stress_MPa"] = bending_stress(run["load_N"], run["thickness_mm"])
+run
+```
+
+A list of such dictionaries = a **table**:
+
+```{python}
+runs = [
+    {"run_id": "R001", "thickness_mm": 12, "load_N": 1500},
+    {"run_id": "R002", "thickness_mm": 10, "load_N": 2500},
+]
+for r in runs:
+    print(r["run_id"], round(bending_stress(r["load_N"], r["thickness_mm"]), 1))
+```
+
+::: {.tip}
+This is exactly the shape of the data in Module 2. pandas will make it much more comfortable.
+:::
+
+## Sets: unique values
+
+```{python}
+materials_used = ["S355", "S235", "S355", "S355", "S460"]
+unique = set(materials_used)
+print(unique, len(unique))
+print("S690" in unique)
+```
+
+- no duplicates, no order
+- fast `in` checks; useful for "which different values do I have?"
+
+## Which structure when?
+
+| Structure | Syntax | Ordered | Changeable | Typical use |
+|---|---|---|---|---|
+| list | `[1, 2, 3]` | yes | yes | series of values |
+| tuple | `(1, 2, 3)` | yes | no | one fixed record |
+| dict | `{"a": 1}` | by insertion | yes | values by name |
+| set | `{1, 2, 3}` | no | yes | unique values |
+
+## Your turn (8 min)
+
+::: {.exercise}
+1. Create a list of five `(thickness, load)` tuples of your choice.
+2. For each, compute the stress and store the results in a **list of dictionaries**
+   with keys `thickness_mm`, `load_N`, `stress_MPa`, `sf`.
+3. Print only the runs with `sf < 1.5`.
+4. With a dictionary of steel grades, find the cheapest grade (lowest yield) that makes
+   every run pass.
+:::
+
+# Working with code: errors {.divider}
+
+## Errors are normal
+
+```{python}
+#| error: true
+loads = [500, 1000, 1500]
+print(loads[3])
+```
+
+How to read a **traceback**:
+
+1. go to the **last line**: the error type and message
+2. look one line up: where it happened
+3. ask: what value did Python have at that moment?
+
+## The errors you will see most
+
+| Error | Usual reason |
+|---|---|
+| `SyntaxError` | missing `:`, bracket or quote |
+| `IndentationError` | wrong spaces at the start of a line |
+| `NameError` | a typo in a name, or the variable was never created (cell not run?) |
+| `TypeError` | wrong type, e.g. `"12" + 3` |
+| `IndexError` | list position that does not exist |
+| `KeyError` | dictionary key that does not exist |
+| `ZeroDivisionError` | dividing by zero |
+| `ValueError` | right type, wrong value, e.g. `float("abc")` |
+
+## Debugging tools you already have {.smaller}
+
+```{python}
+def safety_factor(F, t):
+    s = bending_stress(F, t)
+    print("DEBUG stress =", s)          # look inside
+    return 355 / s
+
+safety_factor(1500, 12)
+```
+
+- `print()` intermediate values; `type(x)` when in doubt
+- test with simple numbers you can check by hand
+- `assert` — stop if something is not as expected:
+
+```{python}
+#| error: true
+t = -12
+assert t > 0, f"thickness must be positive, got {t}"
+```
+
+## Handling expected problems: `try` / `except`
+
+```{python}
+values = ["12.5", "13", "n/a", "11.8"]
+clean = []
+for v in values:
+    try:
+        clean.append(float(v))
+    except ValueError:
+        print(f"skipped bad value: {v!r}")
+print(clean)
+```
+
+::: {.muted}
+Catch only errors you expect and know how to handle. Never hide all errors with a bare `except:`.
+:::
+
+# Modules and files {.divider}
+
+## `import`: use code written by others
+
+```{python}
+import math
+print(math.pi, math.sqrt(2), math.radians(30))
+
+from math import sin, cos
+print(round(sin(math.pi / 6), 3))
+
+import statistics as st
+print(st.mean([1.2, 1.5, 1.9]), st.stdev([1.2, 1.5, 1.9]))
+```
+
+- **standard library** — comes with Python (`math`, `statistics`, `pathlib`, `csv`, ...)
+- other packages (NumPy, pandas) are installed separately — Session 3
+
+## Your own module
+
+Save the functions in a file `bracket.py`:
+
+```python
+# bracket.py
+def bending_stress(F, t, L=150, b=40):
+    return 6 * F * L / (b * t ** 2)
+```
+
+Then, in a notebook or another script in the same folder:
+
+```python
+from bracket import bending_stress
+bending_stress(1500, 12)
+```
+
+::: {.tip}
+Once a formula is checked, put it in a module. Every notebook then uses the same, tested version.
+:::
+
+## Writing and reading a text file
+
+```{python}
+with open("results.txt", "w") as f:
+    for t in [10, 12, 14]:
+        f.write(f"{t},{bending_stress(1500, t):.1f}\n")
+
+with open("results.txt") as f:
+    for line in f:
+        t, s = line.strip().split(",")
+        print(float(t), float(s))
+```
+
+- `with open(...) as f:` closes the file automatically
+- `"w"` write (overwrites), `"a"` append, default `"r"` read
+- each line is a **string**: `.strip()`, `.split(",")`, then convert
+
+## Good habits
+
+- meaningful names: `stress_MPa`, not `x2`
+- one function = one job; docstring with units
+- comments explain **why**, the code shows **what**
+- run the notebook top to bottom (*Runtime → Restart and run all*) before you trust it
+- style guide: PEP 8 — 4 spaces, `snake_case`, lines not too long
+
+## Your turn (10 min)
+
+::: {.exercise}
+1. Write the five runs from the previous exercise to `runs.csv`
+   (header line + one line per run).
+2. Read the file back, convert the numbers and compute the mean stress with `statistics.mean`.
+3. Add one broken line (`R099,abc,1500`) to the file and make your reader skip it
+   with `try` / `except`, printing a warning.
+:::
+
+## Summary
+
+- **list** `[]` ordered, changeable · **tuple** `()` fixed · **dict** `{k: v}` by name · **set** unique
+- list comprehensions: `[f(x) for x in items if condition]`
+- read tracebacks from the bottom; most errors are typos or wrong types
+- `import` modules; put checked functions in your own `.py` file
+- files: `with open(...)`, lines are strings
+
+**Next session:** your own Python environment and version control with Git.
+
+## Practice at home (~1 h)
+
+- finish the exercises
+- write `read_runs(path)` that returns a list of dictionaries from a CSV-like file
+- before next session: create a free account on **github.com**

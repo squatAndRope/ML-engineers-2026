@@ -1,0 +1,237 @@
+---
+title: "Reshaping and aggregation"
+subtitle: "Session 8 · Topic 2.6 · Tue 12 Jan"
+format: revealjs
+---
+
+## Today
+
+::: {.agenda}
+1. Group and summarise: `groupby` + `agg`
+2. Turning continuous inputs into classes: `cut`, `qcut`
+3. Pivot tables and cross-tabulations
+4. Wide and long format: `melt`, `pivot`
+5. Combining tables: `concat`, `merge`
+:::
+
+## Setup for today
+
+```{python}
+import pandas as pd
+import numpy as np
+df = pd.read_csv("data/bracket.csv")
+```
+
+## Split – apply – combine
+
+Question: *how does the mean stress depend on the thickness class?*
+
+```
+  split by class       apply mean        combine
+  8–12 mm  → rows …  →  mean  ┐
+  12–16 mm → rows …  →  mean  ├→  one small table
+  16–20 mm → rows …  →  mean  ┘
+```
+
+That is `groupby`.
+
+# Grouping {.divider}
+
+## Classes from continuous values: `cut`
+
+```{python}
+df["t_class"] = pd.cut(df["thickness_mm"], bins=[8, 12, 16, 20],
+                       labels=["8–12", "12–16", "16–20"], include_lowest=True)
+df["t_class"].value_counts().sort_index()
+```
+
+- `pd.cut` — fixed boundaries you choose (engineering classes)
+- `pd.qcut(col, 4)` — quartiles: equal number of runs per class
+
+## `groupby` + one statistic
+
+```{python}
+df.groupby("t_class", observed=True)["max_stress_MPa"].mean().round(1)
+```
+
+```{python}
+df.groupby("t_class", observed=True)[["max_stress_MPa", "deflection_mm"]].median().round(2)
+```
+
+## `agg`: several statistics at once
+
+```{python}
+summary = df.groupby("t_class", observed=True).agg(
+    runs=("run_id", "count"),
+    stress_mean=("max_stress_MPa", "mean"),
+    stress_max=("max_stress_MPa", "max"),
+    sf_min=("safety_factor", "min"),
+    share_failed=("safety_factor", lambda s: (s < 1).mean()),
+).round(2)
+summary
+```
+
+- named aggregation: `new_name=("column", "function")`
+- functions: `"count"`, `"mean"`, `"median"`, `"std"`, `"min"`, `"max"`, `"sum"`, or your own
+
+## Grouping by two variables
+
+```{python}
+df["r_class"] = pd.cut(df["fillet_radius_mm"], [1, 3, 5.5, 8], labels=["small r", "medium r", "large r"],
+                       include_lowest=True)
+two = df.groupby(["t_class", "r_class"], observed=True)["max_stress_MPa"].mean().round(0)
+two
+```
+
+- the result has a **two-level index** — hard to read; a pivot table is better ↓
+
+# Pivot tables {.divider}
+
+## `pivot_table`
+
+```{python}
+pd.pivot_table(df, values="max_stress_MPa", index="t_class", columns="r_class",
+               aggfunc="mean", observed=True).round(0)
+```
+
+- like a pivot table in Excel: rows × columns, one aggregated value
+- `.unstack()` turns the two-level result from the previous slide into the same table
+
+## Counting combinations: `crosstab`
+
+```{python}
+df["verdict"] = np.where(df["safety_factor"] >= 1.5, "pass", "fail")
+pd.crosstab(df["t_class"], df["verdict"], margins=True)
+```
+
+## Shares instead of counts
+
+```{python}
+pd.crosstab(df["t_class"], df["verdict"], normalize="index").round(2)
+```
+
+::: {.tip}
+Crosstab of a design-space cell vs. verdict also shows **coverage**: a cell with 2 runs
+tells you little. Remember this when a model is "bad" in one region.
+:::
+
+# Wide and long format {.divider}
+
+## The same data, two shapes
+
+```{python}
+wide = pd.read_csv("data/bracket_loadcases.csv")
+wide.head(3)
+```
+
+- **wide**: one row per run, one column per load case — easy to read
+- **long**: one row per run *and* load case — easy to group, filter and plot
+
+## `melt`: wide → long
+
+```{python}
+long = wide.melt(
+    id_vars=["run_id", "thickness_mm", "fillet_radius_mm"],
+    var_name="load_case", value_name="stress_MPa",
+)
+long["load_case"] = long["load_case"].str.replace("stress_", "")
+long.sort_values("run_id").head(6)
+```
+
+## Now grouping is easy
+
+```{python}
+long.groupby("load_case")["stress_MPa"].agg(["mean", "max"]).round(1)
+```
+
+```{python}
+governing = long.loc[long.groupby("run_id")["stress_MPa"].idxmax()]
+governing["load_case"].value_counts()
+```
+
+- `idxmax` per group → the **governing load case** for each run
+
+## `pivot`: long → wide
+
+```{python}
+back = long.pivot(index="run_id", columns="load_case", values="stress_MPa")
+back.head(3)
+```
+
+- `pivot` needs unique (index, column) pairs; otherwise use `pivot_table` with an `aggfunc`
+
+# Combining tables {.divider}
+
+## `concat`: stack tables with the same columns
+
+```{python}
+batch1 = df.iloc[:150]
+batch2 = df.iloc[150:]
+all_runs = pd.concat([batch1, batch2], ignore_index=True)
+print(len(batch1), len(batch2), len(all_runs))
+```
+
+- typical: results from several solver batches, several days, several colleagues
+- check afterwards: are IDs still unique?
+
+## `merge`: join by a key
+
+```{python}
+materials = pd.read_csv("data/materials.csv")
+materials
+```
+
+```{python}
+design = pd.DataFrame({"run_id": ["R001", "R002", "R003"], "material": ["S355", "S235", "S460"]})
+merged = (design
+          .merge(df[["run_id", "max_stress_MPa"]], on="run_id", how="left")
+          .merge(materials, on="material", how="left"))
+merged["sf"] = merged["yield_MPa"] / merged["max_stress_MPa"]
+merged.round(2)
+```
+
+## Join types
+
+| `how=` | keeps |
+|---|---|
+| `"inner"` | only keys present in **both** tables |
+| `"left"` | all rows of the left table; missing matches → `NaN` |
+| `"outer"` | all keys from both |
+| `"cross"` | every row with every row (all combinations) |
+
+```{python}
+check = df.merge(materials, how="cross")
+check["sf"] = check["yield_MPa"] / check["max_stress_MPa"]
+pd.crosstab(check["material"], check["sf"] >= 1.5, normalize="index").round(2)
+```
+
+::: {.muted}
+After a merge, always compare the number of rows before and after. Unexpected growth = duplicate keys.
+:::
+
+## Your turn (30 min)
+
+::: {.exercise}
+1. Classify load into 3 classes with `pd.qcut`. For each load class × thickness class:
+   number of runs, mean stress, share of runs with SF < 1.5 (one `pivot_table` per statistic).
+2. From `bracket_loadcases.csv`: melt to long format, find the governing load case
+   per run, and its safety factor for S355.
+3. Using a `"cross"` merge with `materials.csv`: for every run, which is the
+   **cheapest** steel grade (lowest yield) that gives SF ≥ 1.5? How many runs need S460?
+   How many cannot be saved by any grade?
+:::
+
+## Summary
+
+- `pd.cut` / `pd.qcut` — classes from continuous variables
+- `groupby(...).agg(name=(col, func))` — split, apply, combine
+- `pivot_table` and `crosstab` — two-way summaries
+- `melt` (wide → long) and `pivot` (long → wide)
+- `concat` stacks, `merge` joins by keys; check row counts after every merge
+
+**Next session:** exploratory data analysis — asking the data questions systematically.
+
+## Practice at home (~1 h)
+
+- finish exercise 3 and commit
+- think of a question about your own calculations that needs a `groupby` — write it down

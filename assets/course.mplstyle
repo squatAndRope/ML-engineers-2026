@@ -1,0 +1,8 @@
+axes.prop_cycle: cycler('color', ['B0215E', 'E08A1E', '2E7D32', '6B2D8C', '8a7a80', 'E46A9A'])
+image.cmap: RdPu
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: True
+grid.color: eeeeee
+font.size: 12
+figure.dpi: 110

@@ -1,0 +1,252 @@
+---
+title: "Data fundamentals"
+subtitle: "Session 4 · Topic 2.2 · Thu 10 Dec"
+format: revealjs
+---
+
+## Today
+
+::: {.agenda}
+1. A dataset is a table: observations and variables
+2. Inputs and outputs of a calculation series
+3. Types of variables and units
+4. File formats you will meet
+5. Planning a series of calculations (design of experiments)
+6. First look at the course dataset — with plain Python
+:::
+
+## Why this matters for ML
+
+A surrogate model learns **output = f(inputs)** from examples.
+
+- it can only be as good as the data: range, density, errors, units
+- most of the time in a real ML project goes into data, not models
+- Modules 1–2 give you the tools; Module 3 builds on them
+
+# What is a dataset? {.divider}
+
+## Rows and columns
+
+| run_id | thickness_mm | fillet_radius_mm | load_N | E_GPa | max_stress_MPa | deflection_mm | safety_factor |
+|---|---|---|---|---|---|---|---|
+| R001 | 17.3 | 6.5 | 1537 | 199.4 | 170.4 | 0.502 | 2.083 |
+| R002 | 13.3 | 1.9 | 2332 | 195.2 | 527.5 | 1.714 | 0.673 |
+| R003 | 18.3 | 4.8 | 2729 | 190.9 | 297.9 | 0.787 | 1.192 |
+
+- **row** = one observation = one calculation run
+- **column** = one variable, one unit, one type
+- **ID column** — to trace a row back to the calculation that produced it
+
+## Inputs and outputs
+
+::: {.columns}
+::: {.column width="50%"}
+**Inputs** — you choose them
+
+- thickness *t*
+- fillet radius *r*
+- load *F*
+- modulus *E*
+
+In ML: **features**, *X*
+:::
+::: {.column width="50%"}
+**Outputs** — the solver computes them
+
+- max stress
+- deflection
+- safety factor
+
+In ML: **targets**, *y*
+:::
+:::
+
+::: {.tip}
+Safety factor = 355 / max stress. It is *derived* from another output, so it adds no new
+information. Knowing which columns are derived avoids surprises later (data leakage, Module 3).
+:::
+
+## Types of variables
+
+| Type | Examples | What you can do |
+|---|---|---|
+| continuous | thickness, stress, temperature | any arithmetic |
+| discrete (count) | number of bolts, mesh elements | counts, sums |
+| categorical | material grade, solver status | count, group |
+| ordinal | mesh quality: coarse < medium < fine | order, but no distances |
+| identifier | run_id | trace, join — never compute |
+| date / time | time of calculation | sort, durations |
+
+## Units and scales
+
+- the same column must have **one unit** for all rows
+- engineering quantities have very different scales:
+
+| Variable | Typical range |
+|---|---|
+| fillet radius | 1 – 8 mm |
+| load | 200 – 3000 N |
+| modulus *E* | 190 000 – 210 000 MPa |
+
+- many ML methods are sensitive to scales → **normalisation** (Modules 3–4)
+- unit mistakes (N vs kN, MPa vs Pa) are the most common data error — Session 7
+
+## File formats
+
+| Format | Looks like | Notes |
+|---|---|---|
+| CSV | `12.5,4.0,1500` | plain text, universal; separator and decimal sign vary |
+| Excel `.xlsx` | spreadsheet | fine for small tables; watch merged cells and formatting |
+| JSON | `{"t": 12.5, ...}` | nested data, configs, web APIs |
+| HDF5 / NPZ / Parquet | binary | large arrays, fields, fast |
+| solver formats (VTK, `.rst`, `.odb`) | binary | result fields; usually exported first |
+
+::: {.muted}
+European locale exports often use `;` as separator and `,` as decimal sign. We will handle it.
+:::
+
+## Scalar results vs fields
+
+- **scalar results** — one number per run: max stress, deflection → one row per run
+- **fields** — a value at every node: stress distribution → one array per run
+
+```
+run R001:  node 1  node 2  ...  node 25 000
+           112.3   118.9         0.4      (MPa)
+```
+
+Modules 1–2 work with scalar tables. Fields come back in Module 4.
+
+# Planning a series of calculations {.divider}
+
+## How do we choose the inputs?
+
+Each calculation costs time. Which points of the design space should we compute?
+
+- **full factorial grid** — every combination of a few levels per input
+- **random sampling** — uniform random values in each range
+- **Latin hypercube (LHS)** — random, but each input's range is evenly covered
+
+## Full factorial grid
+
+```{python}
+from itertools import product
+
+thickness = [8, 12, 16, 20]
+radius = [1, 4, 8]
+load = [500, 1500, 3000]
+
+grid = list(product(thickness, radius, load))
+print(len(grid), "runs")
+print(grid[:4])
+```
+
+::: {.tip}
+4 inputs × 10 levels = 10 000 runs. Grids grow exponentially with the number of inputs
+("curse of dimensionality"). Fine for 2–3 inputs, too expensive beyond that.
+:::
+
+## Random and Latin hypercube sampling
+
+```{python}
+#| echo: false
+#| fig-width: 11
+#| fig-height: 3.6
+import numpy as np, matplotlib.pyplot as plt
+rng = np.random.default_rng(3)
+n = 16
+g = np.array([(a, b) for a in np.linspace(0.06, 0.94, 4) for b in np.linspace(0.06, 0.94, 4)])
+rnd = rng.uniform(0, 1, (n, 2))
+lhs = np.column_stack([(rng.permutation(n) + rng.uniform(0, 1, n)) / n for _ in range(2)])
+fig, ax = plt.subplots(1, 3, figsize=(11, 3.6))
+for a, pts, title in zip(ax, [g, rnd, lhs], ["Grid (4 × 4)", "Random (16)", "Latin hypercube (16)"]):
+    a.scatter(pts[:, 0], pts[:, 1], color="#B0215E", s=40)
+    a.set_title(title); a.set_xlim(0, 1); a.set_ylim(0, 1); a.set_aspect("equal")
+    a.set_xlabel("thickness (scaled)"); a.set_ylabel("load (scaled)")
+    if "Latin" in title:
+        for k in range(1, n): a.axvline(k / n, color="#eee", lw=.6); a.axhline(k / n, color="#eee", lw=.6)
+plt.tight_layout(); plt.show()
+```
+
+LHS: every one of the 16 columns and 16 rows contains exactly one point — good coverage with few runs.
+
+## Practical rules for a calculation plan
+
+- define the **domain of applicability** first: min and max of every input
+- include the corners and the centre (extremes are where models fail)
+- record everything: inputs, solver version, mesh, status, date
+- keep some runs **aside** for testing (Module 3)
+- automate: the plan is a table; the solver reads it and writes results in a table
+
+## Your turn (5 min)
+
+::: {.exercise}
+With `itertools.product`, build a full grid for thickness 8–20 mm (step 2),
+fillet radius {2, 5, 8} mm and load {1000, 2000, 3000} N.
+
+1. How many runs is that?
+2. How many would it be with 10 levels for each of the four inputs?
+3. Write the plan to `plan.csv` with a header and a `run_id` column.
+:::
+
+# First look at the course data {.divider}
+
+## Reading a CSV with the standard library
+
+```{python}
+import csv
+
+with open("data/bracket.csv") as f:
+    rows = list(csv.DictReader(f))
+
+print(len(rows), "rows")
+print(rows[0])
+```
+
+- each row is a **dictionary**, every value is a **string**
+- in Colab: upload the file, or read it from the course site (see the *Data* page)
+
+## Computing statistics by hand
+
+```{python}
+stress = [float(r["max_stress_MPa"]) for r in rows]
+n = len(stress)
+mean = sum(stress) / n
+std = (sum((s - mean) ** 2 for s in stress) / (n - 1)) ** 0.5
+failed = sum(1 for r in rows if float(r["safety_factor"]) < 1)
+
+print(f"mean {mean:.1f} MPa, std {std:.1f}, min {min(stress)}, max {max(stress)}")
+print(f"{failed} of {n} runs exceed yield ({failed / n:.0%})")
+```
+
+::: {.muted}
+It works — but it is a lot of typing for simple questions. Next sessions: NumPy and pandas
+do this in one line each.
+:::
+
+## Your turn (15 min)
+
+::: {.exercise}
+Using `bracket.csv` and plain Python:
+
+1. Find the minimum and maximum of each input column (the domain of applicability).
+2. Which run has the largest deflection? Print its full row.
+3. Compute the mean stress separately for thickness < 12 mm and ≥ 12 mm.
+4. Check: is `safety_factor` really `355 / max_stress_MPa` in every row (to 0.01)?
+:::
+
+## Summary
+
+- dataset = table: **row** = run, **column** = variable with one unit and type
+- inputs (features *X*) vs outputs (targets *y*); know which columns are derived
+- variable types decide what operations make sense
+- CSV is the common format; separators and decimal signs vary
+- plan calculations: grid for few inputs, LHS for more; cover the extremes
+
+**Next session:** NumPy — fast calculations on whole arrays.
+
+## Practice at home (~1 h)
+
+- finish the exercises, commit to your repository
+- think of one calculation series from your own work: what are its inputs, outputs, units,
+  ranges? Write it down as a small table (5 lines is enough)
