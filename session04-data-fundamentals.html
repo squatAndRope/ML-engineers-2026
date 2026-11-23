@@ -86,7 +86,7 @@
     code span.va { color: #1e2329; } /* Variable */
     code span.vs { color: #2e6b4f; } /* VerbatimString */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2278f69fd4253ec8a566f246a79ddef9.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-945af54a21f8da4e48c28dbc32812c49.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -185,7 +185,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Data fundamentals</h1>
-  <p class="subtitle">Session 4 · Topic 2.2 · Thu 10 Dec</p>
+  <p class="subtitle">Session 4 · Topic 2.2 · Thu 3 Dec</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -462,7 +462,7 @@
 </section>
 <section id="full-factorial-grid" class="slide level2">
 <h2>Full factorial grid</h2>
-<div id="d13abeb7" class="cell" data-execution_count="1">
+<div id="5a6ec43b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>thickness <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>]</span>
@@ -483,7 +483,7 @@
 </section>
 <section id="random-and-latin-hypercube-sampling" class="slide level2">
 <h2>Random and Latin hypercube sampling</h2>
-<div id="02b7fbb4" class="cell" data-fig-height="3.6" data-fig-width="11" data-execution_count="2">
+<div id="07caac4e" class="cell" data-fig-height="3.6" data-fig-width="11" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -522,7 +522,7 @@
 </section>
 <section id="reading-a-csv-with-the-standard-library" class="slide level2">
 <h2>Reading a CSV with the standard library</h2>
-<div id="17d6510a" class="cell" data-execution_count="3">
+<div id="de320215" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/bracket.csv"</span>) <span class="im">as</span> f:</span>
@@ -542,7 +542,7 @@
 </section>
 <section id="computing-statistics-by-hand" class="slide level2">
 <h2>Computing statistics by hand</h2>
-<div id="0b58a237" class="cell" data-execution_count="4">
+<div id="c6353a0b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>stress <span class="op">=</span> [<span class="bu">float</span>(r[<span class="st">"max_stress_MPa"</span>]) <span class="cf">for</span> r <span class="kw">in</span> rows]</span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(stress)</span>
 <span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> <span class="bu">sum</span>(stress) <span class="op">/</span> n</span>
@@ -595,7 +595,7 @@
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua</p>
+<p>ML for Engineers · kbrzezinska@kse.org.ua</p>
 </div>
 </div></div>
 

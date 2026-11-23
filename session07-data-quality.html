@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -86,7 +86,7 @@
     code span.va { color: #1e2329; } /* Variable */
     code span.vs { color: #2e6b4f; } /* VerbatimString */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2278f69fd4253ec8a566f246a79ddef9.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-945af54a21f8da4e48c28dbc32812c49.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -178,7 +178,7 @@
       margin-right: 0; 
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
   
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
@@ -188,94 +188,11 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Data quality</h1>
-  <p class="subtitle">Session 7 · Topic 2.5 · Thu 7 Jan</p>
+  <p class="subtitle">Session 7 · Topic 2.5 · Tue 15 Dec</p>
 
 <div class="quarto-title-authors">
 </div>
 
-</section>
-<section id="welcome-back-quick-pandas-recap" class="slide level2">
-<h2>Welcome back! Quick pandas recap</h2>
-<div id="2221ebb9" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket.csv"</span>)              <span class="co"># read</span></span>
-<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)                                    <span class="co"># size</span></span>
-<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"safety_factor"</span>]</span>
-<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a>low <span class="op">=</span> df.loc[df[<span class="st">"safety_factor"</span>] <span class="op">&lt;</span> <span class="dv">1</span>, cols]        <span class="co"># filter rows, pick columns</span></span>
-<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a>low.sort_values(<span class="st">"safety_factor"</span>).head(<span class="dv">3</span>)           <span class="co"># sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>(300, 8)</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header" style="text-align: right;">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">run_id</th>
-<th data-quarto-table-cell-role="th">thickness_mm</th>
-<th data-quarto-table-cell-role="th">load_N</th>
-<th data-quarto-table-cell-role="th">safety_factor</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">51</td>
-<td>R052</td>
-<td>8.1</td>
-<td>2708.0</td>
-<td>0.246</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">272</td>
-<td>R273</td>
-<td>8.6</td>
-<td>2942.0</td>
-<td>0.281</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">291</td>
-<td>R292</td>
-<td>8.6</td>
-<td>2874.0</td>
-<td>0.283</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div class="muted">
-<p><code>read_csv</code> → <code>info</code> / <code>describe</code> → <code>df["col"]</code> / <code>loc</code> → masks → new columns → <code>to_csv</code>.</p>
-</div>
-</section>
-<section id="recap-your-turn-5-min" class="slide level2">
-<h2>Recap: your turn (5 min)</h2>
-<div class="exercise">
-<p>Without looking at the old slides:</p>
-<ol type="1">
-<li>How many runs have thickness above 15 mm <strong>and</strong> SF below 1.5?</li>
-<li>Add a column <code>deflection_um</code> (micrometres).</li>
-<li>Which run has the largest deflection?</li>
-</ol>
-</div>
 </section>
 <section id="today" class="slide level2">
 <h2>Today</h2>
@@ -344,9 +261,9 @@
 </section>
 <section id="first-attempt" class="slide level2">
 <h2>First attempt</h2>
-<div id="c409e8a1" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket_raw.csv"</span>)</span>
-<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>raw.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="611cfed6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket_raw.csv"</span>)</span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>raw.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <style scoped="">
@@ -409,9 +326,9 @@
 </section>
 <section id="second-attempt" class="slide level2">
 <h2>Second attempt</h2>
-<div id="9cb3beb6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket_raw.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bdbdd43a" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket_raw.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>)</span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 <style scoped="">
@@ -513,8 +430,8 @@
 </section>
 <section id="what-types-did-we-get" class="slide level2">
 <h2>What types did we get?</h2>
-<div id="457a773c" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>raw.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9896565e" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>raw.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>run_id                  str
 thickness_mm        float64
@@ -532,8 +449,8 @@ dtype: object</code></pre>
 <li><code>load_N</code> and <code>max_stress_MPa</code> are <strong>text</strong>, although they should be numbers</li>
 <li>why? Some values use a dot, some a comma; some say <code>n/a</code></li>
 </ul>
-<div id="94e0a816" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>raw[<span class="st">"max_stress_MPa"</span>].head(<span class="dv">6</span>).tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2c1e7141" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>raw[<span class="st">"max_stress_MPa"</span>].head(<span class="dv">6</span>).tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>['262.4', '170.7', '186.8', '76.6', '469.8', '300.5']</code></pre>
 </div>
@@ -541,15 +458,15 @@ dtype: object</code></pre>
 </section>
 <section id="converting-to-numbers-safely" class="slide level2">
 <h2>Converting to numbers safely</h2>
-<div id="b5039784" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_number(col):</span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Text -&gt; float; accepts decimal commas and dots, bad values become NaN."""</span></span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.to_numeric(col.astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>), errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
-<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> raw.copy()</span>
-<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]:</span>
-<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>    clean[c] <span class="op">=</span> to_number(clean[c])</span>
-<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>clean.dtypes[[<span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7ca147aa" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_number(col):</span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Text -&gt; float; accepts decimal commas and dots, bad values become NaN."""</span></span>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.to_numeric(col.astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>), errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> raw.copy()</span>
+<span id="cb7-6"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]:</span>
+<span id="cb7-7"><a aria-hidden="true" tabindex="-1"></a>    clean[c] <span class="op">=</span> to_number(clean[c])</span>
+<span id="cb7-8"><a aria-hidden="true" tabindex="-1"></a>clean.dtypes[[<span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>load_N            float64
 max_stress_MPa    float64
@@ -568,8 +485,8 @@ dtype: object</code></pre>
 </section>
 <section id="finding-them" class="slide level2">
 <h2>Finding them</h2>
-<div id="2763ba25" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>clean.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e30f886b" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>clean.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>run_id              0
 thickness_mm        0
@@ -583,8 +500,8 @@ solver_status       0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="206ee78a" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>clean[clean.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ecb8d339" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>clean[clean.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <style scoped="">
@@ -733,14 +650,14 @@ dtype: int64</code></pre>
 </section>
 <section id="in-our-data" class="slide level2">
 <h2>In our data</h2>
-<div id="f60027c2" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># E is missing in a few rows: material is the same steel, 200 GPa is a defensible nominal value</span></span>
-<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>clean[<span class="st">"E_GPa"</span>] <span class="op">=</span> clean[<span class="st">"E_GPa"</span>].fillna(<span class="fl">200.0</span>)</span>
-<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a><span class="co"># deflection is an output: we cannot invent it</span></span>
-<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>before <span class="op">=</span> <span class="bu">len</span>(clean)</span>
-<span id="cb14-6"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean.dropna(subset<span class="op">=</span>[<span class="st">"deflection_mm"</span>])</span>
-<span id="cb14-7"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"dropped </span><span class="sc">{</span>before <span class="op">-</span> <span class="bu">len</span>(clean)<span class="sc">}</span><span class="ss"> runs without deflection"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5929de5f" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># E is missing in a few rows: material is the same steel, 200 GPa is a defensible nominal value</span></span>
+<span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>clean[<span class="st">"E_GPa"</span>] <span class="op">=</span> clean[<span class="st">"E_GPa"</span>].fillna(<span class="fl">200.0</span>)</span>
+<span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a><span class="co"># deflection is an output: we cannot invent it</span></span>
+<span id="cb12-5"><a aria-hidden="true" tabindex="-1"></a>before <span class="op">=</span> <span class="bu">len</span>(clean)</span>
+<span id="cb12-6"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean.dropna(subset<span class="op">=</span>[<span class="st">"deflection_mm"</span>])</span>
+<span id="cb12-7"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"dropped </span><span class="sc">{</span>before <span class="op">-</span> <span class="bu">len</span>(clean)<span class="sc">}</span><span class="ss"> runs without deflection"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>dropped 6 runs without deflection</code></pre>
 </div>
@@ -756,10 +673,10 @@ dtype: int64</code></pre>
 </section>
 <section id="exact-duplicates-and-duplicated-ids" class="slide level2">
 <h2>Exact duplicates and duplicated IDs</h2>
-<div id="d6009540" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clean.duplicated().<span class="bu">sum</span>(), <span class="st">"identical rows"</span>)</span>
-<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clean[<span class="st">"run_id"</span>].duplicated().<span class="bu">sum</span>(), <span class="st">"repeated run IDs"</span>)</span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>clean[clean[<span class="st">"run_id"</span>].duplicated(keep<span class="op">=</span><span class="va">False</span>)].sort_values(<span class="st">"run_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9860a6cd" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clean.duplicated().<span class="bu">sum</span>(), <span class="st">"identical rows"</span>)</span>
+<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clean[<span class="st">"run_id"</span>].duplicated().<span class="bu">sum</span>(), <span class="st">"repeated run IDs"</span>)</span>
+<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>clean[clean[<span class="st">"run_id"</span>].duplicated(keep<span class="op">=</span><span class="va">False</span>)].sort_values(<span class="st">"run_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>3 identical rows
 3 repeated run IDs</code></pre>
@@ -874,9 +791,9 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="d71b934b" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean.drop_duplicates()</span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> clean[<span class="st">"run_id"</span>].is_unique</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2b9c1f17" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean.drop_duplicates()</span>
+<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> clean[<span class="st">"run_id"</span>].is_unique</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="muted">
 <p>Same ID but different values? That is not a duplicate — it is a conflict. Find out which one is right.</p>
@@ -889,8 +806,8 @@ dtype: int64</code></pre>
 </section>
 <section id="check-ranges-against-physics-and-the-plan" class="slide level2">
 <h2>Check ranges against physics and the plan</h2>
-<div id="9b3936b7" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>clean[[<span class="st">"thickness_mm"</span>, <span class="st">"fillet_radius_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"E_GPa"</span>]].describe().loc[[<span class="st">"min"</span>, <span class="st">"max"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b51c2854" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>clean[[<span class="st">"thickness_mm"</span>, <span class="st">"fillet_radius_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"E_GPa"</span>]].describe().loc[[<span class="st">"min"</span>, <span class="st">"max"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 <style scoped="">
@@ -946,13 +863,13 @@ dtype: int64</code></pre>
 </section>
 <section id="fixing-what-we-understand" class="slide level2">
 <h2>Fixing what we understand</h2>
-<div id="8db5d689" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>in_kN <span class="op">=</span> clean[<span class="st">"load_N"</span>] <span class="op">&lt;</span> <span class="dv">10</span></span>
-<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(in_kN.<span class="bu">sum</span>(), <span class="st">"loads look like kN"</span>)</span>
-<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>clean.loc[in_kN, <span class="st">"load_N"</span>] <span class="op">=</span> clean.loc[in_kN, <span class="st">"load_N"</span>] <span class="op">*</span> <span class="dv">1000</span></span>
-<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>bad_t <span class="op">=</span> <span class="op">~</span>clean[<span class="st">"thickness_mm"</span>].between(<span class="dv">8</span>, <span class="dv">20</span>)</span>
-<span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a>clean.loc[bad_t, [<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4a2e8dce" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>in_kN <span class="op">=</span> clean[<span class="st">"load_N"</span>] <span class="op">&lt;</span> <span class="dv">10</span></span>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(in_kN.<span class="bu">sum</span>(), <span class="st">"loads look like kN"</span>)</span>
+<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>clean.loc[in_kN, <span class="st">"load_N"</span>] <span class="op">=</span> clean.loc[in_kN, <span class="st">"load_N"</span>] <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a aria-hidden="true" tabindex="-1"></a>bad_t <span class="op">=</span> <span class="op">~</span>clean[<span class="st">"thickness_mm"</span>].between(<span class="dv">8</span>, <span class="dv">20</span>)</span>
+<span id="cb18-6"><a aria-hidden="true" tabindex="-1"></a>clean.loc[bad_t, [<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>6 loads look like kN</code></pre>
 </div>
@@ -997,9 +914,9 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="64a38656" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean[<span class="op">~</span>bad_t]      <span class="co"># unclear what the right value was -&gt; remove and report</span></span>
-<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(clean), <span class="st">"runs left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="19b5e29c" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean[<span class="op">~</span>bad_t]      <span class="co"># unclear what the right value was -&gt; remove and report</span></span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(clean), <span class="st">"runs left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>292 runs left</code></pre>
 </div>
@@ -1010,12 +927,12 @@ dtype: int64</code></pre>
 </section>
 <section id="outliers-suspicious-not-automatically-wrong" class="slide level2">
 <h2>Outliers: suspicious, not automatically wrong</h2>
-<div id="2e51a396" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>q1, q3 <span class="op">=</span> clean[<span class="st">"max_stress_MPa"</span>].quantile([<span class="fl">0.25</span>, <span class="fl">0.75</span>])</span>
-<span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
-<span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a>far <span class="op">=</span> clean[clean[<span class="st">"max_stress_MPa"</span>] <span class="op">&gt;</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr]      <span class="co"># classic 1.5 × IQR rule</span></span>
-<span id="cb24-4"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(far), <span class="st">"runs far above the rest"</span>)</span>
-<span id="cb24-5"><a aria-hidden="true" tabindex="-1"></a>far[[<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>, <span class="st">"fillet_radius_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="78521e06" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>q1, q3 <span class="op">=</span> clean[<span class="st">"max_stress_MPa"</span>].quantile([<span class="fl">0.25</span>, <span class="fl">0.75</span>])</span>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
+<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>far <span class="op">=</span> clean[clean[<span class="st">"max_stress_MPa"</span>] <span class="op">&gt;</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr]      <span class="co"># classic 1.5 × IQR rule</span></span>
+<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(far), <span class="st">"runs far above the rest"</span>)</span>
+<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>far[[<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>, <span class="st">"fillet_radius_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>13 runs far above the rest</code></pre>
 </div>
@@ -1105,8 +1022,8 @@ dtype: int64</code></pre>
 </section>
 <section id="solver-status-and-zero-results" class="slide level2">
 <h2>Solver status and zero results</h2>
-<div id="b0fafc5c" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a>clean[<span class="st">"solver_status"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2a47c828" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>clean[<span class="st">"solver_status"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>solver_status
 converged    288
@@ -1114,8 +1031,8 @@ diverged       4
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="67246a88" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>clean[clean[<span class="st">"solver_status"</span>] <span class="op">!=</span> <span class="st">"converged"</span>][[<span class="st">"run_id"</span>, <span class="st">"max_stress_MPa"</span>, <span class="st">"safety_factor"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="20e7dbb7" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a>clean[clean[<span class="st">"solver_status"</span>] <span class="op">!=</span> <span class="st">"converged"</span>][[<span class="st">"run_id"</span>, <span class="st">"max_stress_MPa"</span>, <span class="st">"safety_factor"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 <style scoped="">
@@ -1172,10 +1089,10 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="029490ef" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean[clean[<span class="st">"solver_status"</span>] <span class="op">==</span> <span class="st">"converged"</span>]</span>
-<span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean.dropna(subset<span class="op">=</span>[<span class="st">"max_stress_MPa"</span>])</span>
-<span id="cb29-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(clean), <span class="st">"runs left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="18a8dc38" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean[clean[<span class="st">"solver_status"</span>] <span class="op">==</span> <span class="st">"converged"</span>]</span>
+<span id="cb27-2"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> clean.dropna(subset<span class="op">=</span>[<span class="st">"max_stress_MPa"</span>])</span>
+<span id="cb27-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(clean), <span class="st">"runs left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>285 runs left</code></pre>
 </div>
@@ -1183,10 +1100,10 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="consistency-checks-between-columns" class="slide level2">
 <h2>Consistency checks between columns</h2>
-<div id="5c251fe5" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>recomputed <span class="op">=</span> <span class="dv">355</span> <span class="op">/</span> clean[<span class="st">"max_stress_MPa"</span>]</span>
-<span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> (recomputed <span class="op">-</span> clean[<span class="st">"safety_factor"</span>]).<span class="bu">abs</span>()</span>
-<span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"max difference:"</span>, <span class="bu">round</span>(diff.<span class="bu">max</span>(), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1a9af2f4" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>recomputed <span class="op">=</span> <span class="dv">355</span> <span class="op">/</span> clean[<span class="st">"max_stress_MPa"</span>]</span>
+<span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> (recomputed <span class="op">-</span> clean[<span class="st">"safety_factor"</span>]).<span class="bu">abs</span>()</span>
+<span id="cb29-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"max difference:"</span>, <span class="bu">round</span>(diff.<span class="bu">max</span>(), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>max difference: 0.0005</code></pre>
 </div>
@@ -1203,25 +1120,25 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="one-cleaning-function" class="slide level2">
 <h2>One cleaning function</h2>
-<div id="00eecc30" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_bracket(path):</span>
-<span id="cb33-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Read and clean a raw bracket export. Returns (clean DataFrame, report dict)."""</span></span>
-<span id="cb33-3"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(path, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb33-4"><a aria-hidden="true" tabindex="-1"></a>    report <span class="op">=</span> {<span class="st">"rows_in"</span>: <span class="bu">len</span>(df)}</span>
-<span id="cb33-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]:</span>
-<span id="cb33-6"><a aria-hidden="true" tabindex="-1"></a>        df[c] <span class="op">=</span> to_number(df[c])</span>
-<span id="cb33-7"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.drop_duplicates()</span>
-<span id="cb33-8"><a aria-hidden="true" tabindex="-1"></a>    df.loc[df[<span class="st">"load_N"</span>] <span class="op">&lt;</span> <span class="dv">10</span>, <span class="st">"load_N"</span>] <span class="op">*=</span> <span class="dv">1000</span>                      <span class="co"># kN -&gt; N</span></span>
-<span id="cb33-9"><a aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"E_GPa"</span>] <span class="op">=</span> df[<span class="st">"E_GPa"</span>].fillna(<span class="fl">200.0</span>)</span>
-<span id="cb33-10"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"solver_status"</span>] <span class="op">==</span> <span class="st">"converged"</span>]</span>
-<span id="cb33-11"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"thickness_mm"</span>].between(<span class="dv">8</span>, <span class="dv">20</span>)]</span>
-<span id="cb33-12"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"max_stress_MPa"</span>, <span class="st">"deflection_mm"</span>])</span>
-<span id="cb33-13"><a aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"safety_factor"</span>] <span class="op">=</span> <span class="dv">355</span> <span class="op">/</span> df[<span class="st">"max_stress_MPa"</span>]                  <span class="co"># recompute, consistent</span></span>
-<span id="cb33-14"><a aria-hidden="true" tabindex="-1"></a>    report[<span class="st">"rows_out"</span>] <span class="op">=</span> <span class="bu">len</span>(df)</span>
-<span id="cb33-15"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>), report</span>
-<span id="cb33-16"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-17"><a aria-hidden="true" tabindex="-1"></a>data, rep <span class="op">=</span> clean_bracket(<span class="st">"data/bracket_raw.csv"</span>)</span>
-<span id="cb33-18"><a aria-hidden="true" tabindex="-1"></a>rep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cb9d8478" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_bracket(path):</span>
+<span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Read and clean a raw bracket export. Returns (clean DataFrame, report dict)."""</span></span>
+<span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(path, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>)</span>
+<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a>    report <span class="op">=</span> {<span class="st">"rows_in"</span>: <span class="bu">len</span>(df)}</span>
+<span id="cb31-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]:</span>
+<span id="cb31-6"><a aria-hidden="true" tabindex="-1"></a>        df[c] <span class="op">=</span> to_number(df[c])</span>
+<span id="cb31-7"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.drop_duplicates()</span>
+<span id="cb31-8"><a aria-hidden="true" tabindex="-1"></a>    df.loc[df[<span class="st">"load_N"</span>] <span class="op">&lt;</span> <span class="dv">10</span>, <span class="st">"load_N"</span>] <span class="op">*=</span> <span class="dv">1000</span>                      <span class="co"># kN -&gt; N</span></span>
+<span id="cb31-9"><a aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"E_GPa"</span>] <span class="op">=</span> df[<span class="st">"E_GPa"</span>].fillna(<span class="fl">200.0</span>)</span>
+<span id="cb31-10"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"solver_status"</span>] <span class="op">==</span> <span class="st">"converged"</span>]</span>
+<span id="cb31-11"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"thickness_mm"</span>].between(<span class="dv">8</span>, <span class="dv">20</span>)]</span>
+<span id="cb31-12"><a aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"max_stress_MPa"</span>, <span class="st">"deflection_mm"</span>])</span>
+<span id="cb31-13"><a aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"safety_factor"</span>] <span class="op">=</span> <span class="dv">355</span> <span class="op">/</span> df[<span class="st">"max_stress_MPa"</span>]                  <span class="co"># recompute, consistent</span></span>
+<span id="cb31-14"><a aria-hidden="true" tabindex="-1"></a>    report[<span class="st">"rows_out"</span>] <span class="op">=</span> <span class="bu">len</span>(df)</span>
+<span id="cb31-15"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>), report</span>
+<span id="cb31-16"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a aria-hidden="true" tabindex="-1"></a>data, rep <span class="op">=</span> clean_bracket(<span class="st">"data/bracket_raw.csv"</span>)</span>
+<span id="cb31-18"><a aria-hidden="true" tabindex="-1"></a>rep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>{'rows_in': 303, 'rows_out': 285}</code></pre>
 </div>
@@ -1229,16 +1146,16 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="checks-that-stop-bad-data" class="slide level2">
 <h2>Checks that stop bad data</h2>
-<div id="35e093d5" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validate(df):</span>
-<span id="cb35-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df[<span class="st">"run_id"</span>].is_unique, <span class="st">"duplicate run IDs"</span></span>
-<span id="cb35-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df.notna().<span class="bu">all</span>().<span class="bu">all</span>(), <span class="st">"missing values left"</span></span>
-<span id="cb35-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df[<span class="st">"thickness_mm"</span>].between(<span class="dv">8</span>, <span class="dv">20</span>).<span class="bu">all</span>(), <span class="st">"thickness out of plan range"</span></span>
-<span id="cb35-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df[<span class="st">"load_N"</span>].between(<span class="dv">200</span>, <span class="dv">3000</span>).<span class="bu">all</span>(), <span class="st">"load out of plan range (unit?)"</span></span>
-<span id="cb35-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> (df[<span class="st">"max_stress_MPa"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).<span class="bu">all</span>(), <span class="st">"non-positive stress"</span></span>
-<span id="cb35-7"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb35-8"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-9"><a aria-hidden="true" tabindex="-1"></a>validate(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="495c7e84" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validate(df):</span>
+<span id="cb33-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df[<span class="st">"run_id"</span>].is_unique, <span class="st">"duplicate run IDs"</span></span>
+<span id="cb33-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df.notna().<span class="bu">all</span>().<span class="bu">all</span>(), <span class="st">"missing values left"</span></span>
+<span id="cb33-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df[<span class="st">"thickness_mm"</span>].between(<span class="dv">8</span>, <span class="dv">20</span>).<span class="bu">all</span>(), <span class="st">"thickness out of plan range"</span></span>
+<span id="cb33-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df[<span class="st">"load_N"</span>].between(<span class="dv">200</span>, <span class="dv">3000</span>).<span class="bu">all</span>(), <span class="st">"load out of plan range (unit?)"</span></span>
+<span id="cb33-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> (df[<span class="st">"max_stress_MPa"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).<span class="bu">all</span>(), <span class="st">"non-positive stress"</span></span>
+<span id="cb33-7"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb33-8"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a aria-hidden="true" tabindex="-1"></a>validate(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>True</code></pre>
 </div>
@@ -1283,7 +1200,7 @@ Name: count, dtype: int64</code></pre>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua</p>
+<p>ML for Engineers · kbrzezinska@kse.org.ua</p>
 </div>
 </div></div>
 

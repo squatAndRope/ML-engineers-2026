@@ -86,7 +86,7 @@
     code span.va { color: #1e2329; } /* Variable */
     code span.vs { color: #2e6b4f; } /* VerbatimString */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2278f69fd4253ec8a566f246a79ddef9.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-945af54a21f8da4e48c28dbc32812c49.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -185,7 +185,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">NumPy: calculations on whole arrays</h1>
-  <p class="subtitle">Session 5 · Topic 2.3 · Tue 15 Dec</p>
+  <p class="subtitle">Session 5 · Topic 2.3 · Tue 8 Dec</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -207,7 +207,7 @@
 </section>
 <section id="why-numpy" class="slide level2">
 <h2>Why NumPy?</h2>
-<div id="164f7243" class="cell" data-execution_count="2">
+<div id="ef910d72" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -222,7 +222,7 @@
 <span id="cb1-12"><a aria-hidden="true" tabindex="-1"></a>t_np <span class="op">=</span> time.perf_counter() <span class="op">-</span> start</span>
 <span id="cb1-13"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"list: </span><span class="sc">{</span>t_list<span class="op">*</span><span class="dv">1000</span><span class="sc">:.0f}</span><span class="ss"> ms   numpy: </span><span class="sc">{</span>t_np<span class="op">*</span><span class="dv">1000</span><span class="sc">:.0f}</span><span class="ss"> ms   (</span><span class="sc">{</span>t_list<span class="op">/</span>t_np<span class="sc">:.0f}</span><span class="ss">× faster)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>list: 45 ms   numpy: 3 ms   (14× faster)</code></pre>
+<pre><code>list: 44 ms   numpy: 5 ms   (10× faster)</code></pre>
 </div>
 </div>
 <ul>
@@ -232,7 +232,7 @@
 </section>
 <section id="creating-arrays" class="slide level2">
 <h2>Creating arrays</h2>
-<div id="fe3f58b8" class="cell" data-execution_count="3">
+<div id="798f39b9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>])        <span class="co"># from a list</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a, a.dtype, a.shape)</span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -253,7 +253,7 @@
 </section>
 <section id="vectorised-calculations" class="slide level2">
 <h2>Vectorised calculations</h2>
-<div id="5c238503" class="cell" data-execution_count="4">
+<div id="b5c392e6" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">8</span>, <span class="dv">20</span>, <span class="dv">7</span>)            <span class="co"># mm</span></span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">1500</span>                             <span class="co"># N</span></span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>stress <span class="op">=</span> <span class="dv">6</span> <span class="op">*</span> F <span class="op">*</span> <span class="dv">150</span> <span class="op">/</span> (<span class="dv">40</span> <span class="op">*</span> t <span class="op">**</span> <span class="dv">2</span>)</span>
@@ -272,7 +272,7 @@
 </section>
 <section id="your-bracket-function-works-on-arrays-for-free" class="slide level2">
 <h2>Your bracket function works on arrays — for free</h2>
-<div id="75b7a4a0" class="cell" data-execution_count="5">
+<div id="272ac72d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bending_stress(F, t, L<span class="op">=</span><span class="dv">150</span>, b<span class="op">=</span><span class="dv">40</span>):</span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">6</span> <span class="op">*</span> F <span class="op">*</span> L <span class="op">/</span> (b <span class="op">*</span> t <span class="op">**</span> <span class="dv">2</span>)</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -291,7 +291,7 @@
 </section>
 <section id="aggregations" class="slide level2">
 <h2>Aggregations</h2>
-<div id="486fa02a" class="cell" data-execution_count="6">
+<div id="50905a33" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stress.<span class="bu">min</span>(), stress.<span class="bu">max</span>())</span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stress.mean(), np.median(stress), stress.std(ddof<span class="op">=</span><span class="dv">1</span>))</span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stress.argmin(), t[stress.argmin()])      <span class="co"># position of the minimum</span></span>
@@ -315,7 +315,7 @@
 </section>
 <section id="d-arrays-a-table-of-numbers" class="slide level2">
 <h2>2-D arrays: a table of numbers</h2>
-<div id="8d089026" class="cell" data-execution_count="7">
+<div id="591673f4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">12.0</span>, <span class="fl">4.5</span>, <span class="dv">1500</span>],</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>              [<span class="fl">10.0</span>, <span class="fl">2.0</span>, <span class="dv">2500</span>],</span>
 <span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a>              [<span class="fl">16.0</span>, <span class="fl">6.0</span>, <span class="dv">1000</span>]])      <span class="co"># 3 runs × 3 inputs</span></span>
@@ -335,7 +335,7 @@
 </section>
 <section id="axis-along-which-direction" class="slide level2">
 <h2><code>axis</code>: along which direction?</h2>
-<div id="bee6edf1" class="cell" data-execution_count="8">
+<div id="fcd8cf00" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.mean(axis<span class="op">=</span><span class="dv">0</span>))     <span class="co"># down the rows  → one value per column</span></span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.mean(axis<span class="op">=</span><span class="dv">1</span>))     <span class="co"># across columns → one value per row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -350,7 +350,7 @@ axis=0   [[12.0, 4.5, 1500],
 </section>
 <section id="reshaping" class="slide level2">
 <h2>Reshaping</h2>
-<div id="64f5ce47" class="cell" data-execution_count="9">
+<div id="4f9bbc74" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.arange(<span class="dv">6</span>)</span>
 <span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v.reshape(<span class="dv">2</span>, <span class="dv">3</span>))</span>
 <span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>).shape)        <span class="co"># column vector, -1 = "work it out"</span></span>
@@ -375,7 +375,7 @@ axis=0   [[12.0, 4.5, 1500],
 </section>
 <section id="indexing-and-slicing" class="slide level2">
 <h2>Indexing and slicing</h2>
-<div id="15abfc7e" class="cell" data-execution_count="10">
+<div id="2db00c71" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">8</span>, <span class="dv">20</span>, <span class="dv">7</span>)</span>
 <span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t)</span>
 <span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t[<span class="dv">0</span>], t[<span class="op">-</span><span class="dv">1</span>], t[<span class="dv">2</span>:<span class="dv">5</span>], t[::<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -385,7 +385,7 @@ axis=0   [[12.0, 4.5, 1500],
 </div>
 </div>
 <p>2-D: <code>X[row, column]</code></p>
-<div id="7b79417a" class="cell" data-execution_count="11">
+<div id="de63cbe9" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X[<span class="dv">1</span>, <span class="dv">2</span>])         <span class="co"># run 2, load</span></span>
 <span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X[:<span class="dv">2</span>, :<span class="dv">2</span>])       <span class="co"># first two runs, first two inputs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -397,7 +397,7 @@ axis=0   [[12.0, 4.5, 1500],
 </section>
 <section id="boolean-masks-select-by-condition" class="slide level2">
 <h2>Boolean masks: select by condition</h2>
-<div id="d7925806" class="cell" data-execution_count="12">
+<div id="77c2e8c5" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>stress <span class="op">=</span> bending_stress(<span class="dv">1500</span>, t)</span>
 <span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> stress <span class="op">&lt;</span> <span class="dv">355</span> <span class="op">/</span> <span class="fl">1.5</span>          <span class="co"># SF &gt;= 1.5</span></span>
 <span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mask)</span>
@@ -414,7 +414,7 @@ axis=0   [[12.0, 4.5, 1500],
 <li><code>array[mask]</code> keeps only the <code>True</code> positions</li>
 <li>combine with <code>&amp;</code> (and), <code>|</code> (or), <code>~</code> (not) — <strong>with brackets</strong>:</li>
 </ul>
-<div id="a1ab3195" class="cell" data-execution_count="13">
+<div id="a7a8f9cf" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t[(t <span class="op">&gt;</span> <span class="dv">10</span>) <span class="op">&amp;</span> (t <span class="op">&lt;</span> <span class="dv">18</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[12. 14. 16.]</code></pre>
@@ -423,7 +423,7 @@ axis=0   [[12.0, 4.5, 1500],
 </section>
 <section id="np.where-choose-element-by-element" class="slide level2">
 <h2><code>np.where</code>: choose element by element</h2>
-<div id="db8ca5cc" class="cell" data-execution_count="14">
+<div id="52d13116" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a>verdict <span class="op">=</span> np.where(stress <span class="op">&lt;</span> <span class="dv">355</span> <span class="op">/</span> <span class="fl">1.5</span>, <span class="st">"OK"</span>, <span class="st">"FAIL"</span>)</span>
 <span id="cb26-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(verdict)</span>
 <span id="cb26-3"><a aria-hidden="true" tabindex="-1"></a>capped <span class="op">=</span> np.clip(stress, <span class="va">None</span>, <span class="dv">355</span>)      <span class="co"># limit values to a range</span></span>
@@ -442,7 +442,7 @@ axis=0   [[12.0, 4.5, 1500],
 <section id="combining-arrays-of-different-shapes" class="slide level2">
 <h2>Combining arrays of different shapes</h2>
 <p>All thicknesses × all loads in one step:</p>
-<div id="927c3de5" class="cell" data-execution_count="15">
+<div id="931def19" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>])           <span class="co"># shape (4,)</span></span>
 <span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> np.array([[<span class="dv">1000</span>], [<span class="dv">2000</span>], [<span class="dv">3000</span>]])   <span class="co"># shape (3, 1)</span></span>
 <span id="cb28-3"><a aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> bending_stress(F, t)                 <span class="co"># shape (3, 4)</span></span>
@@ -460,7 +460,7 @@ axis=0   [[12.0, 4.5, 1500],
 </section>
 <section id="a-design-chart-in-three-lines" class="slide level2 smaller">
 <h2>A design chart in three lines</h2>
-<div id="6d39c25a" class="cell" data-fig-height="3.8" data-execution_count="16">
+<div id="bcfe9c80" class="cell" data-fig-height="3.8" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">8</span>, <span class="dv">20</span>, <span class="dv">50</span>)</span>
 <span id="cb30-3"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> F <span class="kw">in</span> [<span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">3000</span>]:</span>
@@ -483,7 +483,7 @@ axis=0   [[12.0, 4.5, 1500],
 </section>
 <section id="random-sampling-plans" class="slide level2">
 <h2>Random sampling plans</h2>
-<div id="6c4be1d7" class="cell" data-execution_count="17">
+<div id="bea19f4c" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">42</span>)      <span class="co"># seed → reproducible</span></span>
 <span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> rng.uniform(<span class="dv">8</span>, <span class="dv">20</span>, n)</span>
@@ -506,7 +506,7 @@ axis=0   [[12.0, 4.5, 1500],
 <section id="monte-carlo-scatter-in-the-inputs" class="slide level2">
 <h2>Monte Carlo: scatter in the inputs</h2>
 <p>Thickness tolerance ±0.3 mm (= 3σ), load scatter 10 % (1σ):</p>
-<div id="f06adfc1" class="cell" data-execution_count="18">
+<div id="0e52acde" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
 <span id="cb33-2"><a aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100_000</span></span>
 <span id="cb33-3"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> rng.normal(<span class="dv">12</span>, <span class="fl">0.1</span>, N)</span>
@@ -525,7 +525,7 @@ P(SF &lt; 1.5) = 46.32%</code></pre>
 </section>
 <section id="saving-and-loading-arrays" class="slide level2">
 <h2>Saving and loading arrays</h2>
-<div id="d7fd9b27" class="cell" data-execution_count="19">
+<div id="21850e66" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a>np.savetxt(<span class="st">"sf.csv"</span>, sf[:<span class="dv">5</span>], delimiter<span class="op">=</span><span class="st">","</span>, fmt<span class="op">=</span><span class="st">"</span><span class="sc">%.3f</span><span class="st">"</span>)</span>
 <span id="cb35-2"><a aria-hidden="true" tabindex="-1"></a>np.save(<span class="st">"sf.npy"</span>, sf)</span>
 <span id="cb35-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.load(<span class="st">"sf.npy"</span>).shape)</span>
@@ -575,7 +575,7 @@ P(SF &lt; 1.5) = 46.32%</code></pre>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua</p>
+<p>ML for Engineers · kbrzezinska@kse.org.ua</p>
 </div>
 </div></div>
 

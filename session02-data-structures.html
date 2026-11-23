@@ -86,7 +86,7 @@
     code span.va { color: #1e2329; } /* Variable */
     code span.vs { color: #2e6b4f; } /* VerbatimString */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2278f69fd4253ec8a566f246a79ddef9.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-945af54a21f8da4e48c28dbc32812c49.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -185,7 +185,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Data structures and working with code</h1>
-  <p class="subtitle">Session 2 · Topics 1.3 + 1.4 · Thu 3 Dec</p>
+  <p class="subtitle">Session 2 · Topics 1.3 + 1.4 · Thu 26 Nov</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -193,7 +193,7 @@
 </section>
 <section id="quick-recap" class="slide level2">
 <h2>Quick recap</h2>
-<div id="d020f678" class="cell" data-execution_count="1">
+<div id="7463733d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bending_stress(F, t, L<span class="op">=</span><span class="dv">150</span>, b<span class="op">=</span><span class="dv">40</span>):</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Max bending stress of a rectangular cantilever, MPa."""</span></span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">6</span> <span class="op">*</span> F <span class="op">*</span> L <span class="op">/</span> (b <span class="op">*</span> t <span class="op">**</span> <span class="dv">2</span>)</span>
@@ -232,7 +232,7 @@ t=14 mm: 172 MPa OK</code></pre>
 </section>
 <section id="a-list-holds-many-values-in-order" class="slide level2">
 <h2>A list holds many values in order</h2>
-<div id="4cc5b51e" class="cell" data-execution_count="2">
+<div id="50021d19" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>thicknesses <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>]          <span class="co"># mm</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(thicknesses))</span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(thicknesses[<span class="dv">0</span>], thicknesses[<span class="op">-</span><span class="dv">1</span>])     <span class="co"># first, last</span></span>
@@ -250,7 +250,7 @@ t=14 mm: 172 MPa OK</code></pre>
 </section>
 <section id="changing-a-list" class="slide level2">
 <h2>Changing a list</h2>
-<div id="c9b3a2bf" class="cell" data-execution_count="3">
+<div id="5a90b666" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>loads <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">1500</span>]</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>loads.append(<span class="dv">2000</span>)          <span class="co"># add at the end</span></span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>loads[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">750</span>              <span class="co"># replace an item</span></span>
@@ -269,7 +269,7 @@ t=14 mm: 172 MPa OK</code></pre>
 </section>
 <section id="building-a-list-in-a-loop" class="slide level2">
 <h2>Building a list in a loop</h2>
-<div id="d1533c02" class="cell" data-execution_count="4">
+<div id="4066dbee" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>stresses <span class="op">=</span> []</span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> thicknesses:</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>    stresses.append(bending_stress(<span class="dv">1500</span>, t))</span>
@@ -279,7 +279,7 @@ t=14 mm: 172 MPa OK</code></pre>
 </div>
 </div>
 <p>The same in one line — a <strong>list comprehension</strong>:</p>
-<div id="3d67ddd9" class="cell" data-execution_count="5">
+<div id="5f72671f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>stresses <span class="op">=</span> [bending_stress(<span class="dv">1500</span>, t) <span class="cf">for</span> t <span class="kw">in</span> thicknesses]</span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>ok <span class="op">=</span> [t <span class="cf">for</span> t <span class="kw">in</span> thicknesses <span class="cf">if</span> <span class="dv">355</span> <span class="op">/</span> bending_stress(<span class="dv">1500</span>, t) <span class="op">&gt;=</span> <span class="fl">1.5</span>]</span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ok)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -290,7 +290,7 @@ t=14 mm: 172 MPa OK</code></pre>
 </section>
 <section id="looping-over-two-lists-together" class="slide level2">
 <h2>Looping over two lists together</h2>
-<div id="79f952f3" class="cell" data-execution_count="6">
+<div id="e1ac5315" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t, s <span class="kw">in</span> <span class="bu">zip</span>(thicknesses, stresses):</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>t<span class="sc">:&gt;3}</span><span class="ss"> mm  </span><span class="sc">{</span>s<span class="sc">:7.1f}</span><span class="ss"> MPa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -301,7 +301,7 @@ t=14 mm: 172 MPa OK</code></pre>
  20 mm     84.4 MPa</code></pre>
 </div>
 </div>
-<div id="dab233fa" class="cell" data-execution_count="7">
+<div id="92487b02" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(thicknesses):</span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -324,7 +324,7 @@ t=14 mm: 172 MPa OK</code></pre>
 </section>
 <section id="tuples-fixed-records" class="slide level2">
 <h2>Tuples: fixed records</h2>
-<div id="68a43e25" class="cell" data-execution_count="8">
+<div id="1c5231ed" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> (<span class="fl">12.0</span>, <span class="fl">4.5</span>, <span class="dv">1500</span>)        <span class="co"># thickness, fillet radius, load</span></span>
 <span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>t, r, F <span class="op">=</span> design                   <span class="co"># unpacking</span></span>
 <span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t, r, F)</span>
@@ -340,7 +340,7 @@ t=14 mm: 172 MPa OK</code></pre>
 </section>
 <section id="dictionaries-values-by-name" class="slide level2">
 <h2>Dictionaries: values by name</h2>
-<div id="f510fbf3" class="cell" data-execution_count="9">
+<div id="7d497d9d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>steel <span class="op">=</span> {<span class="st">"name"</span>: <span class="st">"S355"</span>, <span class="st">"yield_MPa"</span>: <span class="dv">355</span>, <span class="st">"E_GPa"</span>: <span class="dv">210</span>, <span class="st">"density"</span>: <span class="dv">7850</span>}</span>
 <span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(steel[<span class="st">"yield_MPa"</span>])</span>
 <span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>steel[<span class="st">"E_GPa"</span>] <span class="op">=</span> <span class="dv">205</span>           <span class="co"># change</span></span>
@@ -358,7 +358,7 @@ dict_keys(['name', 'yield_MPa', 'E_GPa', 'density', 'weldable'])</code></pre>
 </section>
 <section id="dictionaries-in-practice" class="slide level2">
 <h2>Dictionaries in practice</h2>
-<div id="066e343d" class="cell" data-execution_count="10">
+<div id="5ff25380" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>yield_strength <span class="op">=</span> {<span class="st">"S235"</span>: <span class="dv">235</span>, <span class="st">"S355"</span>: <span class="dv">355</span>, <span class="st">"S460"</span>: <span class="dv">460</span>}</span>
 <span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> grade, fy <span class="kw">in</span> yield_strength.items():</span>
@@ -380,7 +380,7 @@ unknown grade</code></pre>
 </section>
 <section id="a-calculation-run-as-a-dictionary" class="slide level2 smaller">
 <h2>A calculation run as a dictionary</h2>
-<div id="a3fb1949" class="cell" data-execution_count="11">
+<div id="c2d7bfb9" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>run <span class="op">=</span> {<span class="st">"run_id"</span>: <span class="st">"R001"</span>, <span class="st">"thickness_mm"</span>: <span class="dv">12</span>, <span class="st">"load_N"</span>: <span class="dv">1500</span>}</span>
 <span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>run[<span class="st">"stress_MPa"</span>] <span class="op">=</span> bending_stress(run[<span class="st">"load_N"</span>], run[<span class="st">"thickness_mm"</span>])</span>
 <span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -389,7 +389,7 @@ unknown grade</code></pre>
 </div>
 </div>
 <p>A list of such dictionaries = a <strong>table</strong>:</p>
-<div id="07842289" class="cell" data-execution_count="12">
+<div id="9ee98062" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>runs <span class="op">=</span> [</span>
 <span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>    {<span class="st">"run_id"</span>: <span class="st">"R001"</span>, <span class="st">"thickness_mm"</span>: <span class="dv">12</span>, <span class="st">"load_N"</span>: <span class="dv">1500</span>},</span>
 <span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a>    {<span class="st">"run_id"</span>: <span class="st">"R002"</span>, <span class="st">"thickness_mm"</span>: <span class="dv">10</span>, <span class="st">"load_N"</span>: <span class="dv">2500</span>},</span>
@@ -407,7 +407,7 @@ R002 562.5</code></pre>
 </section>
 <section id="sets-unique-values" class="slide level2">
 <h2>Sets: unique values</h2>
-<div id="ffb17105" class="cell" data-execution_count="13">
+<div id="672f182a" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>materials_used <span class="op">=</span> [<span class="st">"S355"</span>, <span class="st">"S235"</span>, <span class="st">"S355"</span>, <span class="st">"S355"</span>, <span class="st">"S460"</span>]</span>
 <span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>unique <span class="op">=</span> <span class="bu">set</span>(materials_used)</span>
 <span id="cb25-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique, <span class="bu">len</span>(unique))</span>
@@ -484,7 +484,7 @@ False</code></pre>
 </section>
 <section id="errors-are-normal" class="slide level2">
 <h2>Errors are normal</h2>
-<div id="1f7b4f54" class="cell" data-execution_count="14">
+<div id="9d6af3e8" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>loads <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">1500</span>]</span>
 <span id="cb27-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loads[<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -557,7 +557,7 @@ False</code></pre>
 </section>
 <section id="debugging-tools-you-already-have" class="slide level2 smaller">
 <h2>Debugging tools you already have</h2>
-<div id="c727f110" class="cell" data-execution_count="15">
+<div id="57642f31" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safety_factor(F, t):</span>
 <span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> bending_stress(F, t)</span>
 <span id="cb28-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"DEBUG stress ="</span>, s)          <span class="co"># look inside</span></span>
@@ -576,7 +576,7 @@ False</code></pre>
 <li>test with simple numbers you can check by hand</li>
 <li><code>assert</code> — stop if something is not as expected:</li>
 </ul>
-<div id="e3a097de" class="cell" data-execution_count="16">
+<div id="1353cd11" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="op">-</span><span class="dv">12</span></span>
 <span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> t <span class="op">&gt;</span> <span class="dv">0</span>, <span class="ss">f"thickness must be positive, got </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -594,7 +594,7 @@ False</code></pre>
 </section>
 <section id="handling-expected-problems-try-except" class="slide level2">
 <h2>Handling expected problems: <code>try</code> / <code>except</code></h2>
-<div id="261d701a" class="cell" data-execution_count="17">
+<div id="5d7eb050" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [<span class="st">"12.5"</span>, <span class="st">"13"</span>, <span class="st">"n/a"</span>, <span class="st">"11.8"</span>]</span>
 <span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> []</span>
 <span id="cb32-3"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> values:</span>
@@ -619,7 +619,7 @@ False</code></pre>
 </section>
 <section id="import-use-code-written-by-others" class="slide level2">
 <h2><code>import</code>: use code written by others</h2>
-<div id="d9e9d8cb" class="cell" data-execution_count="18">
+<div id="6a4206c2" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb34-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.pi, math.sqrt(<span class="dv">2</span>), math.radians(<span class="dv">30</span>))</span>
 <span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -654,7 +654,7 @@ False</code></pre>
 </section>
 <section id="writing-and-reading-a-text-file" class="slide level2">
 <h2>Writing and reading a text file</h2>
-<div id="acefad38" class="cell" data-execution_count="19">
+<div id="158fef4c" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
 <span id="cb38-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">14</span>]:</span>
 <span id="cb38-3"><a aria-hidden="true" tabindex="-1"></a>        f.write(<span class="ss">f"</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>bending_stress(<span class="dv">1500</span>, t)<span class="sc">:.1f}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
@@ -719,7 +719,7 @@ False</code></pre>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua</p>
+<p>ML for Engineers · kbrzezinska@kse.org.ua</p>
 </div>
 </div></div>
 
