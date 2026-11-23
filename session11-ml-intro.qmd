@@ -1,6 +1,6 @@
 ---
 title: "Introduction to machine learning"
-subtitle: "Session 11 · Topic 3.1 · Tue 20 Jan"
+subtitle: "Session 11 · Topic 3.1 · Tue 26 Jan"
 format: revealjs
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Reshaping and aggregation"
-subtitle: "Session 8 · Topic 2.6 · Thu 17 Dec"
+subtitle: "Session 8 · Topic 2.6 · Thu 14 Jan"
 format: revealjs
 ---
 
@@ -229,18 +229,9 @@ After a merge, always compare the number of rows before and after. Unexpected gr
 - `melt` (wide → long) and `pivot` (long → wide)
 - `concat` stacks, `merge` joins by keys; check row counts after every merge
 
-**After the break (Tue 13 Jan):** exploratory data analysis — asking the data questions systematically.
+**Next session:** exploratory data analysis — asking the data questions systematically.
 
 ## Practice at home (~1 h)
 
 - finish exercise 3 and commit
 - think of a question about your own calculations that needs a `groupby` — write it down
-
-## Over the break
-
-::: {.muted}
-No obligatory homework. If you want to practise:
-:::
-
-- load a table from your own work (CSV or Excel) with pandas, clean it and summarise it with `groupby`
-- write down anything that went wrong — we start Session 9 with a recap and your examples

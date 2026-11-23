@@ -1,6 +1,6 @@
 ---
 title: "Model validation and regularisation"
-subtitle: "Session 14 · Topic 3.4 · Thu 29 Jan"
+subtitle: "Session 14 · Topic 3.4 · Thu 4 Feb"
 format: revealjs
 ---
 

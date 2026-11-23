@@ -1,6 +1,6 @@
 ---
 title: "Neural network architectures and layers"
-subtitle: "Session 19 · Topic 4.2 · Tue 17 Feb"
+subtitle: "Session 19 · Topic 4.2 · Tue 23 Feb"
 format: revealjs
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Optimisation and training diagnostics"
-subtitle: "Session 20 · Topic 4.3 · Thu 19 Feb"
+subtitle: "Session 20 · Topic 4.3 · Thu 25 Feb"
 format: revealjs
 ---
 

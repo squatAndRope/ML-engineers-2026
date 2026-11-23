@@ -1,6 +1,6 @@
 ---
 title: "Decision trees and ensembles"
-subtitle: "Session 15 · Topic 3.5 · Tue 3 Feb"
+subtitle: "Session 15 · Topic 3.5 · Tue 9 Feb"
 format: revealjs
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Case 2 defence"
-subtitle: "Session 22 · Thu 26 Feb"
+subtitle: "Session 22 · Thu 4 Mar"
 format: revealjs
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Classification: logistic regression"
-subtitle: "Session 13 · Topic 3.3 · Tue 27 Jan"
+subtitle: "Session 13 · Topic 3.3 · Tue 2 Feb"
 format: revealjs
 ---
 
@@ -66,7 +66,7 @@ TODO: slides
 
 ::: {.case}
 **Machine learning: an engineering ML model with NumPy and scikit-learn.**
-Full cycle from calculation results to a model choice. Review: Session 17 (Tue 10 Feb).
+Full cycle from calculation results to a model choice. Review: Session 17 (Tue 16 Feb).
 Estimated work: 6–8 h between sessions.
 :::
 

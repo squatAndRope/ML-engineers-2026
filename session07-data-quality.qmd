@@ -1,14 +1,35 @@
 ---
 title: "Data quality"
-subtitle: "Session 7 · Topic 2.5 · Tue 15 Dec"
+subtitle: "Session 7 · Topic 2.5 · Tue 12 Jan"
 format: revealjs
 ---
 
+## Welcome back! Quick pandas recap
+
 ```{python}
-#| include: false
 import pandas as pd
 import numpy as np
+
+df = pd.read_csv("data/bracket.csv")              # read
+print(df.shape)                                    # size
+cols = ["run_id", "thickness_mm", "load_N", "safety_factor"]
+low = df.loc[df["safety_factor"] < 1, cols]        # filter rows, pick columns
+low.sort_values("safety_factor").head(3)           # sort
 ```
+
+::: {.muted}
+`read_csv` → `info` / `describe` → `df["col"]` / `loc` → masks → new columns → `to_csv`.
+:::
+
+## Recap: your turn (5 min)
+
+::: {.exercise}
+Without looking at the old slides:
+
+1. How many runs have thickness above 15 mm **and** SF below 1.5?
+2. Add a column `deflection_um` (micrometres).
+3. Which run has the largest deflection?
+:::
 
 ## Today
 

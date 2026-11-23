@@ -1,6 +1,6 @@
 ---
 title: "Unsupervised learning"
-subtitle: "Session 16 · Topic 3.6 · Thu 5 Feb"
+subtitle: "Session 16 · Topic 3.6 · Thu 11 Feb"
 format: revealjs
 ---
 

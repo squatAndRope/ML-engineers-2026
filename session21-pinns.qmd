@@ -1,6 +1,6 @@
 ---
 title: "Physics-informed ML (PINNs)"
-subtitle: "Session 21 · Topic 4.4 · Tue 24 Feb"
+subtitle: "Session 21 · Topic 4.4 · Tue 2 Mar"
 format: revealjs
 ---
 

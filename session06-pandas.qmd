@@ -1,6 +1,6 @@
 ---
 title: "pandas: loading and inspecting data"
-subtitle: "Session 6 · Topic 2.4 · Thu 10 Dec"
+subtitle: "Session 6 · Topic 2.4 · Thu 17 Dec"
 format: revealjs
 ---
 
@@ -250,9 +250,13 @@ df.to_parquet("bracket.parquet")              # fast binary, keeps types
 - filter with masks or `query`; sort with `sort_values`
 - new columns by vectorised arithmetic; `to_csv` to save
 
-**Next session:** data quality — what to do when the file is not clean.
+**After the break:** data quality — what to do when the file is not clean.
 
-## Practice at home (~1 h)
+## Over the break
+
+::: {.muted}
+No obligatory homework. If you want to practise:
+:::
 
 - load a table from your own work (CSV or Excel) with pandas, run the 5 checks
 - write down anything that went wrong — we start Session 7 with your examples

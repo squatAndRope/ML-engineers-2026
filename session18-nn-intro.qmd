@@ -1,6 +1,6 @@
 ---
 title: "Introduction to neural networks"
-subtitle: "Session 18 · Topic 4.1 · Thu 12 Feb"
+subtitle: "Session 18 · Topic 4.1 · Thu 18 Feb"
 format: revealjs
 ---
 
@@ -65,7 +65,7 @@ TODO: slides
 ::: {.case}
 **Deep learning: a neural-network surrogate in PyTorch.**
 Custom Dataset, training loop, tuning and diagnostics, comparison with Case 1.
-Defence: Session 22 (Thu 26 Feb). Estimated work: 6–8 h between sessions.
+Defence: Session 22 (Thu 4 Mar). Estimated work: 6–8 h between sessions.
 :::
 
 ## Summary

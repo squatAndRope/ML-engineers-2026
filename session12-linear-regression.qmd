@@ -1,6 +1,6 @@
 ---
 title: "Regression: linear regression"
-subtitle: "Session 12 · Topic 3.2 · Thu 22 Jan"
+subtitle: "Session 12 · Topic 3.2 · Thu 28 Jan"
 format: revealjs
 ---
 

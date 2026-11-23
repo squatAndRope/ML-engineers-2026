@@ -1,6 +1,6 @@
 ---
 title: "Case 1 review"
-subtitle: "Session 17 · Tue 10 Feb"
+subtitle: "Session 17 · Tue 16 Feb"
 format: revealjs
 ---
 
