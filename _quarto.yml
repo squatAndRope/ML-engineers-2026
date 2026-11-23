@@ -15,22 +15,26 @@ website:
         text: Schedule
       - href: data.qmd
         text: Data
-  page-footer: "Fundamentals of Machine Learning for Engineers · Modules 1–2 · Klaudia Brzezińska"
+    right:
+      - href: "mailto:kbrzezinska@kse.org.ua"
+        text: Contact
+        icon: envelope
+  page-footer: "Fundamentals of Machine Learning for Engineers · Modules 1–2 · Klaudia Brzezińska · [kbrzezinska@kse.org.ua](mailto:kbrzezinska@kse.org.ua)"
 
 format:
   html:
     theme: [cosmo, assets/site.scss]
-    highlight-style: assets/pink.theme
+    highlight-style: assets/neutral.theme
   revealjs:
     theme: [default, assets/slides.scss]
-    highlight-style: assets/pink.theme
+    highlight-style: assets/neutral.theme
     slide-number: c/t
     code-line-numbers: false
     code-copy: true
     transition: none
     width: 1280
     height: 760
-    footer: "ML for Engineers · Modules 1–2"
+    footer: "ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua"
     chalkboard: false
     menu: true
     preview-links: auto

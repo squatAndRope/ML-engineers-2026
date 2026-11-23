@@ -158,7 +158,7 @@ ax.set(xlabel="thickness, mm", ylabel="load, N"); plt.show()
 T, F = np.meshgrid(np.linspace(8, 20, 100), np.linspace(200, 3000, 100))
 SF = 355 / (6 * F * 150 / (40 * T ** 2))
 fig, ax = plt.subplots(figsize=(8, 4.2))
-cs = ax.contourf(T, F, SF, levels=[0, 0.5, 1, 1.5, 2, 3, 5, 10, 40], cmap="RdPu_r")
+cs = ax.contourf(T, F, SF, levels=[0, 0.5, 1, 1.5, 2, 3, 5, 10, 40], cmap="cividis")
 ax.contour(T, F, SF, levels=[1.5], colors="k", linewidths=2)
 fig.colorbar(cs, label="SF (nominal)"); ax.set(xlabel="thickness, mm", ylabel="load, N")
 plt.show()
@@ -168,7 +168,7 @@ The black line is the **design limit** SF = 1.5 — a surrogate model will draw 
 
 ## Colour maps: choose on purpose
 
-- **sequential** (one quantity, low → high): `magma`, `RdPu`, `Greys`
+- **sequential** (one quantity, low → high): `viridis`, `Blues`, `Greys`
 - **diverging** (around a meaningful centre, e.g. error = 0): `PuOr`, `RdGy`
 - **qualitative** (categories): the default colour cycle, `tab10`
 - avoid `jet` / rainbow: invents boundaries, unreadable in greyscale and for colour-blind readers

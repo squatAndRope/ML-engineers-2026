@@ -1,7 +1,26 @@
 /*-- scss:defaults --*/
-$primary: #B0215E;
-$navbar-bg: #B0215E;
-$link-color: #B0215E;
-$body-bg: #FFFDFB;
+$primary: #1F3A5F;
+$navbar-bg: #1F3A5F;
+$link-color: #2F5D9A;
+$body-bg: #FFFFFF;
+$body-color: #1E2329;
+
 /*-- scss:rules --*/
-.break-row td { background: #FCE4EE !important; font-style: italic; }
+.front-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem; margin: 1.5rem 0 2rem;
+}
+.front-card {
+  border: 1px solid #DDE1E6; border-left: 5px solid $primary; border-radius: 6px;
+  padding: 1rem 1.25rem; background: #F8F9FB;
+  h4 { margin-top: 0; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: #6B7280; }
+  p:last-child { margin-bottom: 0; }
+}
+.contact-card a { font-size: 1.1rem; font-weight: 600; }
+.next-card .next-date { font-size: 1.25rem; font-weight: 600; color: $primary; }
+
+table.calendar { font-size: .95rem; }
+table.calendar td:first-child { color: #6B7280; }
+table.calendar tr.past-row td { color: #9AA1AB; }
+table.calendar tr.next-row td { background: #EEF3F9; font-weight: 600; }
+table.calendar tr.break-row td { background: #F4F5F7; color: #6B7280; font-style: italic; }

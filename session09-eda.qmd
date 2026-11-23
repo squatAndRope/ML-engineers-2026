@@ -69,7 +69,7 @@ df.describe().T[["mean", "std", "min", "50%", "max"]].round(2)
 ```{python}
 #| fig-width: 12
 #| fig-height: 4.5
-df.drop(columns="run_id").hist(bins=25, figsize=(12, 4.5), layout=(2, 4), color="#B0215E")
+df.drop(columns="run_id").hist(bins=25, figsize=(12, 4.5), layout=(2, 4), color="#1F3A5F")
 plt.tight_layout(); plt.show()
 ```
 
@@ -100,7 +100,7 @@ A log transform often makes a skewed engineering output easier to model (Module 
 #| fig-height: 5.2
 from pandas.plotting import scatter_matrix
 inputs = ["thickness_mm", "fillet_radius_mm", "load_N", "E_GPa"]
-scatter_matrix(df[inputs], figsize=(10, 5.2), alpha=0.5, color="#B0215E", hist_kwds={"color": "#E46A9A"})
+scatter_matrix(df[inputs], figsize=(10, 5.2), alpha=0.5, color="#1F3A5F", hist_kwds={"color": "#5B7DB1"})
 plt.show()
 ```
 
@@ -155,7 +155,7 @@ pd.DataFrame({
 #| fig-height: 5
 c = df[cols].corr()
 fig, ax = plt.subplots(figsize=(7, 5))
-im = ax.imshow(c, cmap="RdPu", vmin=-1, vmax=1)
+im = ax.imshow(c, cmap="RdBu_r", vmin=-1, vmax=1)
 ax.set_xticks(range(len(cols)), cols, rotation=45, ha="right"); ax.set_yticks(range(len(cols)), cols)
 for i in range(len(cols)):
     for j in range(len(cols)):
@@ -169,7 +169,7 @@ fig.colorbar(im); ax.grid(False); plt.tight_layout(); plt.show()
 #| fig-height: 4.5
 fig, ax = plt.subplots(figsize=(8, 4.5))
 sc = ax.scatter(df["thickness_mm"], df["load_N"], c=df["safety_factor"].clip(upper=3),
-                cmap="RdPu_r", s=25)
+                cmap="viridis", s=25)
 fig.colorbar(sc, label="safety factor (capped at 3)")
 ax.set_xlabel("thickness, mm"); ax.set_ylabel("load, N"); plt.show()
 ```

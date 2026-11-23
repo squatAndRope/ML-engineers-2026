@@ -1,0 +1,15 @@
+/.quarto/
+/_site/
+
+# files written when session 5 code runs
+/sf.csv
+/sf.npy
+
+# Quarto debug output
+_quarto_internal_scss_error.scss
+
+# macOS / sync-conflict duplicates ("file 2.html")
+.DS_Store
+* 2
+* 2.*
+* 2_files/
