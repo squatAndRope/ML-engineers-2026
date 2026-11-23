@@ -6,7 +6,7 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-929048f0753aa4c2210eef58d05a740f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a590c65dd780d72b3f42eaa1bcb4705.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.33">
 
   <title>Python &amp; Data for Engineers – Visualisation</title>
@@ -55,38 +55,38 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #b89aa6;
+        color: #9aa1ab;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #b89aa6;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #9aa1ab;  padding-left: 4px; }
     div.sourceCode
-      { color: #2b2626; background-color: #fbf1f5; }
+      { color: #1e2329; background-color: #f4f5f7; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span.al { color: #c62828; font-weight: bold; } /* Alert */
-    code span.at { color: #6b2d8c; } /* Attribute */
-    code span.bn { color: #b35c00; } /* BaseN */
-    code span.bu { color: #6b2d8c; } /* BuiltIn */
-    code span.cf { color: #b0215e; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #2e7d32; } /* Char */
-    code span.cn { color: #b35c00; } /* Constant */
-    code span.co { color: #8a7a80; font-style: italic; } /* Comment */
-    code span.do { color: #8a7a80; font-style: italic; } /* Documentation */
-    code span.dt { color: #8e4a00; } /* DataType */
-    code span.dv { color: #b35c00; } /* DecVal */
-    code span.er { color: #c62828; font-weight: bold; } /* Error */
-    code span.fl { color: #b35c00; } /* Float */
-    code span.fu { color: #6b2d8c; } /* Function */
-    code span.im { color: #b0215e; font-weight: bold; } /* Import */
-    code span.kw { color: #b0215e; font-weight: bold; } /* Keyword */
-    code span.op { color: #7a1e45; } /* Operator */
-    code span.ot { color: #6b2d8c; } /* Other */
-    code span.ss { color: #2e7d32; } /* SpecialString */
-    code span.st { color: #2e7d32; } /* String */
-    code span.va { color: #2b2626; } /* Variable */
-    code span.vs { color: #2e7d32; } /* VerbatimString */
+    code span.al { color: #b42318; font-weight: bold; } /* Alert */
+    code span.at { color: #3d5f8f; } /* Attribute */
+    code span.bn { color: #a1561b; } /* BaseN */
+    code span.bu { color: #3d5f8f; } /* BuiltIn */
+    code span.cf { color: #1f3a5f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #2e6b4f; } /* Char */
+    code span.cn { color: #a1561b; } /* Constant */
+    code span.co { color: #6b7280; font-style: italic; } /* Comment */
+    code span.do { color: #6b7280; font-style: italic; } /* Documentation */
+    code span.dt { color: #7a5418; } /* DataType */
+    code span.dv { color: #a1561b; } /* DecVal */
+    code span.er { color: #b42318; font-weight: bold; } /* Error */
+    code span.fl { color: #a1561b; } /* Float */
+    code span.fu { color: #3d5f8f; } /* Function */
+    code span.im { color: #1f3a5f; font-weight: bold; } /* Import */
+    code span.kw { color: #1f3a5f; font-weight: bold; } /* Keyword */
+    code span.op { color: #374151; } /* Operator */
+    code span.ot { color: #3d5f8f; } /* Other */
+    code span.ss { color: #2e6b4f; } /* SpecialString */
+    code span.st { color: #2e6b4f; } /* String */
+    code span.va { color: #1e2329; } /* Variable */
+    code span.vs { color: #2e6b4f; } /* VerbatimString */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-738845bc55b01920a57f1fae64592580.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2278f69fd4253ec8a566f246a79ddef9.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -208,7 +208,7 @@
 </section>
 <section id="setup-for-today" class="slide level2">
 <h2>Setup for today</h2>
-<div id="d1189072" class="cell" data-execution_count="2">
+<div id="8a1c8899" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -222,7 +222,7 @@
 </section>
 <section id="figure-and-axes" class="slide level2 smaller">
 <h2>Figure and Axes</h2>
-<div id="2052eaf6" class="cell" data-fig-height="3.6" data-execution_count="3">
+<div id="a12b5161" class="cell" data-fig-height="3.6" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.6</span>))           <span class="co"># figure = canvas, ax = one plot</span></span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">8</span>, <span class="dv">20</span>, <span class="dv">50</span>)</span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>ax.plot(t, <span class="dv">6</span> <span class="op">*</span> <span class="dv">1500</span> <span class="op">*</span> <span class="dv">150</span> <span class="op">/</span> (<span class="dv">40</span> <span class="op">*</span> t <span class="op">**</span> <span class="dv">2</span>), label<span class="op">=</span><span class="st">"F = 1500 N"</span>)</span>
@@ -234,7 +234,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-4-output-1.png" width="777" height="418"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-4-output-1.png" width="775" height="406"></p>
 </figure>
 </div>
 </div>
@@ -336,7 +336,7 @@
 </section>
 <section id="line-and-scatter" class="slide level2 smaller">
 <h2>Line and scatter</h2>
-<div id="2aa4184b" class="cell" data-fig-height="3.8" data-fig-width="12" data-execution_count="4">
+<div id="c978f10c" class="cell" data-fig-height="3.8" data-fig-width="12" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">3.8</span>))</span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> F <span class="kw">in</span> [<span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">3000</span>]:</span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].plot(t, <span class="dv">355</span> <span class="op">/</span> (<span class="dv">6</span> <span class="op">*</span> F <span class="op">*</span> <span class="dv">150</span> <span class="op">/</span> (<span class="dv">40</span> <span class="op">*</span> t <span class="op">**</span> <span class="dv">2</span>)), label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>F<span class="sc">}</span><span class="ss"> N"</span>)</span>
@@ -348,7 +348,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-5-output-1.png" width="1302" height="400"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-5-output-1.png" width="1303" height="400"></p>
 </figure>
 </div>
 </div>
@@ -356,7 +356,7 @@
 </section>
 <section id="histogram-and-box-plot" class="slide level2 smaller">
 <h2>Histogram and box plot</h2>
-<div id="33ca99d8" class="cell" data-fig-height="3.8" data-fig-width="12" data-execution_count="5">
+<div id="70efe104" class="cell" data-fig-height="3.8" data-fig-width="12" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"t_class"</span>] <span class="op">=</span> pd.cut(df[<span class="st">"thickness_mm"</span>], [<span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>], labels<span class="op">=</span>[<span class="st">"8–12"</span>, <span class="st">"12–16"</span>, <span class="st">"16–20"</span>],</span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>                       include_lowest<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">3.8</span>))</span>
@@ -369,7 +369,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-6-output-1.png" width="1302" height="400"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-6-output-1.png" width="1304" height="400"></p>
 </figure>
 </div>
 </div>
@@ -380,7 +380,7 @@
 </section>
 <section id="quick-plots-from-pandas" class="slide level2 smaller">
 <h2>Quick plots from pandas</h2>
-<div id="5b509b0e" class="cell" data-fig-height="3.6" data-execution_count="6">
+<div id="ad3e5f9f" class="cell" data-fig-height="3.6" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> (df.groupby(<span class="st">"t_class"</span>, observed<span class="op">=</span><span class="va">True</span>)[<span class="st">"safety_factor"</span>]</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>        .<span class="bu">apply</span>(<span class="kw">lambda</span> s: (s <span class="op">&lt;</span> <span class="fl">1.5</span>).mean() <span class="op">*</span> <span class="dv">100</span>)</span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>        .plot.bar(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">3.6</span>), rot<span class="op">=</span><span class="dv">0</span>))</span>
@@ -389,7 +389,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-7-output-1.png" width="681" height="388"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-7-output-1.png" width="677" height="380"></p>
 </figure>
 </div>
 </div>
@@ -406,7 +406,7 @@
 </section>
 <section id="subplots-with-shared-axes" class="slide level2 smaller">
 <h2>Subplots with shared axes</h2>
-<div id="f1d84929" class="cell" data-fig-height="3.8" data-fig-width="12" data-execution_count="7">
+<div id="6f6b4cec" class="cell" data-fig-height="3.8" data-fig-width="12" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">3.8</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (col, unit) <span class="kw">in</span> <span class="bu">zip</span>(axes, [(<span class="st">"thickness_mm"</span>, <span class="st">"mm"</span>), (<span class="st">"fillet_radius_mm"</span>, <span class="st">"mm"</span>), (<span class="st">"load_N"</span>, <span class="st">"N"</span>)]):</span>
 <span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>    ax.scatter(df[col], df[<span class="st">"max_stress_MPa"</span>], s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">.5</span>)</span>
@@ -417,7 +417,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-8-output-1.png" width="1298" height="411"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-8-output-1.png" width="1304" height="411"></p>
 </figure>
 </div>
 </div>
@@ -428,7 +428,7 @@
 </section>
 <section id="colour-as-a-third-variable" class="slide level2">
 <h2>Colour as a third variable</h2>
-<div id="37597cd4" class="cell" data-fig-height="4.2" data-execution_count="8">
+<div id="ca6cb010" class="cell" data-fig-height="4.2" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.2</span>))</span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> ax.scatter(df[<span class="st">"thickness_mm"</span>], df[<span class="st">"load_N"</span>], c<span class="op">=</span>df[<span class="st">"max_stress_MPa"</span>], cmap<span class="op">=</span><span class="st">"magma_r"</span>, s<span class="op">=</span><span class="dv">25</span>)</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>fig.colorbar(sc, ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"max stress, MPa"</span>)</span>
@@ -436,7 +436,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-9-output-1.png" width="785" height="438"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-9-output-1.png" width="785" height="431"></p>
 </figure>
 </div>
 </div>
@@ -444,18 +444,18 @@
 </section>
 <section id="contour-plot-of-a-model" class="slide level2 smaller">
 <h2>Contour plot of a model</h2>
-<div id="0f6a6a72" class="cell" data-fig-height="4.2" data-execution_count="9">
+<div id="7acb1f5c" class="cell" data-fig-height="4.2" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>T, F <span class="op">=</span> np.meshgrid(np.linspace(<span class="dv">8</span>, <span class="dv">20</span>, <span class="dv">100</span>), np.linspace(<span class="dv">200</span>, <span class="dv">3000</span>, <span class="dv">100</span>))</span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>SF <span class="op">=</span> <span class="dv">355</span> <span class="op">/</span> (<span class="dv">6</span> <span class="op">*</span> F <span class="op">*</span> <span class="dv">150</span> <span class="op">/</span> (<span class="dv">40</span> <span class="op">*</span> T <span class="op">**</span> <span class="dv">2</span>))</span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.2</span>))</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>cs <span class="op">=</span> ax.contourf(T, F, SF, levels<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">40</span>], cmap<span class="op">=</span><span class="st">"RdPu_r"</span>)</span>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>cs <span class="op">=</span> ax.contourf(T, F, SF, levels<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">40</span>], cmap<span class="op">=</span><span class="st">"cividis"</span>)</span>
 <span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a>ax.contour(T, F, SF, levels<span class="op">=</span>[<span class="fl">1.5</span>], colors<span class="op">=</span><span class="st">"k"</span>, linewidths<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>fig.colorbar(cs, label<span class="op">=</span><span class="st">"SF (nominal)"</span>)<span class="op">;</span> ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"thickness, mm"</span>, ylabel<span class="op">=</span><span class="st">"load, N"</span>)</span>
 <span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-10-output-1.png" width="782" height="447"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-10-output-1.png" width="779" height="438"></p>
 </figure>
 </div>
 </div>
@@ -465,7 +465,7 @@
 <section id="colour-maps-choose-on-purpose" class="slide level2">
 <h2>Colour maps: choose on purpose</h2>
 <ul>
-<li><strong>sequential</strong> (one quantity, low → high): <code>magma</code>, <code>RdPu</code>, <code>Greys</code></li>
+<li><strong>sequential</strong> (one quantity, low → high): <code>viridis</code>, <code>Blues</code>, <code>Greys</code></li>
 <li><strong>diverging</strong> (around a meaningful centre, e.g.&nbsp;error = 0): <code>PuOr</code>, <code>RdGy</code></li>
 <li><strong>qualitative</strong> (categories): the default colour cycle, <code>tab10</code></li>
 <li>avoid <code>jet</code> / rainbow: invents boundaries, unreadable in greyscale and for colour-blind readers</li>
@@ -481,7 +481,7 @@
 </section>
 <section id="log-scales" class="slide level2 smaller">
 <h2>Log scales</h2>
-<div id="0eeb3f83" class="cell" data-fig-height="3.6" data-fig-width="12" data-execution_count="10">
+<div id="3ea08b1d" class="cell" data-fig-height="3.6" data-fig-width="12" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">3.6</span>))</span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].scatter(df[<span class="st">"load_N"</span>] <span class="op">/</span> df[<span class="st">"thickness_mm"</span>] <span class="op">**</span> <span class="dv">3</span>, df[<span class="st">"deflection_mm"</span>], s<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"linear axes"</span>, xlabel<span class="op">=</span><span class="st">"F / t³"</span>, ylabel<span class="op">=</span><span class="st">"deflection, mm"</span>)</span>
@@ -491,7 +491,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-11-output-1.png" width="1302" height="378"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-11-output-1.png" width="1303" height="377"></p>
 </figure>
 </div>
 </div>
@@ -503,7 +503,7 @@
 </section>
 <section id="the-plot-you-will-make-most-in-module-3-predicted-vs-actual" class="slide level2 smaller">
 <h2>The plot you will make most in Module 3: predicted vs actual</h2>
-<div id="436b0a16" class="cell" data-fig-height="4.3" data-execution_count="11">
+<div id="973611cd" class="cell" data-fig-height="4.3" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>nominal <span class="op">=</span> <span class="dv">6</span> <span class="op">*</span> df[<span class="st">"load_N"</span>] <span class="op">*</span> <span class="dv">150</span> <span class="op">/</span> (<span class="dv">40</span> <span class="op">*</span> df[<span class="st">"thickness_mm"</span>] <span class="op">**</span> <span class="dv">2</span>)</span>
 <span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.2</span>, <span class="fl">4.3</span>))</span>
 <span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>ax.scatter(df[<span class="st">"max_stress_MPa"</span>], nominal, s<span class="op">=</span><span class="dv">10</span>, alpha<span class="op">=</span><span class="fl">.6</span>)</span>
@@ -515,7 +515,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session10-visualisation_files/figure-revealjs/cell-12-output-1.png" width="484" height="477"></p>
+<p><img data-src="session10-visualisation_files/figure-revealjs/cell-12-output-1.png" width="489" height="465"></p>
 </figure>
 </div>
 </div>
@@ -535,7 +535,7 @@
 </section>
 <section id="saving-figures" class="slide level2">
 <h2>Saving figures</h2>
-<div id="9c7a9988" class="cell" data-execution_count="12">
+<div id="79b0e4e9" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figures/stress_vs_thickness.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figures/stress_vs_thickness.pdf"</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)   <span class="co"># vector, for reports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -582,7 +582,7 @@
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>ML for Engineers · Modules 1–2</p>
+<p>ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua</p>
 </div>
 </div></div>
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-929048f0753aa4c2210eef58d05a740f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a590c65dd780d72b3f42eaa1bcb4705.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.33">
 
   <title>Python &amp; Data for Engineers – Exploratory data analysis</title>
@@ -55,38 +55,38 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #b89aa6;
+        color: #9aa1ab;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #b89aa6;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #9aa1ab;  padding-left: 4px; }
     div.sourceCode
-      { color: #2b2626; background-color: #fbf1f5; }
+      { color: #1e2329; background-color: #f4f5f7; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span.al { color: #c62828; font-weight: bold; } /* Alert */
-    code span.at { color: #6b2d8c; } /* Attribute */
-    code span.bn { color: #b35c00; } /* BaseN */
-    code span.bu { color: #6b2d8c; } /* BuiltIn */
-    code span.cf { color: #b0215e; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #2e7d32; } /* Char */
-    code span.cn { color: #b35c00; } /* Constant */
-    code span.co { color: #8a7a80; font-style: italic; } /* Comment */
-    code span.do { color: #8a7a80; font-style: italic; } /* Documentation */
-    code span.dt { color: #8e4a00; } /* DataType */
-    code span.dv { color: #b35c00; } /* DecVal */
-    code span.er { color: #c62828; font-weight: bold; } /* Error */
-    code span.fl { color: #b35c00; } /* Float */
-    code span.fu { color: #6b2d8c; } /* Function */
-    code span.im { color: #b0215e; font-weight: bold; } /* Import */
-    code span.kw { color: #b0215e; font-weight: bold; } /* Keyword */
-    code span.op { color: #7a1e45; } /* Operator */
-    code span.ot { color: #6b2d8c; } /* Other */
-    code span.ss { color: #2e7d32; } /* SpecialString */
-    code span.st { color: #2e7d32; } /* String */
-    code span.va { color: #2b2626; } /* Variable */
-    code span.vs { color: #2e7d32; } /* VerbatimString */
+    code span.al { color: #b42318; font-weight: bold; } /* Alert */
+    code span.at { color: #3d5f8f; } /* Attribute */
+    code span.bn { color: #a1561b; } /* BaseN */
+    code span.bu { color: #3d5f8f; } /* BuiltIn */
+    code span.cf { color: #1f3a5f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #2e6b4f; } /* Char */
+    code span.cn { color: #a1561b; } /* Constant */
+    code span.co { color: #6b7280; font-style: italic; } /* Comment */
+    code span.do { color: #6b7280; font-style: italic; } /* Documentation */
+    code span.dt { color: #7a5418; } /* DataType */
+    code span.dv { color: #a1561b; } /* DecVal */
+    code span.er { color: #b42318; font-weight: bold; } /* Error */
+    code span.fl { color: #a1561b; } /* Float */
+    code span.fu { color: #3d5f8f; } /* Function */
+    code span.im { color: #1f3a5f; font-weight: bold; } /* Import */
+    code span.kw { color: #1f3a5f; font-weight: bold; } /* Keyword */
+    code span.op { color: #374151; } /* Operator */
+    code span.ot { color: #3d5f8f; } /* Other */
+    code span.ss { color: #2e6b4f; } /* SpecialString */
+    code span.st { color: #2e6b4f; } /* String */
+    code span.va { color: #1e2329; } /* Variable */
+    code span.vs { color: #2e6b4f; } /* VerbatimString */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-738845bc55b01920a57f1fae64592580.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2278f69fd4253ec8a566f246a79ddef9.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -178,7 +178,7 @@
       margin-right: 0; 
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
   
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
@@ -210,7 +210,7 @@
 </section>
 <section id="setup-for-today" class="slide level2">
 <h2>Setup for today</h2>
-<div id="974f22ef" class="cell" data-execution_count="2">
+<div id="1216aa58" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -250,7 +250,7 @@
 </section>
 <section id="numbers-first" class="slide level2">
 <h2>Numbers first</h2>
-<div id="72f1ba77" class="cell" data-execution_count="3">
+<div id="a046b53b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>df.describe().T[[<span class="st">"mean"</span>, <span class="st">"std"</span>, <span class="st">"min"</span>, <span class="st">"50%"</span>, <span class="st">"max"</span>]].<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -349,13 +349,13 @@
 </section>
 <section id="histograms" class="slide level2 smaller">
 <h2>Histograms</h2>
-<div id="fb103252" class="cell" data-fig-height="4.5" data-fig-width="12" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span><span class="st">"run_id"</span>).hist(bins<span class="op">=</span><span class="dv">25</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">4.5</span>), layout<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">4</span>), color<span class="op">=</span><span class="st">"#B0215E"</span>)</span>
+<div id="bb78679c" class="cell" data-fig-height="4.5" data-fig-width="12" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span><span class="st">"run_id"</span>).hist(bins<span class="op">=</span><span class="dv">25</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">4.5</span>), layout<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">4</span>), color<span class="op">=</span><span class="st">"#1F3A5F"</span>)</span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session09-eda_files/figure-revealjs/cell-5-output-1.png" width="1299" height="477"></p>
+<p><img data-src="session09-eda_files/figure-revealjs/cell-5-output-1.png" width="1303" height="477"></p>
 </figure>
 </div>
 </div>
@@ -367,7 +367,7 @@
 </section>
 <section id="skewed-outputs-try-a-log-scale" class="slide level2">
 <h2>Skewed outputs: try a log scale</h2>
-<div id="274a6d2c" class="cell" data-fig-height="3.6" data-fig-width="11" data-execution_count="5">
+<div id="7abfb480" class="cell" data-fig-height="3.6" data-fig-width="11" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.6</span>))</span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"deflection_mm"</span>].hist(bins<span class="op">=</span><span class="dv">30</span>, ax<span class="op">=</span>ax[<span class="dv">0</span>])<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">"deflection, mm"</span>)</span>
 <span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>np.log10(df[<span class="st">"deflection_mm"</span>]).hist(bins<span class="op">=</span><span class="dv">30</span>, ax<span class="op">=</span>ax[<span class="dv">1</span>])<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">"log10(deflection)"</span>)</span>
@@ -375,7 +375,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session09-eda_files/figure-revealjs/cell-6-output-1.png" width="1190" height="378"></p>
+<p><img data-src="session09-eda_files/figure-revealjs/cell-6-output-1.png" width="1192" height="378"></p>
 </figure>
 </div>
 </div>
@@ -391,15 +391,15 @@
 </section>
 <section id="inputs-against-each-other" class="slide level2">
 <h2>Inputs against each other</h2>
-<div id="d4945807" class="cell" data-fig-height="5.2" data-fig-width="9" data-execution_count="6">
+<div id="59c08465" class="cell" data-fig-height="5.2" data-fig-width="9" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas.plotting <span class="im">import</span> scatter_matrix</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> [<span class="st">"thickness_mm"</span>, <span class="st">"fillet_radius_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"E_GPa"</span>]</span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>scatter_matrix(df[inputs], figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">5.2</span>), alpha<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">"#B0215E"</span>, hist_kwds<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"#E46A9A"</span>})</span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>scatter_matrix(df[inputs], figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">5.2</span>), alpha<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">"#1F3A5F"</span>, hist_kwds<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"#5B7DB1"</span>})</span>
 <span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session09-eda_files/figure-revealjs/cell-7-output-1.png" width="946" height="538"></p>
+<p><img data-src="session09-eda_files/figure-revealjs/cell-7-output-1.png" width="940" height="538"></p>
 </figure>
 </div>
 </div>
@@ -412,7 +412,7 @@
 <li>inputs correlated with each other → hard to separate their effects</li>
 <li>clusters → the plan was not uniform</li>
 </ul>
-<div id="82b7e375" class="cell" data-execution_count="7">
+<div id="6ea71f06" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>df[inputs].corr().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -486,7 +486,7 @@
 </section>
 <section id="output-vs-each-input" class="slide level2 smaller">
 <h2>Output vs each input</h2>
-<div id="2966d26c" class="cell" data-fig-height="3.4" data-fig-width="12" data-execution_count="8">
+<div id="537c5e8d" class="cell" data-fig-height="3.4" data-fig-width="12" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">3.4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, c <span class="kw">in</span> <span class="bu">zip</span>(ax, inputs):</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>    a.scatter(df[c], df[<span class="st">"max_stress_MPa"</span>], s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">.6</span>)</span>
@@ -495,7 +495,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session09-eda_files/figure-revealjs/cell-9-output-1.png" width="1300" height="356"></p>
+<p><img data-src="session09-eda_files/figure-revealjs/cell-9-output-1.png" width="1305" height="356"></p>
 </figure>
 </div>
 </div>
@@ -507,7 +507,7 @@
 </section>
 <section id="correlation-with-the-outputs" class="slide level2">
 <h2>Correlation with the outputs</h2>
-<div id="68aa6063" class="cell" data-execution_count="9">
+<div id="6e489e32" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> inputs <span class="op">+</span> [<span class="st">"max_stress_MPa"</span>, <span class="st">"deflection_mm"</span>]</span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>pd.DataFrame({</span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">"pearson"</span>: df[cols].corr()[<span class="st">"max_stress_MPa"</span>],</span>
@@ -576,10 +576,10 @@
 </section>
 <section id="correlation-heatmap" class="slide level2">
 <h2>Correlation heatmap</h2>
-<div id="be034335" class="cell" data-fig-height="5" data-fig-width="7" data-execution_count="10">
+<div id="0ec77772" class="cell" data-fig-height="5" data-fig-width="7" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> df[cols].corr()</span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(c, cmap<span class="op">=</span><span class="st">"RdPu"</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(c, cmap<span class="op">=</span><span class="st">"RdBu_r"</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(cols)), cols, rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">"right"</span>)<span class="op">;</span> ax.set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(cols)), cols)</span>
 <span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cols)):</span>
 <span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cols)):</span>
@@ -588,7 +588,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session09-eda_files/figure-revealjs/cell-11-output-1.png" width="661" height="532"></p>
+<p><img data-src="session09-eda_files/figure-revealjs/cell-11-output-1.png" width="678" height="536"></p>
 </figure>
 </div>
 </div>
@@ -596,16 +596,16 @@
 </section>
 <section id="two-inputs-at-once-colour-as-third-dimension" class="slide level2 smaller">
 <h2>Two inputs at once: colour as third dimension</h2>
-<div id="39876228" class="cell" data-fig-height="4.5" data-execution_count="11">
+<div id="56f9fe85" class="cell" data-fig-height="4.5" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.5</span>))</span>
 <span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> ax.scatter(df[<span class="st">"thickness_mm"</span>], df[<span class="st">"load_N"</span>], c<span class="op">=</span>df[<span class="st">"safety_factor"</span>].clip(upper<span class="op">=</span><span class="dv">3</span>),</span>
-<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>                cmap<span class="op">=</span><span class="st">"RdPu_r"</span>, s<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>                cmap<span class="op">=</span><span class="st">"viridis"</span>, s<span class="op">=</span><span class="dv">25</span>)</span>
 <span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>fig.colorbar(sc, label<span class="op">=</span><span class="st">"safety factor (capped at 3)"</span>)</span>
 <span id="cb10-5"><a aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"thickness, mm"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"load, N"</span>)<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session09-eda_files/figure-revealjs/cell-12-output-1.png" width="772" height="473"></p>
+<p><img data-src="session09-eda_files/figure-revealjs/cell-12-output-1.png" width="769" height="463"></p>
 </figure>
 </div>
 </div>
@@ -620,7 +620,7 @@
 <section id="does-the-data-follow-beam-theory" class="slide level2 smaller">
 <h2>Does the data follow beam theory?</h2>
 <p>Beam theory: <span class="math inline">\(\delta \propto \dfrac{F}{E\,t^3}\)</span>. Combine the inputs into one variable:</p>
-<div id="7603b48a" class="cell" data-fig-height="3.8" data-execution_count="12">
+<div id="041435b7" class="cell" data-fig-height="3.8" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"F_over_Et3"</span>] <span class="op">=</span> df[<span class="st">"load_N"</span>] <span class="op">/</span> (df[<span class="st">"E_GPa"</span>] <span class="op">*</span> df[<span class="st">"thickness_mm"</span>] <span class="op">**</span> <span class="dv">3</span>)</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.8</span>))</span>
 <span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a>ax.scatter(df[<span class="st">"F_over_Et3"</span>], df[<span class="st">"deflection_mm"</span>], s<span class="op">=</span><span class="dv">10</span>)</span>
@@ -629,7 +629,7 @@
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="session09-eda_files/figure-revealjs/cell-13-output-1.png" width="754" height="405"></p>
+<p><img data-src="session09-eda_files/figure-revealjs/cell-13-output-1.png" width="751" height="397"></p>
 </figure>
 </div>
 </div>
@@ -651,7 +651,7 @@
 </section>
 <section id="writing-down-findings" class="slide level2">
 <h2>Writing down findings</h2>
-<div id="c4d78bc2" class="cell" data-execution_count="13">
+<div id="a0b46bfa" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(df)</span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>findings <span class="op">=</span> [</span>
 <span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> converged runs; inputs uniformly cover t 8–20 mm, r 1–8 mm, F 200–3000 N, E 190–210 GPa"</span>,</span>
@@ -706,7 +706,7 @@
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>ML for Engineers · Modules 1–2</p>
+<p>ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua</p>
 </div>
 </div></div>
 

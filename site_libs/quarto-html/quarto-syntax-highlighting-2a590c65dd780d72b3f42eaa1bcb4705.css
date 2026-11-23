@@ -1,0 +1,154 @@
+/* quarto syntax highlight colors */
+:root {
+  --quarto-hl-kw-color: #1F3A5F;
+  --quarto-hl-cf-color: #1F3A5F;
+  --quarto-hl-fu-color: #3D5F8F;
+  --quarto-hl-bu-color: #3D5F8F;
+  --quarto-hl-va-color: #1E2329;
+  --quarto-hl-dt-color: #7A5418;
+  --quarto-hl-dv-color: #A1561B;
+  --quarto-hl-fl-color: #A1561B;
+  --quarto-hl-bn-color: #A1561B;
+  --quarto-hl-cn-color: #A1561B;
+  --quarto-hl-st-color: #2E6B4F;
+  --quarto-hl-ch-color: #2E6B4F;
+  --quarto-hl-ss-color: #2E6B4F;
+  --quarto-hl-vs-color: #2E6B4F;
+  --quarto-hl-co-color: #6B7280;
+  --quarto-hl-do-color: #6B7280;
+  --quarto-hl-op-color: #374151;
+  --quarto-hl-im-color: #1F3A5F;
+  --quarto-hl-at-color: #3D5F8F;
+  --quarto-hl-ot-color: #3D5F8F;
+  --quarto-hl-er-color: #B42318;
+  --quarto-hl-al-color: #B42318;
+}
+
+/* other quarto variables */
+:root {
+  --quarto-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* syntax highlight based on Pandoc's rules */
+/* Alert */
+code span.al {
+  color: #B42318;
+  font-weight: bold;
+}
+
+/* Attribute */
+code span.at {
+  color: #3D5F8F;
+}
+
+/* BaseN */
+code span.bn {
+  color: #A1561B;
+}
+
+/* BuiltIn */
+code span.bu {
+  color: #3D5F8F;
+}
+
+/* ControlFlow */
+code span.cf {
+  color: #1F3A5F;
+  font-weight: bold;
+}
+
+/* Char */
+code span.ch {
+  color: #2E6B4F;
+}
+
+/* Constant */
+code span.cn {
+  color: #A1561B;
+}
+
+/* Comment */
+code span.co {
+  color: #6B7280;
+  font-style: italic;
+}
+
+/* Documentation */
+code span.do {
+  color: #6B7280;
+  font-style: italic;
+}
+
+/* DataType */
+code span.dt {
+  color: #7A5418;
+}
+
+/* DecVal */
+code span.dv {
+  color: #A1561B;
+}
+
+/* Error */
+code span.er {
+  color: #B42318;
+  font-weight: bold;
+}
+
+/* Float */
+code span.fl {
+  color: #A1561B;
+}
+
+/* Function */
+code span.fu {
+  color: #3D5F8F;
+}
+
+/* Import */
+code span.im {
+  color: #1F3A5F;
+  font-weight: bold;
+}
+
+/* Keyword */
+code span.kw {
+  color: #1F3A5F;
+  font-weight: bold;
+}
+
+/* Operator */
+code span.op {
+  color: #374151;
+}
+
+/* Other */
+code span.ot {
+  color: #3D5F8F;
+}
+
+/* SpecialString */
+code span.ss {
+  color: #2E6B4F;
+}
+
+/* String */
+code span.st {
+  color: #2E6B4F;
+}
+
+/* Variable */
+code span.va {
+  color: #1E2329;
+}
+
+/* VerbatimString */
+code span.vs {
+  color: #2E6B4F;
+}
+
+.prevent-inlining {
+  content: "</";
+}
+
+/*# sourceMappingURL=0728ef4d0081d4fa4a48dfa582e16d08.css.map */

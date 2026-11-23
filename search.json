@@ -18,7 +18,7 @@
     "href": "session05-numpy.html#why-numpy",
     "title": "NumPy: calculations on whole arrays",
     "section": "Why NumPy?",
-    "text": "Why NumPy?\n\nimport numpy as np\nimport time\n\nt = list(range(1, 1_000_001))\nstart = time.perf_counter()\ns_list = [6 * 1500 * 150 / (40 * x ** 2) for x in t]\nt_list = time.perf_counter() - start\n\nt_arr = np.arange(1, 1_000_001)\nstart = time.perf_counter()\ns_arr = 6 * 1500 * 150 / (40 * t_arr ** 2.0)\nt_np = time.perf_counter() - start\nprint(f\"list: {t_list*1000:.0f} ms   numpy: {t_np*1000:.0f} ms   ({t_list/t_np:.0f}× faster)\")\n\nlist: 73 ms   numpy: 8 ms   (10× faster)\n\n\n\none operation on the whole array, executed in compiled code\nthe basis of pandas, scikit-learn and PyTorch"
+    "text": "Why NumPy?\n\nimport numpy as np\nimport time\n\nt = list(range(1, 1_000_001))\nstart = time.perf_counter()\ns_list = [6 * 1500 * 150 / (40 * x ** 2) for x in t]\nt_list = time.perf_counter() - start\n\nt_arr = np.arange(1, 1_000_001)\nstart = time.perf_counter()\ns_arr = 6 * 1500 * 150 / (40 * t_arr ** 2.0)\nt_np = time.perf_counter() - start\nprint(f\"list: {t_list*1000:.0f} ms   numpy: {t_np*1000:.0f} ms   ({t_list/t_np:.0f}× faster)\")\n\nlist: 45 ms   numpy: 3 ms   (14× faster)\n\n\n\none operation on the whole array, executed in compiled code\nthe basis of pandas, scikit-learn and PyTorch"
   },
   {
     "objectID": "session05-numpy.html#creating-arrays",
@@ -186,7 +186,7 @@
     "href": "session09-eda.html#histograms",
     "title": "Exploratory data analysis",
     "section": "Histograms",
-    "text": "Histograms\n\ndf.drop(columns=\"run_id\").hist(bins=25, figsize=(12, 4.5), layout=(2, 4), color=\"#B0215E\")\nplt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\n\ninputs: flat (uniform sampling, as planned)\noutputs: right-skewed — many moderate values, a long tail of high stress"
+    "text": "Histograms\n\ndf.drop(columns=\"run_id\").hist(bins=25, figsize=(12, 4.5), layout=(2, 4), color=\"#1F3A5F\")\nplt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\n\ninputs: flat (uniform sampling, as planned)\noutputs: right-skewed — many moderate values, a long tail of high stress"
   },
   {
     "objectID": "session09-eda.html#skewed-outputs-try-a-log-scale",
@@ -200,7 +200,7 @@
     "href": "session09-eda.html#inputs-against-each-other",
     "title": "Exploratory data analysis",
     "section": "Inputs against each other",
-    "text": "Inputs against each other\n\nfrom pandas.plotting import scatter_matrix\ninputs = [\"thickness_mm\", \"fillet_radius_mm\", \"load_N\", \"E_GPa\"]\nscatter_matrix(df[inputs], figsize=(10, 5.2), alpha=0.5, color=\"#B0215E\", hist_kwds={\"color\": \"#E46A9A\"})\nplt.show()"
+    "text": "Inputs against each other\n\nfrom pandas.plotting import scatter_matrix\ninputs = [\"thickness_mm\", \"fillet_radius_mm\", \"load_N\", \"E_GPa\"]\nscatter_matrix(df[inputs], figsize=(10, 5.2), alpha=0.5, color=\"#1F3A5F\", hist_kwds={\"color\": \"#5B7DB1\"})\nplt.show()"
   },
   {
     "objectID": "session09-eda.html#what-to-look-for",
@@ -228,14 +228,14 @@
     "href": "session09-eda.html#correlation-heatmap",
     "title": "Exploratory data analysis",
     "section": "Correlation heatmap",
-    "text": "Correlation heatmap\n\nc = df[cols].corr()\nfig, ax = plt.subplots(figsize=(7, 5))\nim = ax.imshow(c, cmap=\"RdPu\", vmin=-1, vmax=1)\nax.set_xticks(range(len(cols)), cols, rotation=45, ha=\"right\"); ax.set_yticks(range(len(cols)), cols)\nfor i in range(len(cols)):\n    for j in range(len(cols)):\n        ax.text(j, i, f\"{c.iloc[i, j]:.2f}\", ha=\"center\", va=\"center\", fontsize=9)\nfig.colorbar(im); ax.grid(False); plt.tight_layout(); plt.show()"
+    "text": "Correlation heatmap\n\nc = df[cols].corr()\nfig, ax = plt.subplots(figsize=(7, 5))\nim = ax.imshow(c, cmap=\"RdBu_r\", vmin=-1, vmax=1)\nax.set_xticks(range(len(cols)), cols, rotation=45, ha=\"right\"); ax.set_yticks(range(len(cols)), cols)\nfor i in range(len(cols)):\n    for j in range(len(cols)):\n        ax.text(j, i, f\"{c.iloc[i, j]:.2f}\", ha=\"center\", va=\"center\", fontsize=9)\nfig.colorbar(im); ax.grid(False); plt.tight_layout(); plt.show()"
   },
   {
     "objectID": "session09-eda.html#two-inputs-at-once-colour-as-third-dimension",
     "href": "session09-eda.html#two-inputs-at-once-colour-as-third-dimension",
     "title": "Exploratory data analysis",
     "section": "Two inputs at once: colour as third dimension",
-    "text": "Two inputs at once: colour as third dimension\n\nfig, ax = plt.subplots(figsize=(8, 4.5))\nsc = ax.scatter(df[\"thickness_mm\"], df[\"load_N\"], c=df[\"safety_factor\"].clip(upper=3),\n                cmap=\"RdPu_r\", s=25)\nfig.colorbar(sc, label=\"safety factor (capped at 3)\")\nax.set_xlabel(\"thickness, mm\"); ax.set_ylabel(\"load, N\"); plt.show()\n\n\n\n\n\n\n\n\nThe pass / fail boundary is a curve in the (t, F) plane — not a straight line."
+    "text": "Two inputs at once: colour as third dimension\n\nfig, ax = plt.subplots(figsize=(8, 4.5))\nsc = ax.scatter(df[\"thickness_mm\"], df[\"load_N\"], c=df[\"safety_factor\"].clip(upper=3),\n                cmap=\"viridis\", s=25)\nfig.colorbar(sc, label=\"safety factor (capped at 3)\")\nax.set_xlabel(\"thickness, mm\"); ax.set_ylabel(\"load, N\"); plt.show()\n\n\n\n\n\n\n\n\nThe pass / fail boundary is a curve in the (t, F) plane — not a straight line."
   },
   {
     "objectID": "session09-eda.html#does-the-data-follow-beam-theory",
@@ -508,14 +508,14 @@
     "href": "session10-visualisation.html#contour-plot-of-a-model",
     "title": "Visualisation",
     "section": "Contour plot of a model",
-    "text": "Contour plot of a model\n\nT, F = np.meshgrid(np.linspace(8, 20, 100), np.linspace(200, 3000, 100))\nSF = 355 / (6 * F * 150 / (40 * T ** 2))\nfig, ax = plt.subplots(figsize=(8, 4.2))\ncs = ax.contourf(T, F, SF, levels=[0, 0.5, 1, 1.5, 2, 3, 5, 10, 40], cmap=\"RdPu_r\")\nax.contour(T, F, SF, levels=[1.5], colors=\"k\", linewidths=2)\nfig.colorbar(cs, label=\"SF (nominal)\"); ax.set(xlabel=\"thickness, mm\", ylabel=\"load, N\")\nplt.show()\n\n\n\n\n\n\n\n\nThe black line is the design limit SF = 1.5 — a surrogate model will draw maps like this."
+    "text": "Contour plot of a model\n\nT, F = np.meshgrid(np.linspace(8, 20, 100), np.linspace(200, 3000, 100))\nSF = 355 / (6 * F * 150 / (40 * T ** 2))\nfig, ax = plt.subplots(figsize=(8, 4.2))\ncs = ax.contourf(T, F, SF, levels=[0, 0.5, 1, 1.5, 2, 3, 5, 10, 40], cmap=\"cividis\")\nax.contour(T, F, SF, levels=[1.5], colors=\"k\", linewidths=2)\nfig.colorbar(cs, label=\"SF (nominal)\"); ax.set(xlabel=\"thickness, mm\", ylabel=\"load, N\")\nplt.show()\n\n\n\n\n\n\n\n\nThe black line is the design limit SF = 1.5 — a surrogate model will draw maps like this."
   },
   {
     "objectID": "session10-visualisation.html#colour-maps-choose-on-purpose",
     "href": "session10-visualisation.html#colour-maps-choose-on-purpose",
     "title": "Visualisation",
     "section": "Colour maps: choose on purpose",
-    "text": "Colour maps: choose on purpose\n\nsequential (one quantity, low → high): magma, RdPu, Greys\ndiverging (around a meaningful centre, e.g. error = 0): PuOr, RdGy\nqualitative (categories): the default colour cycle, tab10\navoid jet / rainbow: invents boundaries, unreadable in greyscale and for colour-blind readers\n\n\nReports get printed in black and white. Check: does the plot still work in greyscale? Use line styles and markers, not only colour."
+    "text": "Colour maps: choose on purpose\n\nsequential (one quantity, low → high): viridis, Blues, Greys\ndiverging (around a meaningful centre, e.g. error = 0): PuOr, RdGy\nqualitative (categories): the default colour cycle, tab10\navoid jet / rainbow: invents boundaries, unreadable in greyscale and for colour-blind readers\n\n\nReports get printed in black and white. Check: does the plot still work in greyscale? Use line styles and markers, not only colour."
   },
   {
     "objectID": "session10-visualisation.html#log-scales",
@@ -1026,7 +1026,14 @@
     "href": "index.html",
     "title": "Python & Data for Engineers",
     "section": "",
-    "text": "Online, 1.5 h, Tuesdays and Thursdays · winter break 18 Dec – 6 Jan · course data on the Data page\n\n\n\n\n\n\n\n\n\n\nSlides\n\n\n\nSession\n\n\n\n\n\n\n\n\nPython basics, control flow and functions\n\n\nSession 1 · Topics 1.1 + 1.2 · Tue 1 Dec\n\n\n\n\n\n\nData structures and working with code\n\n\nSession 2 · Topics 1.3 + 1.4 · Thu 3 Dec\n\n\n\n\n\n\nYour environment and version control\n\n\nSession 3 · Topics 1.5 + 2.1 · Tue 8 Dec\n\n\n\n\n\n\nData fundamentals\n\n\nSession 4 · Topic 2.2 · Thu 10 Dec\n\n\n\n\n\n\nNumPy: calculations on whole arrays\n\n\nSession 5 · Topic 2.3 · Tue 15 Dec\n\n\n\n\n\n\npandas: loading and inspecting data\n\n\nSession 6 · Topic 2.4 · Thu 17 Dec\n\n\n\n\n\n\nData quality\n\n\nSession 7 · Topic 2.5 · Thu 7 Jan\n\n\n\n\n\n\nReshaping and aggregation\n\n\nSession 8 · Topic 2.6 · Tue 12 Jan\n\n\n\n\n\n\nExploratory data analysis\n\n\nSession 9 · Topic 2.7 · Thu 14 Jan\n\n\n\n\n\n\nVisualisation\n\n\nSession 10 · Topic 2.8 · Tue 19 Jan\n\n\n\n\n\n\nNo matching items"
+    "text": "Klaudia Brzezińska kbrzezinska@kse.org.ua\nQuestions about the material, exercises or setup: write to me by email.\n\n\n\nOnline · 1.5 h · Tuesdays and Thursdays\nEach session: about 50 min of theory and 40 min of hands-on practice."
+  },
+  {
+    "objectID": "index.html#calendar",
+    "href": "index.html#calendar",
+    "title": "Python & Data for Engineers",
+    "section": "Calendar",
+    "text": "Calendar\n\n\n\n#\nDate\nTopic\nSlides\n\n\n\n\n1\nTue 1 Dec 2026\n1.1 + 1.2 Language basics, control flow and functions\nopen\n\n\n2\nThu 3 Dec 2026\n1.3 + 1.4 Data structures, working with code\nopen\n\n\n3\nTue 8 Dec 2026\n1.5 + 2.1 Environment and version control (Git)\nopen\n\n\n4\nThu 10 Dec 2026\n2.2 Data fundamentals\nopen\n\n\n5\nTue 15 Dec 2026\n2.3 NumPy\nopen\n\n\n6\nThu 17 Dec 2026\n2.4 pandas: loading and inspecting data\nopen\n\n\n\n18 Dec – 6 Jan\nWinter break\n\n\n\n7\nThu 7 Jan 2027\n2.5 Data quality (with a short pandas recap)\nopen\n\n\n8\nTue 12 Jan 2027\n2.6 Reshaping and aggregation\nopen\n\n\n9\nThu 14 Jan 2027\n2.7 Exploratory analysis\nopen\n\n\n10\nTue 19 Jan 2027\n2.8 Visualisation\nopen\n\n\n\nFrom Thursday 21 January 2027: Module 3, Machine learning fundamentals (other instructors).\nCourse datasets are described on the Data page."
   },
   {
     "objectID": "session03-env-git.html#today",
