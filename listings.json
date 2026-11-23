@@ -1,0 +1,17 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/session01-basics.html",
+      "/session02-data-structures.html",
+      "/session03-env-git.html",
+      "/session04-data-fundamentals.html",
+      "/session05-numpy.html",
+      "/session06-pandas.html",
+      "/session07-data-quality.html",
+      "/session08-reshaping.html",
+      "/session09-eda.html",
+      "/session10-visualisation.html"
+    ]
+  }
+]
