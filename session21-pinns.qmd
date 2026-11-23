@@ -1,0 +1,76 @@
+---
+title: "Physics-informed ML (PINNs)"
+subtitle: "Session 21 · Topic 4.4 · Tue 24 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Limits of purely data-driven models
+2. The PINN idea
+3. Loss components
+4. Practice
+:::
+
+# Limits of purely data-driven models {.divider}
+
+## Limits of purely data-driven models
+
+- Many calculations needed
+- Physics can be violated
+- Poor extrapolation
+
+::: {.muted}
+TODO: slides
+:::
+
+# The PINN idea {.divider}
+
+## The PINN idea
+
+- The differential equation is embedded in the loss function
+- Automatic differentiation: derivatives of the network output w.r.t. coordinates
+
+::: {.muted}
+TODO: slides
+:::
+
+# Loss components {.divider}
+
+## Loss components
+
+- Equation residual
+- Boundary and initial conditions
+- Measurement data
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. A PINN from scratch in PyTorch for a simple equation (1D heat conduction or beam bending)
+2. Compare with the analytical solution
+:::
+
+## Case 3 (optional) {.smaller}
+
+::: {.case}
+**Physics-informed model in DeepXDE.** Forward problem in mechanics, compared with
+the FEM solution and with a data-driven surrogate. Completed after the course.
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

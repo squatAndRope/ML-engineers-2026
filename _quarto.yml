@@ -19,7 +19,7 @@ website:
       - href: "mailto:kbrzezinska@kse.org.ua"
         text: Contact
         icon: envelope
-  page-footer: "Fundamentals of Machine Learning for Engineers · Modules 1–2 · Klaudia Brzezińska · [kbrzezinska@kse.org.ua](mailto:kbrzezinska@kse.org.ua)"
+  page-footer: "Fundamentals of Machine Learning for Engineers · Klaudia Brzezińska · [kbrzezinska@kse.org.ua](mailto:kbrzezinska@kse.org.ua)"
 
 format:
   html:
@@ -34,7 +34,7 @@ format:
     transition: none
     width: 1280
     height: 760
-    footer: "ML for Engineers · Modules 1–2 · kbrzezinska@kse.org.ua"
+    footer: "ML for Engineers · kbrzezinska@kse.org.ua"
     chalkboard: false
     menu: true
     preview-links: auto

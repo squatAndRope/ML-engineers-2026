@@ -1,0 +1,65 @@
+---
+title: "Decision trees and ensembles"
+subtitle: "Session 15 · Topic 3.5 · Tue 3 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Decision trees
+2. Ensembles
+3. Hyperparameter tuning
+4. Practice
+:::
+
+# Decision trees {.divider}
+
+## Decision trees
+
+- How a tree splits the data
+
+::: {.muted}
+TODO: slides
+:::
+
+# Ensembles {.divider}
+
+## Ensembles
+
+- Bagging: Random Forest
+- Boosting: XGBoost, LightGBM, AdaBoost
+
+::: {.muted}
+TODO: slides
+:::
+
+# Hyperparameter tuning {.divider}
+
+## Hyperparameter tuning
+
+- Which parameters matter and how to search them
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. Train a decision tree, a Random Forest and a boosting model on the same dataset and compare them
+2. Tune hyperparameters and assess their effect on quality
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

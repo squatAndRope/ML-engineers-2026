@@ -1,6 +1,6 @@
 ---
 title: "Visualisation"
-subtitle: "Session 10 · Topic 2.8 · Tue 19 Jan"
+subtitle: "Session 10 · Topic 2.8 · Thu 15 Jan"
 format: revealjs
 ---
 
@@ -254,7 +254,7 @@ All axes with units; one title for the whole figure. Commit the figure and the c
 - NumPy for array calculations, pandas to load, clean, reshape and summarise
 - explore a dataset systematically and show the findings in clear plots
 
-**From Thursday:** Module 3 — machine learning fundamentals, on the same bracket data.
+**From Tuesday 20 Jan:** Module 3 — machine learning fundamentals, on the same bracket data.
 
 ## Before Module 3
 

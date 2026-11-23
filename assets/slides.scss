@@ -43,3 +43,6 @@ $presentation-h2-font-size: 1.45em;
 .reveal .agenda li { margin-bottom: .25em; }
 .reveal .cell-output-display img { max-height: 360px; width: auto; }
 .reveal .cell-output-display { text-align: left; }
+.reveal .case {
+  background: #F4F5F7; border-radius: 6px; padding: .5em 1em; border-left: 6px solid #5B7DB1;
+}

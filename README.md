@@ -1,7 +1,7 @@
-# Python & Data for Engineers — Modules 1–2
+# Python & Data for Engineers
 
-Quarto slides for sessions 1–10 of *Fundamentals of Machine Learning for Engineers*
-(1 Dec 2026 – 19 Jan 2027). Published with GitHub Pages.
+Quarto slides for the 22 sessions of *Fundamentals of Machine Learning for Engineers*
+(24 Nov 2026 – 26 Feb 2027). Sessions 11–22 (Modules 3–4) are placeholder outlines. Published with GitHub Pages.
 
 ## Structure
 

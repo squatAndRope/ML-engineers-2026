@@ -1,6 +1,6 @@
 ---
 title: "Data fundamentals"
-subtitle: "Session 4 · Topic 2.2 · Thu 10 Dec"
+subtitle: "Session 4 · Topic 2.2 · Thu 3 Dec"
 format: revealjs
 ---
 

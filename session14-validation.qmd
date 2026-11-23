@@ -1,0 +1,70 @@
+---
+title: "Model validation and regularisation"
+subtitle: "Session 14 · Topic 3.4 · Thu 29 Jan"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. What can go wrong
+2. Validation
+3. Regularisation
+4. Practice
+:::
+
+# What can go wrong {.divider}
+
+## What can go wrong
+
+- Overfitting / underfitting
+- The bias–variance trade-off
+- Data leakage
+
+::: {.muted}
+TODO: slides
+:::
+
+# Validation {.divider}
+
+## Validation
+
+- Cross-validation (K-Fold)
+
+::: {.muted}
+TODO: slides
+:::
+
+# Regularisation {.divider}
+
+## Regularisation
+
+- Ridge
+- Lasso
+- ElasticNet
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. Show overfitting and underfitting by varying model complexity
+2. Reproduce a data-leakage example and fix it
+3. Evaluate a model with K-Fold
+4. Compare Ridge, Lasso and ElasticNet
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

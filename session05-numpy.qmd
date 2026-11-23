@@ -1,6 +1,6 @@
 ---
 title: "NumPy: calculations on whole arrays"
-subtitle: "Session 5 · Topic 2.3 · Tue 15 Dec"
+subtitle: "Session 5 · Topic 2.3 · Tue 8 Dec"
 format: revealjs
 ---
 

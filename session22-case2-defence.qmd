@@ -1,0 +1,74 @@
+---
+title: "Case 2 defence"
+subtitle: "Session 22 · Thu 26 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Case 2: a neural-network surrogate in PyTorch
+2. Defence
+3. Course wrap-up
+:::
+
+# Case 2: a neural-network surrogate in PyTorch {.divider}
+
+## Case 2: a neural-network surrogate in PyTorch
+
+- Custom Dataset and training loop
+- Tuning of architecture and hyperparameters
+- Training diagnostics
+- Accuracy and speed compared with the Case 1 models
+
+::: {.muted}
+TODO: slides
+:::
+
+# Defence {.divider}
+
+## Defence
+
+- Presentations of participants' solutions
+- Questions and discussion
+
+::: {.muted}
+TODO: slides
+:::
+
+# Course wrap-up {.divider}
+
+## Course wrap-up
+
+- What you can do now
+- Optional Case 3: a physics-informed model in DeepXDE
+
+::: {.muted}
+TODO: slides
+:::
+
+## Acceptance criteria {.smaller}
+
+A case passes only if all four hold:
+
+1. accuracy is assessed on an **independent test set**, not the one used for tuning
+2. error is in **engineering terms** — MaxAE as % of yield strength (or allowable deflection), not only R²
+3. model behaviour **outside the domain of applicability** is shown
+4. the **model passport** is complete: domain, data volume and source, accuracy, package versions
+
+::: {.muted}
+A formal R² = 0.99 without these points is not an acceptance.
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

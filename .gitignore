@@ -1,7 +1,7 @@
 /.quarto/
 /_site/
 
-# files written when session 5 code runs
+# files written when session code runs
 /sf.csv
 /sf.npy
 
@@ -13,3 +13,5 @@ _quarto_internal_scss_error.scss
 * 2
 * 2.*
 * 2_files/
+/bracket_clean.csv
+/results.txt

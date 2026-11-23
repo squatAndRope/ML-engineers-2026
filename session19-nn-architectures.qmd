@@ -1,0 +1,66 @@
+---
+title: "Neural network architectures and layers"
+subtitle: "Session 19 · Topic 4.2 · Tue 17 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Fully connected networks
+2. Regularisation and normalisation
+3. Beyond fully connected
+4. Practice
+:::
+
+# Fully connected networks {.divider}
+
+## Fully connected networks
+
+- Depth, width, choice of architecture
+- Weight initialisation
+
+::: {.muted}
+TODO: slides
+:::
+
+# Regularisation and normalisation {.divider}
+
+## Regularisation and normalisation
+
+- Dropout, weight decay
+- Batch and layer normalisation
+
+::: {.muted}
+TODO: slides
+:::
+
+# Beyond fully connected {.divider}
+
+## Beyond fully connected
+
+- Overview of convolutional networks (CNNs)
+- Overview of the Transformer architecture
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. Walk through and run a CNN example
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

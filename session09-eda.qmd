@@ -1,6 +1,6 @@
 ---
 title: "Exploratory data analysis"
-subtitle: "Session 9 · Topic 2.7 · Thu 14 Jan"
+subtitle: "Session 9 · Topic 2.7 · Tue 13 Jan"
 format: revealjs
 ---
 
@@ -9,6 +9,33 @@ format: revealjs
 import matplotlib.pyplot as plt
 plt.style.use("assets/course.mplstyle")
 ```
+
+## Welcome back! Quick pandas recap
+
+```{python}
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("data/bracket.csv")              # read
+print(df.shape)                                    # size
+cols = ["run_id", "thickness_mm", "load_N", "safety_factor"]
+low = df.loc[df["safety_factor"] < 1, cols]        # filter rows, pick columns
+low.sort_values("safety_factor").head(3)           # sort
+```
+
+::: {.muted}
+`read_csv` → `info` / `describe` → `df["col"]` / `loc` → masks → new columns → `to_csv`.
+:::
+
+## Recap: your turn (5 min)
+
+::: {.exercise}
+Without looking at the old slides:
+
+1. How many runs have thickness above 15 mm **and** SF below 1.5?
+2. Add a column `deflection_um` (micrometres).
+3. Which run has the largest deflection?
+:::
 
 ## Today
 

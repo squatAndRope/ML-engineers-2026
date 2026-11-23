@@ -1,0 +1,63 @@
+---
+title: "Case 1 review"
+subtitle: "Session 17 · Tue 10 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Case 1: an engineering ML model
+2. Review
+:::
+
+# Case 1: an engineering ML model {.divider}
+
+## Case 1: an engineering ML model
+
+- Full cycle: dataset from calculation results → cleaning and scaling
+- Data diagnostics (linearity, compactness)
+- Several models (linear, boosting) + cross-validation
+- Model choice by the accuracy / speed trade-off
+- Error in engineering terms
+
+::: {.muted}
+TODO: slides
+:::
+
+# Review {.divider}
+
+## Review
+
+- Presentations of participants' solutions
+- Common problems and how to fix them
+
+::: {.muted}
+TODO: slides
+:::
+
+## Acceptance criteria {.smaller}
+
+A case passes only if all four hold:
+
+1. accuracy is assessed on an **independent test set**, not the one used for tuning
+2. error is in **engineering terms** — MaxAE as % of yield strength (or allowable deflection), not only R²
+3. model behaviour **outside the domain of applicability** is shown
+4. the **model passport** is complete: domain, data volume and source, accuracy, package versions
+
+::: {.muted}
+A formal R² = 0.99 without these points is not an acceptance.
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

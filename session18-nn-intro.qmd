@@ -1,0 +1,75 @@
+---
+title: "Introduction to neural networks"
+subtitle: "Session 18 · Topic 4.1 · Thu 12 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. From a linear model to a network
+2. Building blocks
+3. When to use a neural network
+4. Practice
+:::
+
+# From a linear model to a network {.divider}
+
+## From a linear model to a network
+
+- The perceptron
+- Multilayer perceptron: layers and neurons
+
+::: {.muted}
+TODO: slides
+:::
+
+# Building blocks {.divider}
+
+## Building blocks
+
+- Activation functions (ReLU, tanh, sigmoid) and why they are needed
+- Loss functions
+- Forward and backward propagation
+
+::: {.muted}
+TODO: slides
+:::
+
+# When to use a neural network {.divider}
+
+## When to use a neural network
+
+- When it is better than classical ML — and when it is worse
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. Implement the simplest network by hand in PyTorch
+2. Follow the forward and backward passes step by step
+:::
+
+## Case 2 issued {.smaller}
+
+::: {.case}
+**Deep learning: a neural-network surrogate in PyTorch.**
+Custom Dataset, training loop, tuning and diagnostics, comparison with Case 1.
+Defence: Session 22 (Thu 26 Feb). Estimated work: 6–8 h between sessions.
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

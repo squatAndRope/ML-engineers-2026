@@ -1,6 +1,6 @@
 ---
 title: "Your environment and version control"
-subtitle: "Session 3 · Topics 1.5 + 2.1 · Tue 8 Dec"
+subtitle: "Session 3 · Topics 1.5 + 2.1 · Tue 1 Dec"
 format: revealjs
 ---
 

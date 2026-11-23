@@ -1,0 +1,68 @@
+---
+title: "Regression: linear regression"
+subtitle: "Session 12 · Topic 3.2 · Thu 22 Jan"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Linear regression
+2. Training the model
+3. Evaluation
+4. Practice
+:::
+
+# Linear regression {.divider}
+
+## Linear regression
+
+- What it is
+- Which assumptions must hold and how to check them
+
+::: {.muted}
+TODO: slides
+:::
+
+# Training the model {.divider}
+
+## Training the model
+
+- Least squares method
+- Gradient descent
+
+::: {.muted}
+TODO: slides
+:::
+
+# Evaluation {.divider}
+
+## Evaluation
+
+- MAE, MSE / RMSE
+- R², adjusted R²
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. Build a linear regression on the bracket dataset and check the assumptions
+2. Implement gradient descent and compare with least squares
+3. Compute quality metrics
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

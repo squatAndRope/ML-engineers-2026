@@ -1,0 +1,66 @@
+---
+title: "Unsupervised learning"
+subtitle: "Session 16 · Topic 3.6 · Thu 5 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Clustering
+2. Dimensionality reduction
+3. Anomaly detection
+4. Practice
+:::
+
+# Clustering {.divider}
+
+## Clustering
+
+- k-means
+
+::: {.muted}
+TODO: slides
+:::
+
+# Dimensionality reduction {.divider}
+
+## Dimensionality reduction
+
+- PCA
+- t-SNE
+
+::: {.muted}
+TODO: slides
+:::
+
+# Anomaly detection {.divider}
+
+## Anomaly detection
+
+- Isolation forest
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. Perform k-means clustering and evaluate the result
+2. Visualise the data with PCA and t-SNE
+3. Detect anomalies with Isolation forest
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::

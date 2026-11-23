@@ -1,0 +1,69 @@
+---
+title: "Optimisation and training diagnostics"
+subtitle: "Session 20 · Topic 4.3 · Thu 19 Feb"
+format: revealjs
+---
+
+## Draft {.center}
+
+::: {.muted}
+Placeholder deck — the outline follows the course syllabus.
+Slides and the practice notebook are in preparation.
+:::
+
+## Today
+
+::: {.agenda}
+1. Optimisers
+2. Scaling
+3. Diagnostics
+4. Practice
+:::
+
+# Optimisers {.divider}
+
+## Optimisers
+
+- Gradient descent, SGD, momentum, Adam
+- Learning rate and schedulers
+- Batch size
+
+::: {.muted}
+TODO: slides
+:::
+
+# Scaling {.divider}
+
+## Scaling
+
+- Normalising inputs and outputs — critical for engineering quantities of different scales
+
+::: {.muted}
+TODO: slides
+:::
+
+# Diagnostics {.divider}
+
+## Diagnostics
+
+- Learning curves: overfitting, underfitting, “stalling”
+- Early stopping
+- Practical techniques for stabilising training
+
+::: {.muted}
+TODO: slides
+:::
+
+## Practice (40 min)
+
+::: {.exercise}
+1. Tune training hyperparameters systematically
+2. Diagnose problems from loss curves
+3. Bring the model to the required accuracy
+:::
+
+## Summary
+
+::: {.muted}
+TODO
+:::
