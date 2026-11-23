@@ -571,7 +571,7 @@
     "href": "index.html#calendar",
     "title": "Python & Data for Engineers",
     "section": "Calendar",
-    "text": "Calendar\n\n\n\n#\nDate\nTopic\nSlides\n\n\n\n\n1\nTue 24 Nov 2026\n1.1 + 1.2 Language basics, control flow and functions\nopen\n\n\n2\nThu 26 Nov 2026\n1.3 + 1.4 Data structures, working with code\nopen\n\n\n3\nTue 1 Dec 2026\n1.5 + 2.1 Environment and version control (Git)\nopen\n\n\n4\nThu 3 Dec 2026\n2.2 Data fundamentals\nopen\n\n\n5\nTue 8 Dec 2026\n2.3 NumPy\nopen\n\n\n6\nThu 10 Dec 2026\n2.4 pandas: loading and inspecting data\nopen\n\n\n7\nTue 15 Dec 2026\n2.5 Data quality\nopen\n\n\n8\nThu 17 Dec 2026\n2.6 Reshaping and aggregation\nopen\n\n\n\n19 Dec – 11 Jan\nWinter break\n\n\n\n9\nTue 13 Jan 2027\n2.7 Exploratory analysis (with a short pandas recap)\nopen\n\n\n10\nThu 15 Jan 2027\n2.8 Visualisation\nopen\n\n\n11\nTue 20 Jan 2027\n3.1 Introduction to machine learning\ndraft\n\n\n12\nThu 22 Jan 2027\n3.2 Regression, linear regression\ndraft\n\n\n13\nTue 27 Jan 2027\n3.3 Classification, logistic regression · Case 1 issued\ndraft\n\n\n14\nThu 29 Jan 2027\n3.4 Model validation, regularisation\ndraft\n\n\n15\nTue 3 Feb 2027\n3.5 Decision trees and ensembles\ndraft\n\n\n16\nThu 5 Feb 2027\n3.6 Unsupervised learning\ndraft\n\n\n17\nTue 10 Feb 2027\nCase 1 review\ndraft\n\n\n18\nThu 12 Feb 2027\n4.1 Introduction to neural networks · Case 2 issued\ndraft\n\n\n19\nTue 17 Feb 2027\n4.2 Neural network architectures and layers\ndraft\n\n\n20\nThu 19 Feb 2027\n4.3 Optimisation and training diagnostics\ndraft\n\n\n21\nTue 24 Feb 2027\n4.4 Physics-informed ML (PINNs)\ndraft\n\n\n22\nThu 26 Feb 2027\nCase 2 defence\ndraft\n\n\n\nCourse datasets are described on the Data page."
+    "text": "Calendar\n\n\n\n#\nDate\nTopic\nSlides\n\n\n\n\n1\nTue 1 Dec 2026\n1.1 + 1.2 Language basics, control flow and functions\nopen\n\n\n2\nThu 3 Dec 2026\n1.3 + 1.4 Data structures, working with code\nopen\n\n\n3\nTue 8 Dec 2026\n1.5 + 2.1 Environment and version control (Git)\nopen\n\n\n4\nThu 10 Dec 2026\n2.2 Data fundamentals\nopen\n\n\n5\nTue 15 Dec 2026\n2.3 NumPy\nopen\n\n\n6\nThu 17 Dec 2026\n2.4 pandas: loading and inspecting data\nopen\n\n\n\n18 Dec – 11 Jan\nWinter break\n\n\n\n7\nTue 12 Jan 2027\n2.5 Data quality (with a short pandas recap)\nopen\n\n\n8\nThu 14 Jan 2027\n2.6 Reshaping and aggregation\nopen\n\n\n9\nTue 19 Jan 2027\n2.7 Exploratory analysis\nopen\n\n\n10\nThu 21 Jan 2027\n2.8 Visualisation\nopen\n\n\n11\nTue 26 Jan 2027\n3.1 Introduction to machine learning\ndraft\n\n\n12\nThu 28 Jan 2027\n3.2 Regression, linear regression\ndraft\n\n\n13\nTue 2 Feb 2027\n3.3 Classification, logistic regression · Case 1 issued\ndraft\n\n\n14\nThu 4 Feb 2027\n3.4 Model validation, regularisation\ndraft\n\n\n15\nTue 9 Feb 2027\n3.5 Decision trees and ensembles\ndraft\n\n\n16\nThu 11 Feb 2027\n3.6 Unsupervised learning\ndraft\n\n\n17\nTue 16 Feb 2027\nCase 1 review\ndraft\n\n\n18\nThu 18 Feb 2027\n4.1 Introduction to neural networks · Case 2 issued\ndraft\n\n\n19\nTue 23 Feb 2027\n4.2 Neural network architectures and layers\ndraft\n\n\n20\nThu 25 Feb 2027\n4.3 Optimisation and training diagnostics\ndraft\n\n\n21\nTue 2 Mar 2027\n4.4 Physics-informed ML (PINNs)\ndraft\n\n\n22\nThu 4 Mar 2027\nCase 2 defence\ndraft\n\n\n\nCourse datasets are described on the Data page."
   },
   {
     "objectID": "session17-case1-review.html#draft",
@@ -746,7 +746,7 @@
     "href": "session08-reshaping.html#summary",
     "title": "Reshaping and aggregation",
     "section": "Summary",
-    "text": "Summary\n\npd.cut / pd.qcut — classes from continuous variables\ngroupby(...).agg(name=(col, func)) — split, apply, combine\npivot_table and crosstab — two-way summaries\nmelt (wide → long) and pivot (long → wide)\nconcat stacks, merge joins by keys; check row counts after every merge\n\nAfter the break (Tue 13 Jan): exploratory data analysis — asking the data questions systematically."
+    "text": "Summary\n\npd.cut / pd.qcut — classes from continuous variables\ngroupby(...).agg(name=(col, func)) — split, apply, combine\npivot_table and crosstab — two-way summaries\nmelt (wide → long) and pivot (long → wide)\nconcat stacks, merge joins by keys; check row counts after every merge\n\nNext session: exploratory data analysis — asking the data questions systematically."
   },
   {
     "objectID": "session08-reshaping.html#practice-at-home-1-h",
@@ -754,13 +754,6 @@
     "title": "Reshaping and aggregation",
     "section": "Practice at home (~1 h)",
     "text": "Practice at home (~1 h)\n\nfinish exercise 3 and commit\nthink of a question about your own calculations that needs a groupby — write it down"
-  },
-  {
-    "objectID": "session08-reshaping.html#over-the-break",
-    "href": "session08-reshaping.html#over-the-break",
-    "title": "Reshaping and aggregation",
-    "section": "Over the break",
-    "text": "Over the break\n\nNo obligatory homework. If you want to practise:\n\n\nload a table from your own work (CSV or Excel) with pandas, clean it and summarise it with groupby\nwrite down anything that went wrong — we start Session 9 with a recap and your examples"
   },
   {
     "objectID": "session02-data-structures.html#quick-recap",
@@ -837,7 +830,7 @@
     "href": "session02-data-structures.html#sets-unique-values",
     "title": "Data structures and working with code",
     "section": "Sets: unique values",
-    "text": "Sets: unique values\n\nmaterials_used = [\"S355\", \"S235\", \"S355\", \"S355\", \"S460\"]\nunique = set(materials_used)\nprint(unique, len(unique))\nprint(\"S690\" in unique)\n\n{'S235', 'S460', 'S355'} 3\nFalse\n\n\n\nno duplicates, no order\nfast in checks; useful for “which different values do I have?”"
+    "text": "Sets: unique values\n\nmaterials_used = [\"S355\", \"S235\", \"S355\", \"S355\", \"S460\"]\nunique = set(materials_used)\nprint(unique, len(unique))\nprint(\"S690\" in unique)\n\n{'S460', 'S355', 'S235'} 3\nFalse\n\n\n\nno duplicates, no order\nfast in checks; useful for “which different values do I have?”"
   },
   {
     "objectID": "session02-data-structures.html#which-structure-when",
@@ -1068,14 +1061,14 @@
     "href": "session06-pandas.html#summary",
     "title": "pandas: loading and inspecting data",
     "section": "Summary",
-    "text": "Summary\n\npd.read_csv with sep, decimal, na_values, usecols, index_col\nfirst look: shape, info(), describe(), head()\ndf[\"col\"], df[[\"a\", \"b\"]], loc by label, iloc by position\nfilter with masks or query; sort with sort_values\nnew columns by vectorised arithmetic; to_csv to save\n\nNext session: data quality — what to do when the file is not clean."
+    "text": "Summary\n\npd.read_csv with sep, decimal, na_values, usecols, index_col\nfirst look: shape, info(), describe(), head()\ndf[\"col\"], df[[\"a\", \"b\"]], loc by label, iloc by position\nfilter with masks or query; sort with sort_values\nnew columns by vectorised arithmetic; to_csv to save\n\nAfter the break: data quality — what to do when the file is not clean."
   },
   {
-    "objectID": "session06-pandas.html#practice-at-home-1-h",
-    "href": "session06-pandas.html#practice-at-home-1-h",
+    "objectID": "session06-pandas.html#over-the-break",
+    "href": "session06-pandas.html#over-the-break",
     "title": "pandas: loading and inspecting data",
-    "section": "Practice at home (~1 h)",
-    "text": "Practice at home (~1 h)\n\nload a table from your own work (CSV or Excel) with pandas, run the 5 checks\nwrite down anything that went wrong — we start Session 7 with your examples"
+    "section": "Over the break",
+    "text": "Over the break\n\nNo obligatory homework. If you want to practise:\n\n\nload a table from your own work (CSV or Excel) with pandas, run the 5 checks\nwrite down anything that went wrong — we start Session 7 with your examples"
   },
   {
     "objectID": "session15-trees-ensembles.html#draft",
@@ -1348,7 +1341,7 @@
     "href": "session10-visualisation.html#modules-12-what-you-can-do-now",
     "title": "Visualisation",
     "section": "Modules 1–2: what you can do now",
-    "text": "Modules 1–2: what you can do now\n\nwrite Python: types, control flow, functions, data structures, modules\nwork in your own environment, version your work with Git\nplan a series of calculations and understand its structure\nNumPy for array calculations, pandas to load, clean, reshape and summarise\nexplore a dataset systematically and show the findings in clear plots\n\nFrom Tuesday 20 Jan: Module 3 — machine learning fundamentals, on the same bracket data."
+    "text": "Modules 1–2: what you can do now\n\nwrite Python: types, control flow, functions, data structures, modules\nwork in your own environment, version your work with Git\nplan a series of calculations and understand its structure\nNumPy for array calculations, pandas to load, clean, reshape and summarise\nexplore a dataset systematically and show the findings in clear plots\n\nFrom Tuesday 26 Jan: Module 3 — machine learning fundamentals, on the same bracket data."
   },
   {
     "objectID": "session10-visualisation.html#before-module-3",
@@ -1405,6 +1398,20 @@
     "title": "Introduction to machine learning",
     "section": "Summary",
     "text": "Summary\n\nTODO"
+  },
+  {
+    "objectID": "session07-data-quality.html#welcome-back-quick-pandas-recap",
+    "href": "session07-data-quality.html#welcome-back-quick-pandas-recap",
+    "title": "Data quality",
+    "section": "Welcome back! Quick pandas recap",
+    "text": "Welcome back! Quick pandas recap\n\nimport pandas as pd\nimport numpy as np\n\ndf = pd.read_csv(\"data/bracket.csv\")              # read\nprint(df.shape)                                    # size\ncols = [\"run_id\", \"thickness_mm\", \"load_N\", \"safety_factor\"]\nlow = df.loc[df[\"safety_factor\"] &lt; 1, cols]        # filter rows, pick columns\nlow.sort_values(\"safety_factor\").head(3)           # sort\n\n(300, 8)\n\n\n\n\n\n\n\n\n\nrun_id\nthickness_mm\nload_N\nsafety_factor\n\n\n\n\n51\nR052\n8.1\n2708.0\n0.246\n\n\n272\nR273\n8.6\n2942.0\n0.281\n\n\n291\nR292\n8.6\n2874.0\n0.283\n\n\n\n\n\n\n\n\nread_csv → info / describe → df[\"col\"] / loc → masks → new columns → to_csv."
+  },
+  {
+    "objectID": "session07-data-quality.html#recap-your-turn-5-min",
+    "href": "session07-data-quality.html#recap-your-turn-5-min",
+    "title": "Data quality",
+    "section": "Recap: your turn (5 min)",
+    "text": "Recap: your turn (5 min)\n\nWithout looking at the old slides:\n\nHow many runs have thickness above 15 mm and SF below 1.5?\nAdd a column deflection_um (micrometres).\nWhich run has the largest deflection?"
   },
   {
     "objectID": "session07-data-quality.html#today",
@@ -1594,20 +1601,6 @@
     "title": "Optimisation and training diagnostics",
     "section": "Summary",
     "text": "Summary\n\nTODO"
-  },
-  {
-    "objectID": "session09-eda.html#welcome-back-quick-pandas-recap",
-    "href": "session09-eda.html#welcome-back-quick-pandas-recap",
-    "title": "Exploratory data analysis",
-    "section": "Welcome back! Quick pandas recap",
-    "text": "Welcome back! Quick pandas recap\n\nimport pandas as pd\nimport numpy as np\n\ndf = pd.read_csv(\"data/bracket.csv\")              # read\nprint(df.shape)                                    # size\ncols = [\"run_id\", \"thickness_mm\", \"load_N\", \"safety_factor\"]\nlow = df.loc[df[\"safety_factor\"] &lt; 1, cols]        # filter rows, pick columns\nlow.sort_values(\"safety_factor\").head(3)           # sort\n\n(300, 8)\n\n\n\n\n\n\n\n\n\nrun_id\nthickness_mm\nload_N\nsafety_factor\n\n\n\n\n51\nR052\n8.1\n2708.0\n0.246\n\n\n272\nR273\n8.6\n2942.0\n0.281\n\n\n291\nR292\n8.6\n2874.0\n0.283\n\n\n\n\n\n\n\n\nread_csv → info / describe → df[\"col\"] / loc → masks → new columns → to_csv."
-  },
-  {
-    "objectID": "session09-eda.html#recap-your-turn-5-min",
-    "href": "session09-eda.html#recap-your-turn-5-min",
-    "title": "Exploratory data analysis",
-    "section": "Recap: your turn (5 min)",
-    "text": "Recap: your turn (5 min)\n\nWithout looking at the old slides:\n\nHow many runs have thickness above 15 mm and SF below 1.5?\nAdd a column deflection_um (micrometres).\nWhich run has the largest deflection?"
   },
   {
     "objectID": "session09-eda.html#today",
@@ -1880,7 +1873,7 @@
     "href": "session05-numpy.html#why-numpy",
     "title": "NumPy: calculations on whole arrays",
     "section": "Why NumPy?",
-    "text": "Why NumPy?\n\nimport numpy as np\nimport time\n\nt = list(range(1, 1_000_001))\nstart = time.perf_counter()\ns_list = [6 * 1500 * 150 / (40 * x ** 2) for x in t]\nt_list = time.perf_counter() - start\n\nt_arr = np.arange(1, 1_000_001)\nstart = time.perf_counter()\ns_arr = 6 * 1500 * 150 / (40 * t_arr ** 2.0)\nt_np = time.perf_counter() - start\nprint(f\"list: {t_list*1000:.0f} ms   numpy: {t_np*1000:.0f} ms   ({t_list/t_np:.0f}× faster)\")\n\nlist: 44 ms   numpy: 5 ms   (10× faster)\n\n\n\none operation on the whole array, executed in compiled code\nthe basis of pandas, scikit-learn and PyTorch"
+    "text": "Why NumPy?\n\nimport numpy as np\nimport time\n\nt = list(range(1, 1_000_001))\nstart = time.perf_counter()\ns_list = [6 * 1500 * 150 / (40 * x ** 2) for x in t]\nt_list = time.perf_counter() - start\n\nt_arr = np.arange(1, 1_000_001)\nstart = time.perf_counter()\ns_arr = 6 * 1500 * 150 / (40 * t_arr ** 2.0)\nt_np = time.perf_counter() - start\nprint(f\"list: {t_list*1000:.0f} ms   numpy: {t_np*1000:.0f} ms   ({t_list/t_np:.0f}× faster)\")\n\nlist: 40 ms   numpy: 3 ms   (12× faster)\n\n\n\none operation on the whole array, executed in compiled code\nthe basis of pandas, scikit-learn and PyTorch"
   },
   {
     "objectID": "session05-numpy.html#creating-arrays",
@@ -2055,7 +2048,7 @@
     "href": "session18-nn-intro.html#case-2-issued",
     "title": "Introduction to neural networks",
     "section": "Case 2 issued",
-    "text": "Case 2 issued\n\nDeep learning: a neural-network surrogate in PyTorch. Custom Dataset, training loop, tuning and diagnostics, comparison with Case 1. Defence: Session 22 (Thu 26 Feb). Estimated work: 6–8 h between sessions."
+    "text": "Case 2 issued\n\nDeep learning: a neural-network surrogate in PyTorch. Custom Dataset, training loop, tuning and diagnostics, comparison with Case 1. Defence: Session 22 (Thu 4 Mar). Estimated work: 6–8 h between sessions."
   },
   {
     "objectID": "session18-nn-intro.html#summary",
@@ -2111,7 +2104,7 @@
     "href": "session13-classification.html#case-1-issued",
     "title": "Classification: logistic regression",
     "section": "Case 1 issued",
-    "text": "Case 1 issued\n\nMachine learning: an engineering ML model with NumPy and scikit-learn. Full cycle from calculation results to a model choice. Review: Session 17 (Tue 10 Feb). Estimated work: 6–8 h between sessions."
+    "text": "Case 1 issued\n\nMachine learning: an engineering ML model with NumPy and scikit-learn. Full cycle from calculation results to a model choice. Review: Session 17 (Tue 16 Feb). Estimated work: 6–8 h between sessions."
   },
   {
     "objectID": "session13-classification.html#summary",

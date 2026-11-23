@@ -188,7 +188,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">pandas: loading and inspecting data</h1>
-  <p class="subtitle">Session 6 · Topic 2.4 · Thu 10 Dec</p>
+  <p class="subtitle">Session 6 · Topic 2.4 · Thu 17 Dec</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -217,7 +217,7 @@
 <li>a <strong>row index</strong> (labels for rows)</li>
 <li>reading / writing CSV, Excel, …; handling missing values; grouping</li>
 </ul>
-<div id="3815279b" class="cell" data-execution_count="1">
+<div id="1b5970f8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>pd.__version__</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -228,7 +228,7 @@
 </section>
 <section id="series-one-labelled-column" class="slide level2">
 <h2>Series: one labelled column</h2>
-<div id="7c379b52" class="cell" data-execution_count="2">
+<div id="66c77ea4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="fl">170.4</span>, <span class="fl">527.5</span>, <span class="fl">297.9</span>], index<span class="op">=</span>[<span class="st">"R001"</span>, <span class="st">"R002"</span>, <span class="st">"R003"</span>], name<span class="op">=</span><span class="st">"max_stress_MPa"</span>)</span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -238,7 +238,7 @@ R003    297.9
 Name: max_stress_MPa, dtype: float64</code></pre>
 </div>
 </div>
-<div id="3973cb0c" class="cell" data-execution_count="3">
+<div id="ac947cf2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s[<span class="st">"R002"</span>], s.mean())</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">355</span> <span class="op">/</span> s)          <span class="co"># vectorised, like NumPy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -252,7 +252,7 @@ Name: max_stress_MPa, dtype: float64</code></pre>
 </section>
 <section id="dataframe-a-table" class="slide level2">
 <h2>DataFrame: a table</h2>
-<div id="8cf79983" class="cell" data-execution_count="4">
+<div id="bca2bfe7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>df_small <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">"thickness_mm"</span>: [<span class="fl">17.3</span>, <span class="fl">13.3</span>, <span class="fl">18.3</span>],</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">"load_N"</span>: [<span class="dv">1537</span>, <span class="dv">2332</span>, <span class="dv">2729</span>],</span>
@@ -320,7 +320,7 @@ Name: max_stress_MPa, dtype: float64</code></pre>
 </section>
 <section id="read_csv" class="slide level2">
 <h2><code>read_csv</code></h2>
-<div id="034075d3" class="cell" data-execution_count="5">
+<div id="52c2cda8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/bracket.csv"</span>)</span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -441,7 +441,7 @@ Name: max_stress_MPa, dtype: float64</code></pre>
 </section>
 <section id="size-and-structure" class="slide level2 smaller">
 <h2>Size and structure</h2>
-<div id="22d1d299" class="cell" data-execution_count="6">
+<div id="f60ebbba" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>df.info(memory_usage<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -470,7 +470,7 @@ dtypes: float64(7), str(1)</code></pre>
 </section>
 <section id="describe-summary-statistics" class="slide level2">
 <h2><code>describe</code>: summary statistics</h2>
-<div id="edb494eb" class="cell" data-execution_count="7">
+<div id="1915cb27" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>df.describe().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -591,7 +591,7 @@ dtypes: float64(7), str(1)</code></pre>
 </section>
 <section id="quick-looks" class="slide level2">
 <h2>Quick looks</h2>
-<div id="dc14311e" class="cell" data-execution_count="8">
+<div id="7044ca82" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist())</span>
 <span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"thickness_mm"</span>].<span class="bu">min</span>(), df[<span class="st">"thickness_mm"</span>].<span class="bu">max</span>())</span>
 <span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"safety_factor"</span>].lt(<span class="dv">1</span>).<span class="bu">sum</span>(), <span class="st">"runs exceed yield"</span>)</span>
@@ -685,7 +685,7 @@ dtypes: float64(7), str(1)</code></pre>
 <li>missing values — <code>info()</code> non-null counts</li>
 <li>ID column — unique?</li>
 </ol>
-<div id="562b1111" class="cell" data-execution_count="9">
+<div id="a2d195c0" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"run_id"</span>].is_unique</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>True</code></pre>
@@ -699,7 +699,7 @@ dtypes: float64(7), str(1)</code></pre>
 </section>
 <section id="columns" class="slide level2">
 <h2>Columns</h2>
-<div id="65dfe58e" class="cell" data-execution_count="10">
+<div id="a801fe72" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"max_stress_MPa"</span>].head(<span class="dv">3</span>)          <span class="co"># one column → Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>0    170.4
@@ -708,7 +708,7 @@ dtypes: float64(7), str(1)</code></pre>
 Name: max_stress_MPa, dtype: float64</code></pre>
 </div>
 </div>
-<div id="88c3b3fe" class="cell" data-execution_count="11">
+<div id="b26f050c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"thickness_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"max_stress_MPa"</span>]].head(<span class="dv">3</span>)   <span class="co"># list → DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -766,7 +766,7 @@ Name: max_stress_MPa, dtype: float64</code></pre>
 </section>
 <section id="rows-loc-labels-and-iloc-positions" class="slide level2">
 <h2>Rows: <code>loc</code> (labels) and <code>iloc</code> (positions)</h2>
-<div id="ef39b03a" class="cell" data-execution_count="12">
+<div id="b89193d2" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>runs <span class="op">=</span> df.set_index(<span class="st">"run_id"</span>)</span>
 <span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>runs.loc[<span class="st">"R002"</span>]                       <span class="co"># one run by its label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -783,7 +783,7 @@ Name: R002, dtype: float64</code></pre>
 </section>
 <section id="loc-with-ranges-iloc-by-position" class="slide level2">
 <h2><code>loc</code> with ranges, <code>iloc</code> by position</h2>
-<div id="3c66896d" class="cell" data-execution_count="13">
+<div id="79fcbadc" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>runs.loc[<span class="st">"R001"</span>:<span class="st">"R003"</span>, [<span class="st">"thickness_mm"</span>, <span class="st">"max_stress_MPa"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -836,7 +836,7 @@ Name: R002, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="c126070d" class="cell" data-execution_count="14">
+<div id="2d1b728f" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>runs.iloc[<span class="dv">0</span>:<span class="dv">2</span>, <span class="dv">0</span>:<span class="dv">3</span>]                    <span class="co"># by position, like NumPy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
@@ -891,7 +891,7 @@ Name: R002, dtype: float64</code></pre>
 </section>
 <section id="filtering-boolean-masks-again" class="slide level2">
 <h2>Filtering: boolean masks again</h2>
-<div id="d60fa214" class="cell" data-execution_count="15">
+<div id="9798c0cc" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>thin <span class="op">=</span> df[df[<span class="st">"thickness_mm"</span>] <span class="op">&lt;</span> <span class="dv">10</span>]</span>
 <span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(thin))</span>
 <span id="cb25-3"><a aria-hidden="true" tabindex="-1"></a>failed <span class="op">=</span> df[(df[<span class="st">"safety_factor"</span>] <span class="op">&lt;</span> <span class="dv">1</span>) <span class="op">&amp;</span> (df[<span class="st">"load_N"</span>] <span class="op">&lt;</span> <span class="dv">1000</span>)]</span>
@@ -941,7 +941,7 @@ Name: R002, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="175f7aa8" class="cell" data-execution_count="16">
+<div id="b94111c0" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">"thickness_mm &gt; 18 and load_N &gt; 2500"</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>(10, 8)</code></pre>
@@ -950,7 +950,7 @@ Name: R002, dtype: float64</code></pre>
 </section>
 <section id="sorting" class="slide level2">
 <h2>Sorting</h2>
-<div id="a4bb885e" class="cell" data-execution_count="17">
+<div id="cb90524f" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">"max_stress_MPa"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
@@ -1044,7 +1044,7 @@ Name: R002, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="28dc0a03" class="cell" data-execution_count="18">
+<div id="a4054968" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a>df.nlargest(<span class="dv">3</span>, <span class="st">"deflection_mm"</span>)[[<span class="st">"run_id"</span>, <span class="st">"thickness_mm"</span>, <span class="st">"load_N"</span>, <span class="st">"deflection_mm"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
@@ -1108,7 +1108,7 @@ Name: R002, dtype: float64</code></pre>
 </section>
 <section id="new-columns" class="slide level2">
 <h2>New columns</h2>
-<div id="ee823b73" class="cell" data-execution_count="19">
+<div id="5babdd5b" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nominal_stress_MPa"</span>] <span class="op">=</span> <span class="dv">6</span> <span class="op">*</span> df[<span class="st">"load_N"</span>] <span class="op">*</span> <span class="dv">150</span> <span class="op">/</span> (<span class="dv">40</span> <span class="op">*</span> df[<span class="st">"thickness_mm"</span>] <span class="op">**</span> <span class="dv">2</span>)</span>
 <span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Kt"</span>] <span class="op">=</span> df[<span class="st">"max_stress_MPa"</span>] <span class="op">/</span> df[<span class="st">"nominal_stress_MPa"</span>]</span>
 <span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>df[<span class="st">"passes"</span>] <span class="op">=</span> df[<span class="st">"safety_factor"</span>] <span class="op">&gt;=</span> <span class="fl">1.5</span></span>
@@ -1189,7 +1189,7 @@ Name: R002, dtype: float64</code></pre>
 </section>
 <section id="renaming-dropping-apply" class="slide level2">
 <h2>Renaming, dropping, apply</h2>
-<div id="237a818a" class="cell" data-execution_count="20">
+<div id="7a1cb6cd" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>small <span class="op">=</span> (df</span>
 <span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>    .rename(columns<span class="op">=</span>{<span class="st">"fillet_radius_mm"</span>: <span class="st">"r_mm"</span>})</span>
 <span id="cb32-3"><a aria-hidden="true" tabindex="-1"></a>    .drop(columns<span class="op">=</span>[<span class="st">"E_MPa"</span>])</span>
@@ -1210,7 +1210,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="saving" class="slide level2">
 <h2>Saving</h2>
-<div id="480939a0" class="cell" data-execution_count="21">
+<div id="3e817bb1" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">"bracket_clean.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a>df.to_excel(<span class="st">"bracket.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)      <span class="co"># needs openpyxl</span></span>
@@ -1237,10 +1237,13 @@ Name: count, dtype: int64</code></pre>
 <li>filter with masks or <code>query</code>; sort with <code>sort_values</code></li>
 <li>new columns by vectorised arithmetic; <code>to_csv</code> to save</li>
 </ul>
-<p><strong>Next session:</strong> data quality — what to do when the file is not clean.</p>
+<p><strong>After the break:</strong> data quality — what to do when the file is not clean.</p>
 </section>
-<section id="practice-at-home-1-h" class="slide level2">
-<h2>Practice at home (~1 h)</h2>
+<section id="over-the-break" class="slide level2">
+<h2>Over the break</h2>
+<div class="muted">
+<p>No obligatory homework. If you want to practise:</p>
+</div>
 <ul>
 <li>load a table from your own work (CSV or Excel) with pandas, run the 5 checks</li>
 <li>write down anything that went wrong — we start Session 7 with your examples</li>
