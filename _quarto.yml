@@ -3,6 +3,7 @@ project:
   output-dir: _site
   resources:
     - data/*.csv
+    - pdf/*.pdf
     - scripts/setup_env.sh
     - scripts/setup_env.ps1
     - scripts/requirements.txt

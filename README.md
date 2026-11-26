@@ -26,6 +26,17 @@ quarto publish gh-pages
 If you use a different repository name, replace `ML-engineers-2026` in
 `data.qmd`, `session06-pandas.qmd`, `scripts/setup_env.sh` and `scripts/setup_env.ps1`.
 
+## PDF downloads
+
+Each deck is also offered as a PDF (`pdf/sessionNN-*.pdf`, linked from the calendar).
+After changing slides, regenerate the PDFs (needs Google Chrome) before publishing:
+
+```bash
+quarto render
+scripts/make_pdfs.sh
+quarto publish gh-pages
+```
+
 ## Edit and preview
 
 ```bash

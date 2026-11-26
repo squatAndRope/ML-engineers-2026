@@ -24,3 +24,11 @@ table.calendar td:first-child { color: #6B7280; }
 table.calendar tr.past-row td { color: #9AA1AB; }
 table.calendar tr.next-row td { background: #EEF3F9; font-weight: 600; }
 table.calendar tr.break-row td { background: #F4F5F7; color: #6B7280; font-style: italic; }
+
+a.slide-btn {
+  display: inline-block; padding: .1rem .55rem; margin-right: .25rem;
+  border: 1px solid #C3CCD8; border-radius: 4px; font-size: .85rem;
+  text-decoration: none; white-space: nowrap;
+}
+a.slide-btn:hover { background: #EEF3F9; }
+a.pdf-btn { color: #4B5563; }
