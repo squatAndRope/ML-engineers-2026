@@ -15,12 +15,14 @@ subtitle: "Fundamentals of Machine Learning for Engineers"
 Questions about the material, exercises or setup: write to me by email.
 :::
 
-::: {.front-card .next-card}
-#### Next session
+::: {.front-card .dates-card}
+#### Course dates
 
-[Online · 1.5 h · Tuesdays and Thursdays]{#next-session}
+[1 Dec 2026 – 4 Mar 2027]{.course-dates}<br>
+Winter break: 18 Dec – 11 Jan
 
-Each session: about 50 min of theory and 40 min of hands-on practice.
+22 sessions online · Tuesdays and Thursdays · 1.5 h each
+(about 50 min theory + 40 min practice)
 :::
 
 :::
@@ -72,17 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (d < today) row.classList.add("past-row");
     else if (!next) { next = row; row.classList.add("next-row"); }
   });
-  var box = document.getElementById("next-session");
-  if (!box) return;
-  if (next) {
-    var c = next.querySelectorAll("td");
-    var link = c[3].querySelector("a");
-    box.innerHTML = "<span class='next-date'>" + c[1].textContent + "</span><br>" +
-      "Session " + c[0].textContent + " · " + c[2].textContent +
-      (link ? " · <a href='" + link.getAttribute("href") + "' target='_blank'>slides</a>" : "");
-  } else {
-    box.textContent = "All 22 sessions are done.";
-  }
 });
 </script>
 ```
