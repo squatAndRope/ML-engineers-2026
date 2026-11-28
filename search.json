@@ -42,6 +42,13 @@
     "text": "Beyond fully connected\n\nOverview of convolutional networks (CNNs)\nOverview of the Transformer architecture\n\n\nTODO: slides"
   },
   {
+    "objectID": "session19-nn-architectures.html#in-our-context",
+    "href": "session19-nn-architectures.html#in-our-context",
+    "title": "Neural network architectures and layers",
+    "section": "In our context",
+    "text": "In our context\n\n\nFully connected networks: tabular calculation inputs → outputs (the Case 2 surrogate)\nCNNs: images and fields — inspection images, stress or temperature fields on a grid\nTransformers: sequences and text — overview only, e.g. searching large sets of technical documents"
+  },
+  {
     "objectID": "session19-nn-architectures.html#practice-40-min",
     "href": "session19-nn-architectures.html#practice-40-min",
     "title": "Neural network architectures and layers",
@@ -294,6 +301,13 @@
     "text": "Loss components\n\nEquation residual\nBoundary and initial conditions\nMeasurement data\n\n\nTODO: slides"
   },
   {
+    "objectID": "session21-pinns.html#in-our-context",
+    "href": "session21-pinns.html#in-our-context",
+    "title": "Physics-informed ML (PINNs)",
+    "section": "In our context",
+    "text": "In our context\n\n\n1D heat conduction through a wall — close to thermal-hydraulics tasks\nBeam bending — close to strength calculations\nPhysics in the loss makes the model respect the equation where data are missing — but it still has to be checked against an analytical or FEM solution"
+  },
+  {
     "objectID": "session21-pinns.html#practice-40-min",
     "href": "session21-pinns.html#practice-40-min",
     "title": "Physics-informed ML (PINNs)",
@@ -350,6 +364,13 @@
     "text": "Course wrap-up\n\nWhat you can do now\nOptional Case 3: a physics-informed model in DeepXDE\n\n\nTODO: slides"
   },
   {
+    "objectID": "session22-case2-defence.html#in-our-context",
+    "href": "session22-case2-defence.html#in-our-context",
+    "title": "Case 2 defence",
+    "section": "In our context",
+    "text": "In our context\n\n\nWhere ML can help in expert review: fast parametric studies, screening, checking whether submitted results are plausible\nWhere it cannot: it does not replace the qualified calculation used in a safety case\nWhatever the model, the passport — domain, data, accuracy, versions — is what makes it reviewable"
+  },
+  {
     "objectID": "session22-case2-defence.html#acceptance-criteria",
     "href": "session22-case2-defence.html#acceptance-criteria",
     "title": "Case 2 defence",
@@ -399,11 +420,18 @@
     "text": "Anomaly detection\n\nIsolation forest\n\n\nTODO: slides"
   },
   {
+    "objectID": "session16-unsupervised.html#in-our-context",
+    "href": "session16-unsupervised.html#in-our-context",
+    "title": "Unsupervised learning",
+    "section": "In our context",
+    "text": "In our context\n\n\nClustering: typical operating regimes of equipment from monitoring records\nPCA: many correlated sensor channels → a few components for overview and plots\nAnomaly detection: records that do not fit — sensor fault, data entry error or a real change in condition\nThe output is a list for an expert to check, not a conclusion"
+  },
+  {
     "objectID": "session16-unsupervised.html#practice-40-min",
     "href": "session16-unsupervised.html#practice-40-min",
     "title": "Unsupervised learning",
     "section": "Practice (40 min)",
-    "text": "Practice (40 min)\n\n\nPerform k-means clustering and evaluate the result\nVisualise the data with PCA and t-SNE\nDetect anomalies with Isolation forest"
+    "text": "Practice (40 min)\n\n\nPerform k-means clustering and evaluate the result\nVisualise the data with PCA and t-SNE\nDetect anomalies with Isolation forest and explain which records an expert should look at first"
   },
   {
     "objectID": "session16-unsupervised.html#summary",
@@ -600,6 +628,13 @@
     "title": "Case 1 review",
     "section": "Review",
     "text": "Review\n\nPresentations of participants’ solutions\nCommon problems and how to fix them\n\n\nTODO: slides"
+  },
+  {
+    "objectID": "session17-case1-review.html#in-our-context",
+    "href": "session17-case1-review.html#in-our-context",
+    "title": "Case 1 review",
+    "section": "In our context",
+    "text": "In our context\n\n\nHow was the dataset produced: which code, which inputs, how many runs?\nIs the model conservative where it matters, and how large is the worst error?\nWhat happens outside the domain of applicability?\nCould another engineer reproduce the result from the passport?"
   },
   {
     "objectID": "session17-case1-review.html#acceptance-criteria",
@@ -1106,6 +1141,13 @@
     "text": "Hyperparameter tuning\n\nWhich parameters matter and how to search them\n\n\nTODO: slides"
   },
   {
+    "objectID": "session15-trees-ensembles.html#in-our-context",
+    "href": "session15-trees-ensembles.html#in-our-context",
+    "title": "Decision trees and ensembles",
+    "section": "In our context",
+    "text": "In our context\n\n\nTrees and ensembles do not extrapolate: outside the training range the prediction is flat\nFeature importance is a check against physics — does load matter more than an irrelevant ID column?\nBoosting is often the most accurate surrogate on tabular calculation results; its limits must still be stated"
+  },
+  {
     "objectID": "session15-trees-ensembles.html#practice-40-min",
     "href": "session15-trees-ensembles.html#practice-40-min",
     "title": "Decision trees and ensembles",
@@ -1153,6 +1195,13 @@
     "title": "Regression: linear regression",
     "section": "Evaluation",
     "text": "Evaluation\n\nMAE, MSE / RMSE\nR², adjusted R²\n\n\nTODO: slides"
+  },
+  {
+    "objectID": "session12-linear-regression.html#in-our-context",
+    "href": "session12-linear-regression.html#in-our-context",
+    "title": "Regression: linear regression",
+    "section": "In our context",
+    "text": "In our context\n\n\nStress vs load in the elastic range is close to linear — a good first model and a sanity check\nThe fit predicts the mean; a safety assessment needs a margin: look at residuals and prediction intervals, not only R²\nCheck residuals against each input: a pattern means missing physics (plasticity, contact, geometry effects)"
   },
   {
     "objectID": "session12-linear-regression.html#practice-40-min",
@@ -1204,11 +1253,18 @@
     "text": "Regularisation\n\nRidge\nLasso\nElasticNet\n\n\nTODO: slides"
   },
   {
+    "objectID": "session14-validation.html#in-our-context",
+    "href": "session14-validation.html#in-our-context",
+    "title": "Model validation and regularisation",
+    "section": "In our context",
+    "text": "In our context\n\n\nLeakage in calculation data: runs of the same design variant in both train and test — use group K-Fold by variant\nA random split only tests interpolation; lifetime extension asks questions outside the original data\nReport where the training data ends: this becomes the domain of applicability in the model passport"
+  },
+  {
     "objectID": "session14-validation.html#practice-40-min",
     "href": "session14-validation.html#practice-40-min",
     "title": "Model validation and regularisation",
     "section": "Practice (40 min)",
-    "text": "Practice (40 min)\n\n\nShow overfitting and underfitting by varying model complexity\nReproduce a data-leakage example and fix it\nEvaluate a model with K-Fold\nCompare Ridge, Lasso and ElasticNet"
+    "text": "Practice (40 min)\n\n\nShow overfitting and underfitting by varying model complexity\nReproduce a data-leakage example (same design variant in train and test) and fix it with group K-Fold\nEvaluate a model with K-Fold\nCompare Ridge, Lasso and ElasticNet"
   },
   {
     "objectID": "session14-validation.html#summary",
@@ -1384,6 +1440,13 @@
     "title": "Introduction to machine learning",
     "section": "The ML project pipeline",
     "text": "The ML project pipeline\n\nProblem formulation, defining features & target\nData preparation → train / validation / test split\nBaseline model → evaluation → improvement or alternative → evaluation\n\n\nTODO: slides"
+  },
+  {
+    "objectID": "session11-ml-intro.html#in-our-context",
+    "href": "session11-ml-intro.html#in-our-context",
+    "title": "Introduction to machine learning",
+    "section": "In our context",
+    "text": "In our context\n\n\nRegression: max stress in a bracket or pipe support from geometry and load — a surrogate for a strength calculation\nClassification: does a calculated case meet the acceptance criterion (stress below allowable)?\nUnsupervised: grouping operating regimes, flagging unusual records in monitoring data\nML does not replace a qualified calculation code: it speeds up screening and parametric studies"
   },
   {
     "objectID": "session11-ml-intro.html#practice-40-min",
@@ -1587,6 +1650,13 @@
     "title": "Optimisation and training diagnostics",
     "section": "Diagnostics",
     "text": "Diagnostics\n\nLearning curves: overfitting, underfitting, “stalling”\nEarly stopping\nPractical techniques for stabilising training\n\n\nTODO: slides"
+  },
+  {
+    "objectID": "session20-optimisation.html#in-our-context",
+    "href": "session20-optimisation.html#in-our-context",
+    "title": "Optimisation and training diagnostics",
+    "section": "In our context",
+    "text": "In our context\n\n\nInputs and outputs in MPa, mm, °C and cycles differ by orders of magnitude: scale them, or training stalls\nFix random seeds and record package versions: a result that cannot be reproduced cannot be reviewed\nStop training on a validation set, never on the test set"
   },
   {
     "objectID": "session20-optimisation.html#practice-40-min",
@@ -2037,6 +2107,13 @@
     "text": "When to use a neural network\n\nWhen it is better than classical ML — and when it is worse\n\n\nTODO: slides"
   },
   {
+    "objectID": "session18-nn-intro.html#in-our-context",
+    "href": "session18-nn-intro.html#in-our-context",
+    "title": "Introduction to neural networks",
+    "section": "In our context",
+    "text": "In our context\n\n\nA network is worth it when there is a lot of calculation data and a strongly nonlinear response\nIt is worse when data are scarce, when the answer must be explained line by line, or when a simpler model is accurate enough\nFor a review, simpler is easier to justify: compare with the Case 1 models first"
+  },
+  {
     "objectID": "session18-nn-intro.html#practice-40-min",
     "href": "session18-nn-intro.html#practice-40-min",
     "title": "Introduction to neural networks",
@@ -2093,11 +2170,18 @@
     "text": "Evaluation\n\nConfusion matrix\nAccuracy, precision, recall, F1\nROC-AUC\n\n\nTODO: slides"
   },
   {
+    "objectID": "session13-classification.html#in-our-context",
+    "href": "session13-classification.html#in-our-context",
+    "title": "Classification: logistic regression",
+    "section": "In our context",
+    "text": "In our context\n\n\nTarget: case passes / fails the acceptance criterion\nThe two errors are not equal: calling an unacceptable case acceptable is non-conservative\nSo look at recall of the “fails” class and choose the decision threshold deliberately — not the default 0.5\nAccuracy hides this when failing cases are rare"
+  },
+  {
     "objectID": "session13-classification.html#practice-40-min",
     "href": "session13-classification.html#practice-40-min",
     "title": "Classification: logistic regression",
     "section": "Practice (40 min)",
-    "text": "Practice (40 min)\n\n\nTrain logistic regression for binary and multiclass tasks\nBuild a confusion matrix and a ROC curve\nCompute the metrics and explain when accuracy is misleading"
+    "text": "Practice (40 min)\n\n\nTrain logistic regression for binary and multiclass tasks\nBuild a confusion matrix and a ROC curve\nCompute the metrics, choose a conservative threshold and explain when accuracy is misleading"
   },
   {
     "objectID": "session13-classification.html#case-1-issued",

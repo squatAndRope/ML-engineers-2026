@@ -196,13 +196,24 @@
 <p>TODO: slides</p>
 </div>
 </section>
+<section id="in-our-context" class="slide level2">
+<h2>In our context</h2>
+<div class="tip">
+<ul>
+<li>Target: case <strong>passes / fails</strong> the acceptance criterion</li>
+<li>The two errors are not equal: calling an unacceptable case acceptable is <strong>non-conservative</strong></li>
+<li>So look at recall of the “fails” class and choose the decision threshold deliberately — not the default 0.5</li>
+<li>Accuracy hides this when failing cases are rare</li>
+</ul>
+</div>
+</section>
 <section id="practice-40-min" class="slide level2">
 <h2>Practice (40 min)</h2>
 <div class="exercise">
 <ol type="1">
 <li>Train logistic regression for binary and multiclass tasks</li>
 <li>Build a confusion matrix and a ROC curve</li>
-<li>Compute the metrics and explain when accuracy is misleading</li>
+<li>Compute the metrics, choose a conservative threshold and explain when accuracy is misleading</li>
 </ol>
 </div>
 </section>

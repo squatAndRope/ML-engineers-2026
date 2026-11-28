@@ -196,12 +196,22 @@
 <p>TODO: slides</p>
 </div>
 </section>
+<section id="in-our-context" class="slide level2">
+<h2>In our context</h2>
+<div class="tip">
+<ul>
+<li>Leakage in calculation data: runs of the <strong>same design variant</strong> in both train and test — use group K-Fold by variant</li>
+<li>A random split only tests interpolation; lifetime extension asks questions <strong>outside</strong> the original data</li>
+<li>Report where the training data ends: this becomes the domain of applicability in the model passport</li>
+</ul>
+</div>
+</section>
 <section id="practice-40-min" class="slide level2">
 <h2>Practice (40 min)</h2>
 <div class="exercise">
 <ol type="1">
 <li>Show overfitting and underfitting by varying model complexity</li>
-<li>Reproduce a data-leakage example and fix it</li>
+<li>Reproduce a data-leakage example (same design variant in train and test) and fix it with group K-Fold</li>
 <li>Evaluate a model with K-Fold</li>
 <li>Compare Ridge, Lasso and ElasticNet</li>
 </ol>
