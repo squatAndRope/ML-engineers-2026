@@ -3,6 +3,7 @@
 # (reveal.js print mode). Run after `quarto render`, then commit pdf/ and publish.
 #
 #   quarto render && scripts/make_pdfs.sh && quarto publish gh-pages
+#   scripts/make_pdfs.sh session11-ml-intro session12-linear-regression   # only these decks
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -16,7 +17,8 @@ server=$!
 trap 'kill $server 2>/dev/null; rm -rf "$profile"' EXIT
 sleep 1
 
-for html in _site/session*.html; do
+if [ $# -gt 0 ]; then decks=("$@"); else decks=(_site/session*.html); fi
+for html in "${decks[@]}"; do
   name="$(basename "$html" .html)"
   case "$name" in *" "*) continue ;; esac          # skip sync-conflict copies
   # headless Chrome sometimes prints before reveal.js has laid out the deck

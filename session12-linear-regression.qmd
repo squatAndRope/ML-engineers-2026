@@ -53,6 +53,14 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- Stress vs load in the elastic range is close to linear — a good first model and a sanity check
+- The fit predicts the **mean**; a safety assessment needs a margin: look at residuals and prediction intervals, not only R²
+- Check residuals against each input: a pattern means missing physics (plasticity, contact, geometry effects)
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}

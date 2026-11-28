@@ -54,6 +54,14 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- Inputs and outputs in MPa, mm, °C and cycles differ by orders of magnitude: scale them, or training stalls
+- Fix random seeds and record package versions: a result that cannot be reproduced cannot be reviewed
+- Stop training on a validation set, never on the test set
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}

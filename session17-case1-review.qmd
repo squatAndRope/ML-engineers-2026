@@ -43,6 +43,15 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- How was the dataset produced: which code, which inputs, how many runs?
+- Is the model **conservative** where it matters, and how large is the worst error?
+- What happens outside the domain of applicability?
+- Could another engineer reproduce the result from the passport?
+:::
+
 ## Acceptance criteria {.smaller}
 
 A case passes only if all four hold:

@@ -54,12 +54,21 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- Target: case **passes / fails** the acceptance criterion
+- The two errors are not equal: calling an unacceptable case acceptable is **non-conservative**
+- So look at recall of the "fails" class and choose the decision threshold deliberately — not the default 0.5
+- Accuracy hides this when failing cases are rare
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}
 1. Train logistic regression for binary and multiclass tasks
 2. Build a confusion matrix and a ROC curve
-3. Compute the metrics and explain when accuracy is misleading
+3. Compute the metrics, choose a conservative threshold and explain when accuracy is misleading
 :::
 
 ## Case 1 issued {.smaller}

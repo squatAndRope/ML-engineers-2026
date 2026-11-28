@@ -51,6 +51,14 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- Trees and ensembles **do not extrapolate**: outside the training range the prediction is flat
+- Feature importance is a check against physics — does load matter more than an irrelevant ID column?
+- Boosting is often the most accurate surrogate on tabular calculation results; its limits must still be stated
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}

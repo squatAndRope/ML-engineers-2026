@@ -54,6 +54,14 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- Where ML can help in expert review: fast parametric studies, screening, checking whether submitted results are plausible
+- Where it cannot: it does not replace the qualified calculation used in a safety case
+- Whatever the model, the passport — domain, data, accuracy, versions — is what makes it reviewable
+:::
+
 ## Acceptance criteria {.smaller}
 
 A case passes only if all four hold:

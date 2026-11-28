@@ -54,6 +54,15 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- **Regression:** max stress in a bracket or pipe support from geometry and load — a surrogate for a strength calculation
+- **Classification:** does a calculated case meet the acceptance criterion (stress below allowable)?
+- **Unsupervised:** grouping operating regimes, flagging unusual records in monitoring data
+- ML does not replace a qualified calculation code: it speeds up screening and parametric studies
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}

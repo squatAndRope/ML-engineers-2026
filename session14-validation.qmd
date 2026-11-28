@@ -54,11 +54,19 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- Leakage in calculation data: runs of the **same design variant** in both train and test — use group K-Fold by variant
+- A random split only tests interpolation; lifetime extension asks questions **outside** the original data
+- Report where the training data ends: this becomes the domain of applicability in the model passport
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}
 1. Show overfitting and underfitting by varying model complexity
-2. Reproduce a data-leakage example and fix it
+2. Reproduce a data-leakage example (same design variant in train and test) and fix it with group K-Fold
 3. Evaluate a model with K-Fold
 4. Compare Ridge, Lasso and ElasticNet
 :::

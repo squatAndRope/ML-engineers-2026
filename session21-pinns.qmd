@@ -55,6 +55,14 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- 1D heat conduction through a wall — close to thermal-hydraulics tasks
+- Beam bending — close to strength calculations
+- Physics in the loss makes the model respect the equation where data are missing — but it still has to be checked against an analytical or FEM solution
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}

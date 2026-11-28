@@ -53,6 +53,14 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- A network is worth it when there is a lot of calculation data and a strongly nonlinear response
+- It is worse when data are scarce, when the answer must be explained line by line, or when a simpler model is accurate enough
+- For a review, simpler is easier to justify: compare with the Case 1 models first
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}

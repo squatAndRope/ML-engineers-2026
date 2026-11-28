@@ -53,6 +53,14 @@ TODO: slides
 TODO: slides
 :::
 
+## In our context
+
+::: {.tip}
+- Fully connected networks: tabular calculation inputs → outputs (the Case 2 surrogate)
+- CNNs: images and fields — inspection images, stress or temperature fields on a grid
+- Transformers: sequences and text — overview only, e.g. searching large sets of technical documents
+:::
+
 ## Practice (40 min)
 
 ::: {.exercise}
